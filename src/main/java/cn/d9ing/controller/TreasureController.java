@@ -56,12 +56,14 @@ public class TreasureController {
 	 */
 	 @RequestMapping("/addtreasure")
 	 @ResponseBody
-	public Integer insertTreasure(HttpServletRequest request,Treasure treasure){
+	public Integer insertTreasure(@RequestParam CommonsMultipartFile file,HttpServletRequest request,Treasure treasure){
 		try {
 			Date date = DateUtils.sqlDate();
+			FileBean picfile = UploadUtils.getInstance().upload(request, file, "");
 			treasure.settCreatetime(date);
 			treasure.settUptime(date);
 			treasure.setIsdelte(Keys.IS_NOT_DELETE);
+			treasure.settCoverUrl(picfile.getRemoteUrl());
 			Integer result =  treasureService.insertTreasureSelective(treasure);
 			return result;
 		} catch (Exception e) {
@@ -85,7 +87,49 @@ public class TreasureController {
 		}
 		return treasureService.searchTreasurePage(page, pageSize, dynasty);
 	}
-	
+	/**  
+	 * updateTreasureById:根据ID修改treasure. <br/>    
+	 * @author zhouchong  
+	 * @param request
+	 * @param treasure
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	 @RequestMapping("/updatetreasure")
+	 @ResponseBody
+	public Integer updateTreasureById(HttpServletRequest request,Treasure treasure){
+		Integer result = 0;
+		try {
+			result = treasureService.updateByPrimaryKeySelective(treasure);
+		} catch (Exception e) {
+			  
+			return result;
+			
+		}
+		return result;
+	}
+	 /**  
+	 * deleteTreasureById:删除treasure. <br/>    
+	 * @author zhouchong  
+	 * @param request
+	 * @param treasure
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	 @RequestMapping("/deletetreasure")
+	 @ResponseBody
+	public Integer deleteTreasureById(HttpServletRequest request,Treasure treasure){
+		 Integer result = 0;
+		 try {
+			 treasure.setIsdelte(Keys.IS_DELETE);
+			 result = treasureService.updateByPrimaryKeySelective(treasure);
+		 } catch (Exception e) {
+			 
+			 return result;
+			 
+		 }
+		 return result;
+	 }
 	/**  
 	 * getTresureById:详情页. <br/>    
 	 * @author zhouchong  
@@ -106,5 +150,36 @@ public class TreasureController {
 		model.addAttribute("upTreasure",upTreasure);
 		model.addAttribute("downTreasure",downTreasure);
 		return "";
+	}
+	 /**  
+	 * getBackTresureById:后台 藏品详情. <br/>    
+	 * @author zhouchong  
+	 * @param request
+	 * @param tId
+	 * @param model
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	 @RequestMapping("/getbacktreasurebyid")
+	public String getBackTresureById(HttpServletRequest request, Long tId,Model model){
+			if (tId <= 0) {
+				return null;
+			}
+			Treasure treasure = treasureService.selectTresureById(tId);
+			model.addAttribute("treasure",treasure);
+			return "";
+		}
+	/**  
+	 * getPage:分页总页数. <br/>    
+	 * @author zhouchong  
+	 * @param pageSize
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	 @RequestMapping("gettreasurepage") 
+	 @ResponseBody
+	public Integer getPage(Integer pageSize){
+		Integer  page =  treasureService.getPageNum(pageSize);
+		return page;
 	}
 }

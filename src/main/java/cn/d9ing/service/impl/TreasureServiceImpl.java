@@ -52,5 +52,21 @@ public class TreasureServiceImpl implements ITreasureService{
 		  
 		return treasur;
 	}
+
+	public Integer updateByPrimaryKeySelective(Treasure record) {
+		  
+		return treasureDao.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public Integer getPageNum(Integer pageSize) {
+		  
+		Integer total  =  treasureDao.getPageNum();
+		if(total%pageSize > 0){
+			return (total/pageSize) + 1;
+		}else {
+			return total/pageSize;
+		}
+	}
 	
 }

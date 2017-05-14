@@ -31,7 +31,14 @@
     from tb_treasure
     where t_id = #{tId,jdbcType=BIGINT}
   </select>
-  
+  <!-- 分页页数 -->
+  <select id="getPageNum" resultType="java.lang.Integer">
+  select 
+  count(*) AS pages 
+  from tb_treasure 
+  where 1 = 1 
+  AND isdelte = 0
+  </select>
   <select id="selectTreasurePage" resultMap="BaseResultMap" >
   	SELECT 
   	t_id,t_cover_url,t_name,t_number 

@@ -43,6 +43,7 @@ public class Keys implements Serializable {
      */
     public static String SYSTEM_REPOSITORY_PATH = "";
     public static Integer IS_NOT_DELETE = 0;
+    public static Integer IS_DELETE = 1;
 
     /**
      * @fieldName: SYSTEM_LOG_REPOSITORY_PATH

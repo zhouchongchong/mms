@@ -73,4 +73,19 @@ public class DynastyController {
 			
 			return dynastyService.updateByPrimaryKeySelective(dynasty);
 		}
+	
+	/**  
+	 * deleteDynastyById:删除朝代. <br/>    
+	 * @author zhouchong  
+	 * @param request
+	 * @param dynasty
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	@RequestMapping("/deletedynasty")
+	@ResponseBody
+	public Integer deleteDynastyById(HttpServletRequest request, Dynasty dynasty){
+		dynasty.setIsdelete(Keys.IS_DELETE);
+		return dynastyService.updateByPrimaryKeySelective(dynasty);
+	}
 }
