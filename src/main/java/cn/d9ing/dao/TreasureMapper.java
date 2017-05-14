@@ -1,5 +1,9 @@
 package cn.d9ing.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import cn.d9ing.domain.Treasure;
 
 public interface TreasureMapper {
@@ -16,4 +20,10 @@ public interface TreasureMapper {
     int updateByPrimaryKeyWithBLOBs(Treasure record);
 
     int updateByPrimaryKey(Treasure record);
+    
+    List<Treasure> selectTreasurePage(@Param(value = "begain")Integer begain,@Param(value = "end")Integer end,@Param(value = "dynasty") Integer dynasty);
+    
+    Treasure getTreasureNumUp(@Param(value = "tId")Long tId,@Param(value = "dynasty") Integer dynasty);
+    
+    Treasure getTreasureNumDown(@Param(value = "tId")Long tId,@Param(value = "dynasty") Integer dynasty);
 }

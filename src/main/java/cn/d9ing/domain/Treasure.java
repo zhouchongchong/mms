@@ -12,6 +12,8 @@ public class Treasure {
     private Integer tDynasty;
 
     private String tCoverUrl;
+    
+    private String tRemark;
 
     private String t3dUrl;
 
@@ -102,4 +104,12 @@ public class Treasure {
     public void settDesc(String tDesc) {
         this.tDesc = tDesc == null ? null : tDesc.trim();
     }
+
+	public String gettRemark() {
+		return tRemark;
+	}
+
+	public void settRemark(String tRemark) {
+		this.tRemark = tRemark == null ? null : tRemark.trim();;
+	}
 }

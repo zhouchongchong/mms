@@ -5,6 +5,7 @@
     <id column="t_id" jdbcType="BIGINT" property="tId" />
     <result column="t_name" jdbcType="VARCHAR" property="tName" />
     <result column="t_number" jdbcType="VARCHAR" property="tNumber" />
+    <result column="t_remark" jdbcType="VARCHAR" property="tRemark" />
     <result column="t_dynasty" jdbcType="INTEGER" property="tDynasty" />
     <result column="t_cover_url" jdbcType="VARCHAR" property="tCoverUrl" />
     <result column="t_3D_url" jdbcType="VARCHAR" property="t3dUrl" />
@@ -30,16 +31,60 @@
     from tb_treasure
     where t_id = #{tId,jdbcType=BIGINT}
   </select>
+  
+  <select id="selectTreasurePage" resultMap="BaseResultMap" >
+  	SELECT 
+  	t_id,t_cover_url,t_name,t_number 
+  	FROM `tb_treasure` 
+  	WHERE 1 = 1 
+  	AND isdelte = 0
+  	<if test="dynasty != 0">
+       AND t_dynasty = #{dynasty,jdbcType=INTEGER}
+    </if>
+  	LIMIT #{begain,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 上一个 -->
+  <select id="getTreasureNumUp"  resultMap="ResultMapWithBLOBs">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    <![CDATA[
+  	FROM tb_treasure 
+  	WHERE t_dynasty = #{dynasty,jdbcType=INTEGER}
+  	AND t_id < #{tId,jdbcType=BIGINT}
+  	AND isdelte = 0
+  	 ]]>
+  ORDER BY t_id 
+  ASC LIMIT 1;
+  </select>
+  <!-- 下一个 -->
+  <select id="getTreasureNumDown"  resultMap="ResultMapWithBLOBs">
+  select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+  <![CDATA[
+  	
+  	FROM tb_treasure 
+  	WHERE t_dynasty = #{dynasty,jdbcType=INTEGER}
+  	AND t_id < #{tId,jdbcType=BIGINT}
+  	AND isdelte = 0
+   ]]>
+  ORDER BY t_id 
+  ASC LIMIT 1;
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_treasure
     where t_id = #{tId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.d9ing.domain.Treasure">
-    insert into tb_treasure (t_id, t_name, t_number, 
+    insert into tb_treasure (t_id, t_name, t_number,t_remark, 
       t_dynasty, t_cover_url, t_3D_url, 
       t_createtime, t_uptime, isdelte, 
       t_desc)
-    values (#{tId,jdbcType=BIGINT}, #{tName,jdbcType=VARCHAR}, #{tNumber,jdbcType=VARCHAR}, 
+    values (#{tId,jdbcType=BIGINT}, #{tName,jdbcType=VARCHAR}, #{tNumber,jdbcType=VARCHAR},#{tRemark,jdbcType=VARCHAR}, 
       #{tDynasty,jdbcType=INTEGER}, #{tCoverUrl,jdbcType=VARCHAR}, #{t3dUrl,jdbcType=VARCHAR}, 
       #{tCreatetime,jdbcType=TIMESTAMP}, #{tUptime,jdbcType=TIMESTAMP}, #{isdelte,jdbcType=INTEGER}, 
       #{tDesc,jdbcType=LONGVARCHAR})
@@ -55,6 +100,9 @@
       </if>
       <if test="tNumber != null">
         t_number,
+      </if>
+      <if test="tRemark != null">
+        t_remark,
       </if>
       <if test="tDynasty != null">
         t_dynasty,
@@ -88,6 +136,9 @@
       <if test="tNumber != null">
         #{tNumber,jdbcType=VARCHAR},
       </if>
+      <if test="tRemark != null">
+        #{tRemark,jdbcType=VARCHAR},
+      </if>
       <if test="tDynasty != null">
         #{tDynasty,jdbcType=INTEGER},
       </if>
@@ -120,6 +171,9 @@
       <if test="tNumber != null">
         t_number = #{tNumber,jdbcType=VARCHAR},
       </if>
+      <if test="tRemark != null">
+        t_remark = #{tRemark,jdbcType=VARCHAR},
+      </if>
       <if test="tDynasty != null">
         t_dynasty = #{tDynasty,jdbcType=INTEGER},
       </if>
@@ -143,11 +197,14 @@
       </if>
     </set>
     where t_id = #{tId,jdbcType=BIGINT}
+    AND isdelte = 0
   </update>
+  
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.d9ing.domain.Treasure">
     update tb_treasure
     set t_name = #{tName,jdbcType=VARCHAR},
       t_number = #{tNumber,jdbcType=VARCHAR},
+      t_remark = #{tRemark,jdbcType=VARCHAR},
       t_dynasty = #{tDynasty,jdbcType=INTEGER},
       t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
       t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
@@ -161,6 +218,7 @@
     update tb_treasure
     set t_name = #{tName,jdbcType=VARCHAR},
       t_number = #{tNumber,jdbcType=VARCHAR},
+      t_remark = #{tRemark,jdbcType=VARCHAR},
       t_dynasty = #{tDynasty,jdbcType=INTEGER},
       t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
       t_3D_url = #{t3dUrl,jdbcType=VARCHAR},

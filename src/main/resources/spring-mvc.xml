@@ -13,6 +13,15 @@
 	<context:annotation-config />
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->  
     <context:component-scan base-package="cn.d9ing.controller" />  
+    <mvc:annotation-driven >
+		<!-- 消息转换器 -->
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<mvc:resources location="/resources/" mapping="/resources/**" />
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->  
     <bean id="mappingJacksonHttpMessageConverter"  
         class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  

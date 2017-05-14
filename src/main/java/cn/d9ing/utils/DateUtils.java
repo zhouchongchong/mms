@@ -11,6 +11,7 @@
  */
 package cn.d9ing.utils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -84,7 +85,18 @@ public abstract class DateUtils {
 			return null;
 		}
 	}
-
+	
+	/**  
+	 * sqlDate:数据库datetime时间. <br/>    
+	 * @author zhouchong  
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	public static Date sqlDate(){
+		Date data =  new Date();
+		Timestamp timeStamp = new Timestamp(data.getTime());
+		return timeStamp;
+	}
 	/**
 	 * 把Date格式的日期格式化成yyyyMMdd 字符串
 	 * 

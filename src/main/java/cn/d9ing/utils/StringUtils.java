@@ -42,7 +42,15 @@ public class StringUtils {
 		}
 		return result;
 	}
-
+	public static Integer strToInt(String numbers){
+		char[] chars = numbers.toCharArray();
+		Integer result = 0;
+		for(char c:chars){
+			String i = new String(new char[]{c});
+			result = (result +Integer.parseInt(i))*10;
+		}
+		return result/10;
+	}
 	public static String getRandom(int length) {
 		String val = "";
 		Random random = new Random();

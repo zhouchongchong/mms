@@ -18,4 +18,15 @@ public class DynastyServiceImpl implements IDynastyService {
 		List<Dynasty> dynasties = dynastyDao.selectAllDynasty();  
 		return dynasties;
 	}
+
+	public int insertDynasty(Dynasty dynasty) {
+		  
+		
+		return dynastyDao.insert(dynasty);
+	}
+
+	public int updateByPrimaryKeySelective(Dynasty dynasty) {
+		  
+		return dynastyDao.updateByPrimaryKeySelective(dynasty);
+	}
 }
