@@ -1,5 +1,8 @@
 package cn.d9ing.controller;
 
+
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.d9ing.domain.Dynasty;
 import cn.d9ing.service.IDynastyService;
 
 @Controller
@@ -25,8 +29,8 @@ public class DynastyController {
 	 */
 	@RequestMapping("/getdynasties")
 	@ResponseBody
-	public String getDynastys(HttpServletRequest request, Model model){
-		model.addAttribute("dynastys", dynastyService.searchAllDynasty());
-		return  "";
+	public List<Dynasty> getDynastys(HttpServletRequest request, Model model){
+		List<Dynasty> dynasties = dynastyService.searchAllDynasty();
+		return  dynasties;
 	}
 }

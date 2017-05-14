@@ -17,9 +17,9 @@
     where d_id = #{dId,jdbcType=INTEGER}
   </select>
   <!-- 查询所有朝代 -->
-  <select id="selectAllDynasty" >
+  <select id="selectAllDynasty"  resultMap="BaseResultMap">
   	select
-  	*
+  	<include refid="Base_Column_List" />
   	from tb_dynasty
   	where isdelete = 0
   </select>
