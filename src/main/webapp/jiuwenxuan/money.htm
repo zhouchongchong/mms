@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>文博·九文轩</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/money.css"/>
+	<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
+	<link rel="stylesheet" href="css/video-js.css"   type="text/css">
+ 	
+	
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
+	<script type="text/javascript" src="js/video.js"></script>
+	
+</head>
+
+<body>
+	
+	<div class="top-bar">
+		<div class="top-img"></div>
+
+		<div class="top-menu container">
+			<div class="col-sm-6 text-left">
+				<span class="text text-welcome spacing">您好，欢迎来到中国文博·九文轩网！</span>
+
+				<!-- <a class="text" href="register.htm">登录</a>
+				<span class="line">|</span>
+				<a class="text" href="register.htm">注册</a> -->
+
+				<span id="user-menu" class="text text-vip" href="vip.htm">
+					<a class="text">
+						四禅八定<img class="arrow" src="images/arrow-little-bottom.png">
+					</a>
+
+					<div class="vip-box-top"></div>
+					
+					<div class="vip-box">
+
+						<div class="inset">
+							<div class="user-white"></div>
+
+							<div class="user-header">
+								<img src="images/news-det-2.jpeg" class="photo">
+
+								<div class="lines"><span class="red-color">账户安全</span> <div class="fr">退出</div></div>
+								<div class="safe-bar"><span class="prog" style="width:45%;"></span></div>
+							</div>
+
+							<div class="user-info">
+								<a class="item">
+									<span class="icon icon1"></span>
+									<p class="item-text">上传藏品</p>
+								</a>
+
+								<a class="item">
+									<span class="icon icon2"></span>
+									<p class="item-text">我的藏品</p>
+								</a>
+
+								<a class="item">
+									<span class="icon icon3"></span>
+									<p class="item-text">我的交易</p>
+								</a>
+
+								<a class="item">
+									<span class="icon icon4"></span>
+									<p class="item-text">会员福利</p>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</span>
+
+			</div>
+
+			<div class="col-sm-6 text-right">
+				<a class="text spacing" href="index.htm">网站首页</a>
+				<a class="text spacing" href="#">收藏本站</a>
+				<a class="text spacing" href="#">搜索</a>
+				<a class="text spacing" href="#">客服中心</a>
+				<a class="text spacing" href="vip.htm">个人中心</a>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 会员模块 -->
+	<section class="section-box user-section-box">
+		<div class="container">
+			<!-- right menu -->
+			<div class="right-box fr">
+			<div class="title-bar clearfix" style="height: 40px;line-height: 40px;">
+				 <a href="index.htm" style="font-weight:bold;">预约商品</a>
+		    </div>
+		    <div class="yuyue_box">
+		    	<div class="yuyue_left">
+		    		<img src="images/collect4.png">
+		    		<p class="yuyue1">仪器鉴定预约</p>
+		    		<p class="money1">¥400元</p>
+		    	</div>
+		    	<div class="yuyue_right">
+					<div  class="yuyue_table">
+						<div class="form-group">
+							<label for="firstname" class=" control-label">预约人联系方式：</label>
+							<div class="right">
+								<input type="text" class="form-control" id="firstname" 
+									   placeholder="请输入联系方式">
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class=" control-label">验证码：</label>
+							<div class="right">
+								<input type="text" class="form-control" id="lastname" 
+									   placeholder="请输入验证码">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button  class="btn btn-default"  data-toggle="modal" data-target="#myModal">立即预约</button>
+							</div>
+						</div>
+							<!-- 模态框（Modal） -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">
+												选择支付方式
+											</h4>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios1" value="" checked onclick="changetype(0);"> 银行卡/信用卡支付
+												</div>
+												<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios2" value=""  onclick="changetype(1);">支付宝
+												</div>
+												<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios2" value=""  onclick="changetype(2);">微信支付
+												</div>
+												<input type="hidden" value="0" name="uptype" id="uptype">
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											</button>
+											<button type="button" class="btn btn-primary">
+												下一步
+											</button>
+										</div>
+									</div><!-- /.modal-content -->
+								</div><!-- /.modal -->
+							</div>
+					</div>
+		    	</div>
+		    	<div class="clearfix"></div>
+		    </div>
+			</div>
+			
+		</div>
+
+	</section>
+	<section class="section-box footer">
+		<div class="container">
+
+			<div class="list">
+				<div class="item item1 col-sm-3">
+					<div class="info">
+						<p class="title">权威认证</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+
+				<div class="item item2 col-sm-3">
+					<div class="info">
+						<p class="title">专业证书</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+
+				<div class="item item3 col-sm-3">
+					<div class="info">
+						<p class="title">海量藏品</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+
+				<div class="item item4 col-sm-3">
+					<div class="info">
+						<p class="title">客服中心</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="middle text-center">
+				<a class="text" href="#">关于我们</a>
+				<span class="line">|</span>
+				<a class="text" href="#">联系我们</a>
+				<span class="line">|</span>
+				<a class="text" href="#">导购演示</a>
+				<span class="line">|</span>
+				<a class="text" href="#">免费注册</a>
+				<span class="line">|</span>
+				<a class="text" href="#">广告服务</a>
+				<span class="line">|</span>
+				<a class="text" href="#">信息公告</a>
+				<span class="line">|</span>
+				<a class="text" href="#">常见问题</a>
+			</div>
+			
+		</div>
+
+		<div class="bottom">
+			<p class="text">文博·九龙轩网  版权所有Copyright Reserved 2009-2018</p>
+			<p class="text">电信与信息服务经营许可证 沪ICP备14000001号未经授权禁止转载、摘编、复制或建立镜像，如有违反追究法律责任</p>
+		</div>
+
+	</section>
+
+
+
+
+	
+	
+	<script type="text/javascript" src="js/index.js"></script>
+
+	<script type="text/javascript">
+
+	$(function() {
+	    
+
+	    $(".menu-nav").click(function() {
+	    	var id   = $(this).attr("id");
+	    	var word = id.substr(5, id.length);
+
+	    	$(".menu-nav").removeClass("active");
+	    	$(this).addClass("active");
+
+	    	$(".menu-container").addClass("hide");
+	    	$("."+word+"-list").removeClass("hide");
+	    	
+	    });
+	    
+	});
+
+	</script>
+	  <script>
+                   
+//选项卡选择
+function changetype(t) {
+    $('#uptype').val(t);
+}
+    </script>
+
+
+</body>
+	
+</html>

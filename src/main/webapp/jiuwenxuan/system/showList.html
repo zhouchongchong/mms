@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link href='../css/ui.jqgrid.css' rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/ace.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/select.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/grid.locale-en.js"></script>
+		<script type="text/javascript" src="../js/select-ui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.jqGrid.min.js"></script>
+		<style type="text/css">
+			.formtitle {
+				margin-bottom: 0px;
+			}
+			
+			.uew-select {
+				display: inline-block;
+				margin-top: 10px;
+			}
+			
+			.uew-select .uew-select-value {
+				background: none;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 3px;
+			}
+			
+			.serlabel {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				float: left;
+			}
+			
+			.serTable label {
+				float: left;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.serTable td {
+				overflow: hidden;
+			}
+			
+			span {
+				display: inline-block;
+			}
+			
+			.grid-table {
+				width: 900px;
+			}
+			
+			.grid-table td,
+			.grid-table .ui-jqgrid-sortable {
+				text-align: center !important;
+			}
+			
+			.edit,
+			.delete {
+				color: #0D95E7;
+				font-size: 14px;
+				display: inline-block;
+				margin: 0 5px;
+				cursor: pointer;
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(e) {
+				$(".select2").uedSelect({
+					width: 167
+				});
+			});
+		</script>
+
+		<script language="javascript">
+			$(function() {
+				//导航切换
+				$(".imglist li").click(function() {
+					$(".imglist li.selected").removeClass("selected")
+					$(this).addClass("selected");
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<div class="place">
+			<span>位置：</span>
+			<ul class="placeul">
+				<li>
+					<a href="#">藏品展示管理</a>
+				</li>
+				<li>
+					<a href="#">藏品列表</a>
+				</li>
+			</ul>
+		</div>
+		<div class="formtitle">
+			<span>查找藏品</span>
+		</div>
+		<table class="serTable">
+			<tbody>
+				<tr>
+					<td>
+						<label class="serlabel" style="width:50px;">朝代查询</label>
+					</td>
+					<td>
+						<select class="select2">
+							<option>唐朝</option>
+							<option>宋朝</option>
+							<option>元朝</option>
+							<option>明朝</option>
+							<option>清朝</option>
+							<option>民国</option>
+							<option>其他</option>
+						</select>
+					</td>
+
+					<td>
+						<label>藏品名称</label>
+					</td>
+					<td>
+						<input type="text" class="serput" name="" placeholder="输入关键字" />
+					</td>
+					<td>
+						<input class="btn1" type="button" id="yemina_chaxun" value="查询" />
+						<a href="addGoods.html" target="rightFrame">
+							<input class="btn1" id="yemina_xingzeng" type="button" value="新增" />
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="rightinfo">
+			<div class="tableHide" style="overflow:hidden;">
+				<table class="tablelist">
+					<thead>
+						<tr>
+							<th width="100px;">藏品编号</th>
+							<th>藏品名称</th>
+							<th>藏品朝代</th>
+							<th>操作</th>
+
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<!-- 	(建议为每一个藏品起一个单独的藏品编号，该编号不同于主键)-->
+							<td>001</td>
+							<td>古董</td>
+							<td>明朝</td>
+							<td>
+								<a class="acolor" href="editGoods.html" target="rightFrame">编辑</a>
+								&nbsp;
+								<a class="acolor" href="#" onclick="return confirm('删除该条记录，操作不可恢复？')">删除</a>
+							</td>
+						</tr>
+						<tr>
+							<td>002</td>
+							<td>古董</td>
+							<td>明朝</td>
+							<td>
+								<a class="acolor" href="editGoods.html" target="rightFrame">编辑</a>
+								&nbsp;
+								<a class="acolor" href="#" onclick="return confirm('删除该条记录，操作不可恢复？')">删除</a>
+							</td>
+						</tr>
+						<tr>
+							<td>003</td>
+							<td>古董</td>
+							<td>明朝</td>
+							<td>
+								<a class="acolor" href="editGoods.html" target="rightFrame">编辑</a>
+								&nbsp;
+								<a class="acolor" href="#" onclick="return confirm('删除该条记录，操作不可恢复？')">删除</a>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+			<div class="pagin">
+				<div class="message">
+					共 <i class="blue">126</i> 条记录，当前显示第&nbsp; <i class="blue">2&nbsp;</i> 页
+				</div>
+				<ul class="paginList">
+					<li class="paginItem">
+						<a href="javascript:;">
+							<span class="pagepre"></span>
+						</a>
+					</li>
+					<li class="paginItem">
+						<a href="javascript:;">1</a>
+					</li>
+					<li class="paginItem current">
+						<a href="javascript:;">2</a>
+					</li>
+					<li class="paginItem">
+						<a href="javascript:;">3</a>
+					</li>
+					<li class="paginItem more">
+						<a href="javascript:;">...</a>
+					</li>
+					<li class="paginItem">
+						<a href="javascript:;">10</a>
+					</li>
+					<li class="paginItem">
+						<a href="javascript:;">
+							<span class="pagenxt"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="grid-table">
+			<table id="grid-table"></table>
+			<div id="grid-pager"></div>
+		</div>
+		<script type="text/javascript">
+			$('.imgtable tbody tr:odd').addClass('odd');
+
+			function editTable(rowId) {
+				var model = $('#grid-table').jqGrid('getRowData', rowId);
+				alert(model.id);
+			}
+
+			function deleteTable(rowId) {
+				var model = $('#grid-table').jqGrid('getRowData', rowId);
+				alert(model.id);
+			}
+			//生成表格
+			jQuery(function($) {
+				var grid_selector = "#grid-table";
+				var pager_selector = "#grid-pager";
+
+				jQuery(grid_selector).jqGrid({
+						//direction: "rtl",
+
+						data: grid_data,
+						datatype: "local",
+						height: 250,
+						colNames: ['藏品编号', '藏品名称', '朝代', '价格', '操作'],
+						colModel: [{
+							name: 'id',
+							index: 'id',
+							width: 75,
+							editable: true
+						}, {
+							name: 'xianlu',
+							index: 'xianlu',
+							width: 75,
+							editable: true
+						}, {
+							name: 'chepai',
+							index: 'chepai',
+							width: 75,
+							editable: true
+						}, {
+							name: 'zibian',
+							index: 'zibian',
+							width: 75,
+							editable: true
+						}, {
+							name: 'zidingyi',
+							index: 'zidingyi',
+							width: 75,
+							editable: true,
+							formatter: function(value, option, rows, state) {
+								return "<span class='edit' onclick='editTable(" + option.rowId + ")'>编辑</span><span class='delete' onclick='deleteTable(" + option.rowId + ")'>删除</span>"
+							},
+
+						}],
+						viewrecords: true,
+						rowNum: 5,
+						rowList: [10, 20, 30],
+						pager: pager_selector,
+						altRows: true,
+						loadComplete: function() {
+							var table = this;
+							setTimeout(function() {
+								updatePagerIcons(table);
+							}, 0);
+						},
+						autowidth: true
+					})
+				    /*是否隐藏Id*/
+					//jQuery("#grid-table").setGridParam().hideCol("id").trigger("reloadGrid");
+
+				function updatePagerIcons(table) {
+					var replacement = {
+						'ui-icon-seek-first': 'icon-double-angle-left bigger-140',
+						'ui-icon-seek-prev': 'icon-angle-left bigger-140',
+						'ui-icon-seek-next': 'icon-angle-right bigger-140',
+						'ui-icon-seek-end': 'icon-double-angle-right bigger-140'
+					};
+					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function() {
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+						if($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
+					})
+				}
+			})
+
+			var grid_data = [{
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, {
+				id: "12",
+				xianlu: "212",
+				chepai: "Ac43",
+				zibian: "awc122",
+				zidingyi: "0"
+			}, ];
+		</script>
+	</body>
+
+</html>

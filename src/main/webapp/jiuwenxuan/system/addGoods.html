@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>添加人员</title>
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="../css/select.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/select-ui.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script>
+			$(function() {
+				$(".select2").uedSelect({
+					width: 167
+				});
+				$(".reset").click(function() {
+					window.location.reload();
+				});
+
+			});
+		</script>
+		<style>
+			input[type=file] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="place">
+			<span>位置：</span>
+			<ul class="placeul">
+				<li>
+					<a href="#">藏品展示管理</a>
+				</li>
+				<li>
+					<a href="#">藏品列表</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="formbody">
+			<div class="formtitle">
+				<span>编辑藏品信息：</span>
+			</div>
+			<form method="post" action="">
+				<ul class="forminfo">
+					<li>
+						<label>藏品编号</label>
+						<input name="" type="text" class="dfinput" placeholder="请输入藏品名称" />
+					</li>
+					<li>
+						<label>藏品名称</label>
+						<input name="" type="text" class="dfinput" placeholder="请输入藏品名称" />
+					</li>
+					<li>
+						<label>所属朝代</label>
+						<select class="select2">
+							<option>唐朝</option>
+							<option>宋朝</option>
+							<option>元朝</option>
+							<option>明朝</option>
+							<option>清朝</option>
+							<option>民国</option>
+							<option>其他</option>
+						</select>
+					</li>
+					<li>
+						<label>藏品URL</label>
+						<input name="" type="text" class="dfinput" placeholder="如：114.215.84.169：10832" />
+					</li>
+					<li>
+						<label>藏品图例</label>
+						<input name="" id="file" accept="image/*" onchange="getImg()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
+						<img src="../images/add.png" id="img_sel" height="70px" onclick="selectedImg()" />
+					</li>
+					<li>
+						<label>藏品介绍</label>
+						<textarea class="textinput" rows="" cols="" name=""></textarea>
+					</li>
+
+				</ul>
+				<p>
+
+					<input class="btn" type="submit" value="发布藏品" />
+				</p>
+			</form>
+		</div>
+		<script type="text/javascript">
+			$('.imgtable tbody tr:odd').addClass('odd');
+
+			function selectedImg() {
+				$('#file').click()
+			}
+
+			function getImg() {
+				//检验是否为图像文件  
+				var file = document.getElementById("file").files[0];
+				if(!/image\/\w+/.test(file.type)) {
+					alert("请选择图片！");
+					return false;
+				}
+				var reader = new FileReader();
+				//将文件以Data URL形式读入页面  
+				reader.readAsDataURL(file);
+				reader.onload = function(e) {
+					document.getElementById('img_sel').src = this.result
+				}
+			}
+
+		</script>
+	</body>
+
+</html>

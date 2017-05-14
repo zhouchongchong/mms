@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>文博·九文轩</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/index.css"/>
+	<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
+	<link rel="stylesheet" href="css/video-js.css"   type="text/css">
+ 	
+	
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
+	<script type="text/javascript" src="js/video.js"></script>
+	
+</head>
+
+<body>
+	
+	<div class="top-bar">
+		<div class="top-img"></div>
+
+		<div class="top-menu container">
+			<div class="col-sm-6 text-left">
+				<span class="text text-welcome spacing">您好，欢迎来到中国文博·九文轩网！</span>
+
+				<!-- <a class="text" href="register.htm">登录</a>
+				<span class="line">|</span>
+				<a class="text" href="register.htm">注册</a> -->
+
+				<span id="user-menu" class="text text-vip" href="vip.htm">
+					<a class="text">
+						四禅八定<img class="arrow" src="images/arrow-little-bottom.png">
+					</a>
+
+					<div class="vip-box-top"></div>
+					
+					<div class="vip-box">
+
+						<div class="inset">
+							<div class="user-white"></div>
+
+							<div class="user-header">
+								<img src="images/news-det-2.jpeg" class="photo">
+
+								<div class="lines"><span class="red-color">账户安全</span> <div class="fr">退出</div></div>
+								<div class="safe-bar"><span class="prog" style="width:45%;"></span></div>
+							</div>
+
+							<div class="user-info">
+								<a class="item">
+									<span class="icon icon1"></span>
+									<p class="item-text">上传藏品</p>
+								</a>
+
+								<a class="item">
+									<span class="icon icon2"></span>
+									<p class="item-text">我的藏品</p>
+								</a>
+
+								<a class="item">
+									<span class="icon icon3"></span>
+									<p class="item-text">我的交易</p>
+								</a>
+
+								<a class="item">
+									<span class="icon icon4"></span>
+									<p class="item-text">会员福利</p>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</span>
+
+			</div>
+
+			<div class="col-sm-6 text-right">
+				<a class="text spacing" href="index.htm">网站首页</a>
+				<a class="text spacing" href="#">收藏本站</a>
+				<a class="text spacing" href="#">搜索</a>
+				<a class="text spacing" href="#">客服中心</a>
+				<a class="text spacing" href="vip.htm">个人中心</a>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 会员模块 -->
+	<section class="section-box user-section-box">
+		<div class="container">
+			<!-- left menu -->
+			<div class="left-menu fl">
+				<div class="title-bar"><img class="icon" src="images/user-person.png"/><span class="text">栏目导航</span></div>
+
+				<dl class="item-title">
+					<dt id="menu-collect" class="menu-nav active"><span class="line"></span>鉴定仪器</dt>
+					<dt id="menu-upload"  class="menu-nav"><span class="line"></span>专家鉴定</dt>
+					<dt id="menu-welfare" class="menu-nav"><span class="line"></span>专家团队</dt>
+					<dt id="menu-member" class="menu-nav"><span class="line"></span>专家证书</dt>
+					<!-- <dt><span class="line"></span>个人中心</dt> -->
+					<dt id="menu-info" class="menu-nav"><span class="line"></span>在线预约</dt>
+					<!-- <dt id="menu-safe" class="menu-nav"><span class="line"></span>安全中心</dt> -->
+				</dl>
+
+			</div>
+
+			<!-- right menu -->
+			<div class="right-box fr">
+				<div class="title-bar clearfix">
+					<div class="left">
+						<img class="photo" src="images/news-det-2.jpeg" width="100" height="100"/>
+
+						<p class="name">四禅八定</p>
+
+					</div>
+
+					<div class="middle">
+						<p class="line">账户安全</p>
+						<div class="safe-bar"><span class="prog" style="width:45%;"></span></div>
+						<div class="phone">
+							<span class="text">手机未设置</span>
+							<span class="text">邮箱未设置</span>
+							<span class="text">QQ未设置</span>
+						</div>
+					</div>
+
+					<div class="right">
+						<div class="item">
+							<span class="icon icon1"></span>
+							<div class="text">会员卡</div>
+							<div class="num">0</div>
+						</div>
+
+						<div class="item">
+							<span class="icon icon2"></span>
+							<div class="text">余额</div>
+							<div class="num">0</div>
+						</div>
+
+						<div class="item">
+							<span class="icon icon3"></span>
+							<div class="text">礼券</div>
+							<div class="num">0</div>
+						</div>
+
+						<div class="item">
+							<span class="icon icon4"></span>
+							<div class="text">积分</div>
+							<div class="num">0</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="menu-container collect-list hide">
+					<div class="row">
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand2.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+
+						<div class="item col-lg-3 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/recommand1.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+						</div>
+					</div>
+
+					<div class="page">
+						<span class="page-item last">上一页</span>
+						<span class="page-item">1</span>
+						<span class="page-item">2</span>
+						<span class="page-item">3</span>
+						<span class="page-item">4</span>
+						<span class="page-item">5</span>
+						<span class="page-item dot"></span>
+						<span class="page-item">30</span>
+						<span class="page-item next">下一页</span>
+					</div>
+
+				</div>
+
+				<div class="menu-container upload-list hide">
+					<form class="form">
+						<div class="item"> 
+						    <label for="" class="labels">标题</label>
+						    <input type="text" class="input-text" id="input_user">
+						</div>
+
+						<div class="item">  
+							<label for="" class="labels">图片</label>
+						    <label class="labels img-button" for="img-file">上传文件</label>
+							<input type="file" id="img-file" style="position:absolute;clip:rect(0 0 0 0);">
+						</div>
+
+						<div class="item"> 
+							<label for="" class="labels">描述</label>
+							<textarea> </textarea>
+						</div>
+
+						<div class="item"> 
+							<label for="" class="labels"></label>
+							<button type="button" class="button btn-submit">确认提交</button>
+						</div>
+					</form>
+				</div>
+
+
+				<div class="menu-container welfare-list hide">
+					<p class="line">您还未有交易记录。</p>
+				</div>
+
+				<div class="menu-container member-list hide">
+					<p class="line">新会员首次充值享优惠</p>
+
+					<div class="button-box">
+						<button class="btn-recharge">
+							<a class="top">充值3000</a>
+							<p class="count">90折</p>
+						</button>
+
+						<button class="btn-recharge">
+							<a class="top">充值5000</a>
+							<p class="count">85折</p>
+						</button>
+
+						<button class="btn-recharge">
+							<a class="top">充值10000</a>
+							<p class="count">80折</p>
+						</button>
+					</div>
+
+					<p class="line">老会员再次充值折上折</p>
+
+					<div class="button-box">
+						<button class="btn-recharge">
+							<a class="top">充值3000</a>
+							<p class="count">85折</p>
+						</button>
+
+						<button class="btn-recharge">
+							<a class="top">充值5000</a>
+							<p class="count">80折</p>
+						</button>
+
+						<button class="btn-recharge">
+							<a class="top">充值10000</a>
+							<p class="count">75折</p>
+						</button>
+					</div>
+
+					<p class="line">也可一次性体验消费无须充值直接交易</p>
+
+				</div>
+
+				
+				<div class="menu-container info-list">
+					<form class="form">
+						<div class="item">  
+							<label for="" class="labels">头像</label>
+						    <label class="labels img-button" for="img-file">上传图片</label>
+							<input type="file" id="img-file" style="position:absolute;clip:rect(0 0 0 0);">
+						</div>
+
+						<div class="item"> 
+						    <label for="" class="labels">用户名</label>
+						    <input type="text" class="input-text" id="input_user">
+						</div>
+
+						<div class="item"> 
+						    <label for="" class="labels">QQ</label>
+						    <input type="text" class="input-text" id="input_user">
+						</div>
+
+						<div class="item"> 
+						    <label for="" class="labels">微信</label>
+						    <input type="text" class="input-text" id="input_user">
+						</div>
+
+						<div class="item"> 
+							<label class="labels">个人简介</label>
+							<textarea> </textarea>
+						</div>
+
+						<div class="item"> 
+							<label for="" class="labels"></label>
+							<button type="button" class="button btn-submit">确认提交</button>
+						</div>
+					</form>
+				</div>
+
+				
+
+
+			</div>
+			
+		</div>
+
+	</section>
+	
+
+
+	
+
+	
+
+
+	<section class="section-box footer">
+		<div class="container">
+
+			<div class="list">
+				<div class="item item1 col-sm-3">
+					<div class="info">
+						<p class="title">权威认证</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+
+				<div class="item item2 col-sm-3">
+					<div class="info">
+						<p class="title">专业证书</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+
+				<div class="item item3 col-sm-3">
+					<div class="info">
+						<p class="title">海量藏品</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+
+				<div class="item item4 col-sm-3">
+					<div class="info">
+						<p class="title">客服中心</p>
+						<p class="desc">品质保证 专家鉴定</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="middle text-center">
+				<a class="text" href="#">关于我们</a>
+				<span class="line">|</span>
+				<a class="text" href="#">联系我们</a>
+				<span class="line">|</span>
+				<a class="text" href="#">导购演示</a>
+				<span class="line">|</span>
+				<a class="text" href="#">免费注册</a>
+				<span class="line">|</span>
+				<a class="text" href="#">广告服务</a>
+				<span class="line">|</span>
+				<a class="text" href="#">信息公告</a>
+				<span class="line">|</span>
+				<a class="text" href="#">常见问题</a>
+			</div>
+			
+		</div>
+
+		<div class="bottom">
+			<p class="text">文博·九龙轩网  版权所有Copyright Reserved 2009-2018</p>
+			<p class="text">电信与信息服务经营许可证 沪ICP备14000001号未经授权禁止转载、摘编、复制或建立镜像，如有违反追究法律责任</p>
+		</div>
+
+	</section>
+
+
+
+
+	
+	
+	<script type="text/javascript" src="js/index.js"></script>
+
+	<script type="text/javascript">
+
+	$(function() {
+	    
+
+	    $(".menu-nav").click(function() {
+	    	var id   = $(this).attr("id");
+	    	var word = id.substr(5, id.length);
+
+	    	$(".menu-nav").removeClass("active");
+	    	$(this).addClass("active");
+
+	    	$(".menu-container").addClass("hide");
+	    	$("."+word+"-list").removeClass("hide");
+	    	
+	    });
+	    
+	});
+
+	</script>
+
+</body>
+	
+</html>
