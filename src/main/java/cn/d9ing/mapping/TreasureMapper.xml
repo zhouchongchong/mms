@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.d9ing.dao.TreasureMapper">
+  <resultMap id="BaseResultMap" type="cn.d9ing.domain.Treasure">
+    <id column="t_id" jdbcType="BIGINT" property="tId" />
+    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+    <result column="t_number" jdbcType="VARCHAR" property="tNumber" />
+    <result column="t_dynasty" jdbcType="INTEGER" property="tDynasty" />
+    <result column="t_cover_url" jdbcType="VARCHAR" property="tCoverUrl" />
+    <result column="t_3D_url" jdbcType="VARCHAR" property="t3dUrl" />
+    <result column="t_createtime" jdbcType="TIMESTAMP" property="tCreatetime" />
+    <result column="t_uptime" jdbcType="TIMESTAMP" property="tUptime" />
+    <result column="isdelte" jdbcType="INTEGER" property="isdelte" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.d9ing.domain.Treasure">
+    <result column="t_desc" jdbcType="LONGVARCHAR" property="tDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t_id, t_name, t_number, t_dynasty, t_cover_url, t_3D_url, t_createtime, t_uptime, 
+    isdelte
+  </sql>
+  <sql id="Blob_Column_List">
+    t_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_treasure
+    where t_id = #{tId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_treasure
+    where t_id = #{tId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.d9ing.domain.Treasure">
+    insert into tb_treasure (t_id, t_name, t_number, 
+      t_dynasty, t_cover_url, t_3D_url, 
+      t_createtime, t_uptime, isdelte, 
+      t_desc)
+    values (#{tId,jdbcType=BIGINT}, #{tName,jdbcType=VARCHAR}, #{tNumber,jdbcType=VARCHAR}, 
+      #{tDynasty,jdbcType=INTEGER}, #{tCoverUrl,jdbcType=VARCHAR}, #{t3dUrl,jdbcType=VARCHAR}, 
+      #{tCreatetime,jdbcType=TIMESTAMP}, #{tUptime,jdbcType=TIMESTAMP}, #{isdelte,jdbcType=INTEGER}, 
+      #{tDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.d9ing.domain.Treasure">
+    insert into tb_treasure
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tName != null">
+        t_name,
+      </if>
+      <if test="tNumber != null">
+        t_number,
+      </if>
+      <if test="tDynasty != null">
+        t_dynasty,
+      </if>
+      <if test="tCoverUrl != null">
+        t_cover_url,
+      </if>
+      <if test="t3dUrl != null">
+        t_3D_url,
+      </if>
+      <if test="tCreatetime != null">
+        t_createtime,
+      </if>
+      <if test="tUptime != null">
+        t_uptime,
+      </if>
+      <if test="isdelte != null">
+        isdelte,
+      </if>
+      <if test="tDesc != null">
+        t_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        #{tId,jdbcType=BIGINT},
+      </if>
+      <if test="tName != null">
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tNumber != null">
+        #{tNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tDynasty != null">
+        #{tDynasty,jdbcType=INTEGER},
+      </if>
+      <if test="tCoverUrl != null">
+        #{tCoverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="t3dUrl != null">
+        #{t3dUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreatetime != null">
+        #{tCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUptime != null">
+        #{tUptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelte != null">
+        #{isdelte,jdbcType=INTEGER},
+      </if>
+      <if test="tDesc != null">
+        #{tDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.d9ing.domain.Treasure">
+    update tb_treasure
+    <set>
+      <if test="tName != null">
+        t_name = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tNumber != null">
+        t_number = #{tNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tDynasty != null">
+        t_dynasty = #{tDynasty,jdbcType=INTEGER},
+      </if>
+      <if test="tCoverUrl != null">
+        t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="t3dUrl != null">
+        t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreatetime != null">
+        t_createtime = #{tCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUptime != null">
+        t_uptime = #{tUptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelte != null">
+        isdelte = #{isdelte,jdbcType=INTEGER},
+      </if>
+      <if test="tDesc != null">
+        t_desc = #{tDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.d9ing.domain.Treasure">
+    update tb_treasure
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_number = #{tNumber,jdbcType=VARCHAR},
+      t_dynasty = #{tDynasty,jdbcType=INTEGER},
+      t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
+      t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
+      t_createtime = #{tCreatetime,jdbcType=TIMESTAMP},
+      t_uptime = #{tUptime,jdbcType=TIMESTAMP},
+      isdelte = #{isdelte,jdbcType=INTEGER},
+      t_desc = #{tDesc,jdbcType=LONGVARCHAR}
+    where t_id = #{tId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.d9ing.domain.Treasure">
+    update tb_treasure
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_number = #{tNumber,jdbcType=VARCHAR},
+      t_dynasty = #{tDynasty,jdbcType=INTEGER},
+      t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
+      t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
+      t_createtime = #{tCreatetime,jdbcType=TIMESTAMP},
+      t_uptime = #{tUptime,jdbcType=TIMESTAMP},
+      isdelte = #{isdelte,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=BIGINT}
+  </update>
+</mapper>

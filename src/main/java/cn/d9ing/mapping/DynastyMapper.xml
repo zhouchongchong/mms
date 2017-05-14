@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.d9ing.dao.DynastyMapper">
+  <resultMap id="BaseResultMap" type="cn.d9ing.domain.Dynasty">
+    <id column="d_id" jdbcType="INTEGER" property="dId" />
+    <result column="d_name" jdbcType="VARCHAR" property="dName" />
+    <result column="d_createtime" jdbcType="TIMESTAMP" property="dCreatetime" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    d_id, d_name, d_createtime, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dynasty
+    where d_id = #{dId,jdbcType=INTEGER}
+  </select>
+  <!-- 查询所有朝代 -->
+  <select id="selectAllDynasty" >
+  	select
+  	*
+  	from tb_dynasty
+  	where isdelete = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_dynasty
+    where d_id = #{dId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.d9ing.domain.Dynasty">
+    insert into tb_dynasty (d_id, d_name, d_createtime, 
+      isdelete)
+    values (#{dId,jdbcType=INTEGER}, #{dName,jdbcType=VARCHAR}, #{dCreatetime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.d9ing.domain.Dynasty">
+    insert into tb_dynasty
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dId != null">
+        d_id,
+      </if>
+      <if test="dName != null">
+        d_name,
+      </if>
+      <if test="dCreatetime != null">
+        d_createtime,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dId != null">
+        #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="dName != null">
+        #{dName,jdbcType=VARCHAR},
+      </if>
+      <if test="dCreatetime != null">
+        #{dCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.d9ing.domain.Dynasty">
+    update tb_dynasty
+    <set>
+      <if test="dName != null">
+        d_name = #{dName,jdbcType=VARCHAR},
+      </if>
+      <if test="dCreatetime != null">
+        d_createtime = #{dCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where d_id = #{dId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.d9ing.domain.Dynasty">
+    update tb_dynasty
+    set d_name = #{dName,jdbcType=VARCHAR},
+      d_createtime = #{dCreatetime,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=INTEGER}
+    where d_id = #{dId,jdbcType=INTEGER}
+  </update>
+</mapper>
