@@ -190,8 +190,10 @@
 				}, function(data) {
 					console.log(data)
 					/*gif图*/
+					$('#3dUrl').remove();
 					var iframe = document.createElement('iframe'); //动态创建框架
-					iframe.src=data.treasure.t3dUrl;   
+					iframe.src=data.treasure.t3dUrl; 
+					iframe.id = '3dUrl';
 					iframe.width = '360px';
 					iframe.height = '418px';//框架中加载的页面
 					setTimeout(function() {
