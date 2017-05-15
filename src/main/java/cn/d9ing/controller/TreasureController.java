@@ -184,4 +184,21 @@ public class TreasureController {
 		Integer  page =  treasureService.getPageNum(pageSize,dynasty);
 		return page;
 	}
+	 
+	/** 
+	* @Title: getNextTreasureNum 
+	* @Description: 下一个number 
+	* @param @param dynasty
+	* @param @return    设定文件 
+	* @return Map<String,String>    返回类型 
+	* @throws 
+	*/
+	 @RequestMapping("/getnexttreasurenum")
+	 @ResponseBody
+	public Map<String, String> getNextTreasureNum(Integer dynasty){
+		Map<String, String> map = new HashMap<>();
+		String number = treasureService.getNextTreasureNum(dynasty);
+		map.put("treasurenum", number);
+		return map;
+	}
 }

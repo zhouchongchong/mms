@@ -64,7 +64,7 @@
   	AND isdelte = 0
   	 ]]>
   ORDER BY t_id 
-  ASC LIMIT 1;
+  DESC LIMIT 1;
   </select>
   <!-- 添加商品编号自增 -->
   <select id="getNextTreasureNum"  resultType="java.lang.String">

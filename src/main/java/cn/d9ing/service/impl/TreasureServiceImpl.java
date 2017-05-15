@@ -68,5 +68,11 @@ public class TreasureServiceImpl implements ITreasureService{
 			return total/pageSize;
 		}
 	}
+
+	@Override
+	public String getNextTreasureNum(Integer dynasty) {
+		
+		return  treasureDao.getNextTreasureNum(dynasty);
+	}
 	
 }

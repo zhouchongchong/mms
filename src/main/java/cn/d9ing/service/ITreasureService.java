@@ -70,4 +70,6 @@ public interface ITreasureService {
 	 * @since JDK 1.8  
 	 */
 	Integer getPageNum(Integer pageSize,Integer dynasty);
+	
+	String getNextTreasureNum(Integer dynasty);
 }
