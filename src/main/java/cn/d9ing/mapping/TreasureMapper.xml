@@ -66,6 +66,16 @@
   ORDER BY t_id 
   ASC LIMIT 1;
   </select>
+  <!-- 添加商品编号自增 -->
+  <select id="getNextTreasureNum"  resultType="java.lang.String">
+  	SELECT 
+	t_number
+	FROM tb_treasure
+	WHERE t_dynasty = t_dynasty = #{dynasty,jdbcType=INTEGER}
+	AND isdelte = 0
+	ORDER BY t_id DESC
+	LIMIT 0,1	
+  </select>
   <!-- 下一个 -->
   <select id="getTreasureNumDown"  resultMap="ResultMapWithBLOBs">
   select 
@@ -75,7 +85,7 @@
   	
   	FROM tb_treasure 
   	WHERE t_dynasty = #{dynasty,jdbcType=INTEGER}
-  	AND t_id < #{tId,jdbcType=BIGINT}
+  	AND t_id > #{tId,jdbcType=BIGINT}
   	AND isdelte = 0
    ]]>
   ORDER BY t_id 
