@@ -37,7 +37,9 @@
   count(*) AS pages 
   from tb_treasure 
   where 1 = 1
-  AND t_dynasty = #{dynasty,jdbcType=INTEGER}
+ <if test="dynasty != 0">
+       AND t_dynasty = #{dynasty,jdbcType=INTEGER}
+  </if>
   AND isdelte = 0
   </select>
   <select id="selectTreasurePage" resultMap="BaseResultMap" >
