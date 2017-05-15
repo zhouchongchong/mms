@@ -81,11 +81,11 @@ public class TreasureController {
 	 */
 	 @RequestMapping("/pagetreasure")
 	 @ResponseBody
-	public List<Treasure> getCurrtPageTreasure(HttpServletRequest request,Integer page,Integer pageSize,Integer dynasty){
-		if (page <= 0 && pageSize <=0 ){
+	public List<Treasure> getCurrtPageTreasure(HttpServletRequest request,Integer page,Integer rows,Integer dynasty){
+		if (page <= 0 && rows <=0 ){
 			return null;
 		}
-		return treasureService.searchTreasurePage(page, pageSize, dynasty);
+		return treasureService.searchTreasurePage(page, rows, dynasty);
 	}
 	/**  
 	 * updateTreasureById:根据ID修改treasure. <br/>    
