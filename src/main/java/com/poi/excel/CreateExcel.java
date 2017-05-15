@@ -40,12 +40,6 @@ public class CreateExcel {
 	* @throws 
 	*/
 	public static void main(String[] args) {
-		String a = "023";
-		char[] chars = a.toCharArray();
-		for(char c:chars){
-			String i = c.toString();
-			System.out.println(i);
-		}
 		
 
 	}
