@@ -44,7 +44,7 @@
   </select>
   <select id="selectTreasurePage" resultMap="BaseResultMap" >
   	SELECT 
-  	t_id,t_cover_url,t_name,t_number 
+  	t_id,t_cover_url,t_name,t_number,t_dynasty 
   	FROM `tb_treasure` 
   	WHERE 1 = 1 
   	AND isdelte = 0
