@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>文博·九文轩</title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/page.css" />
+		<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
+		<link rel="stylesheet" href="css/video-js.css" type="text/css">
+
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/page.js"></script>
+		<style>
+			.good-list .item{
+				cursor: pointer;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="top-bar">
+			<div class="top-img"></div>
+
+			<div class="top-menu container">
+				<div class="col-sm-6 text-left">
+					<span class="text text-welcome spacing">您好，欢迎来到中国文博·九文轩网！</span>
+
+					<a class="text" href="javascript:void(0)">登录</a>
+					<span class="line">|</span>
+					<a class="text" href="javascript:void(0)">注册</a>
+				</div>
+
+				<div class="col-sm-6 text-right">
+					<a class="text spacing" href="#">网站首页</a>
+					<a class="text spacing" href="#">收藏本站</a>
+					<a class="text spacing" href="#">搜索</a>
+					<a class="text spacing" href="#">客服中心</a>
+					<a class="text spacing" href="javascript:void(0)">个人中心</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="nav-box">
+			<div class="container text-center">
+				<a class="nav-menu" id="nav-1" href="javascript:void(0)"></a>
+				<a class="nav-menu active" id="nav-2" href="collect.html"></a>
+				<a class="nav-menu" id="nav-3" href="javascript:void(0)"></a>
+
+				<a class="logo" href="javascript:void(0)"></a>
+
+				<a class="nav-menu" id="nav-4" href="javascript:void(0)"></a>
+				<a class="nav-menu" id="nav-5" href="javascript:void(0)"></a>
+				<a class="nav-menu" id="nav-6" href="javascript:void(0)"></a>
+			</div>
+		</div>
+
+		<section class="section-box banner-box">
+			<ul class="banner">
+				<li>
+					<a href="javascript:"><img src="images/banner2.jpg"></a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- <section class="section-box type-box">
+		<div class="container">
+			<div class="titles"><span class="line"></span> 九文轩藏品 </div>
+
+			<div class="fr">
+				<a class="text" href="index.htm">九文轩</a>
+				<img  class="arrow" src="images/arrow-little.png">
+				<a class="text" href="javascript:history.back();">藏品</a>
+				<img  class="arrow" src="images/arrow-little.png">
+				<a>朝代分类</a>
+			</div>
+		</div>
+	</section> -->
+
+		<!-- 商品分类列表 -->
+		<section class="section-box dynasty-list">
+
+			<div class="container">
+
+				<div class="fl grid-left">
+					<div class="type-bar" id="dynasty">
+						
+					</div>
+
+					<div class="good-list row">
+						
+					</div>
+					<div id="Pagination" class="pagination">
+						<!-- 这里显示分页 -->
+					</div>
+					<div id="hiddenresult">
+
+					</div>
+
+				</div>
+
+				<div class="fr grid-right">
+					<div class="item title">HOT排行榜</div>
+
+					<div class="item">
+						<div class="line"><i class="num">1</i>
+							<a href="javascript:void(0)"><span class="text">墨彩瓷雕，五子登科葫芦瓶</span></a>
+						</div>
+						<div class="img-line">
+							<img src="images/news-det-2.jpeg" class="img">
+							<p class="text text-price">价格
+								<a class="red-color">￥29999.00</a>
+							</p>
+							<p class="text">收藏
+								<a class="red-color">2334</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="line"><i class="num">2</i>
+							<a href="javascript:void(0)"><span class="text">墨彩瓷雕，五子登科葫芦瓶</span></a>
+						</div>
+						<div class="img-line">
+							<img src="images/news-det-3.jpeg" class="img">
+							<p class="text text-price">价格
+								<a class="red-color">￥29999.00</a>
+							</p>
+							<p class="text">收藏
+								<a class="red-color">2334</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="line"><i class="num">3</i>
+							<a href="javascript:void(0)"><span class="text">墨彩瓷雕，五子登科葫芦瓶</span></a>
+						</div>
+						<div class="img-line">
+							<img src="images/news-det-4.jpeg" class="img">
+							<p class="text text-price">价格
+								<a class="red-color">￥29999.00</a>
+							</p>
+							<p class="text">收藏
+								<a class="red-color">2334</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="line"><i class="num">4</i>
+							<a href="javascript:void(0)"><span class="text">墨彩瓷雕，五子登科葫芦瓶</span></a>
+						</div>
+						<div class="img-line">
+							<img src="images/news-det-2.jpeg" class="img">
+							<p class="text text-price">价格
+								<a class="red-color">￥29999.00</a>
+							</p>
+							<p class="text">收藏
+								<a class="red-color">2334</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div class="line"><i class="num">5</i>
+							<a href="javascript:void(0)"><span class="text">墨彩瓷雕，五子登科葫芦瓶</span></a>
+						</div>
+						<div class="img-line">
+							<img src="images/news-det-3.jpeg" class="img">
+							<p class="text text-price">价格
+								<a class="red-color">￥29999.00</a>
+							</p>
+							<p class="text">收藏
+								<a class="red-color">2334</a>
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<section class="section-box footer">
+			<div class="container">
+
+				<div class="list">
+					<div class="item item1 col-sm-3">
+						<div class="info">
+							<p class="title">权威认证</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item2 col-sm-3">
+						<div class="info">
+							<p class="title">专业证书</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item3 col-sm-3">
+						<div class="info">
+							<p class="title">海量藏品</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item4 col-sm-3">
+						<div class="info">
+							<p class="title">客服中心</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="middle text-center">
+					<a class="text" href="#">关于我们</a>
+					<span class="line">|</span>
+					<a class="text" href="#">联系我们</a>
+					<span class="line">|</span>
+					<a class="text" href="#">导购演示</a>
+					<span class="line">|</span>
+					<a class="text" href="#">免费注册</a>
+					<span class="line">|</span>
+					<a class="text" href="#">广告服务</a>
+					<span class="line">|</span>
+					<a class="text" href="#">信息公告</a>
+					<span class="line">|</span>
+					<a class="text" href="#">常见问题</a>
+				</div>
+
+			</div>
+
+			<div class="bottom">
+				<p class="text">文博·九龙轩网 版权所有Copyright Reserved 2009-2018</p>
+				<p class="text">电信与信息服务经营许可证 沪ICP备14000001号未经授权禁止转载、摘编、复制或建立镜像，如有违反追究法律责任</p>
+			</div>
+
+		</section>
+
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type="text/javascript">
+			var currPage = 1,
+				perPage = 9;
+			$(function() {
+				initDynasty()
+			});
+			
+			function getCountPage() {
+				JQajax('treasure/gettreasurepage', {'pageSize':perPage}, function(data) {
+					initPagination(data)
+				})
+			}
+
+			function initPagination(countpage) {
+				// 创建分页
+				$("#Pagination").pagination(countpage, {
+					num_edge_entries: 1, //边缘页数
+					num_display_entries: 4, //主体页数
+					callback: pageselectCallback,
+					items_per_page: 1 //每页显示1项
+				});
+			};
+
+			function pageselectCallback(page_index, jq) {
+				//var new_content = $("#hiddenresult div.result:eq(" + page_index + ")").clone();
+				//$("#Searchresult").empty().append(new_content); //装载对应分页的内容
+				return false;
+			}
+			//加载朝代
+			function initDynasty() {
+				JQajax('dynasty/getdynasties', {}, function(data) {
+					$('#dynasty').html('');
+					$.each(data, function(index, item) {
+						if(item.isdelete != 0) {
+							return false;
+						}
+						$('#dynasty').append("<span class='btn-type' id='" + item.dId + "'>" + item.dName + "</span>")
+					})
+					$('#dynasty .btn-type:eq(0)').addClass('active');
+					initContent(currPage)
+					var dynastyId = $('#dynasty .btn-type.active').attr('id');
+					getCountPage(dynastyId)
+					selectDynasty()
+				})
+			}
+
+			function selectDynasty() {
+				$('#dynasty .btn-type').click(function() {
+					$(this).addClass('active').siblings().removeClass('active');
+					initContent(currPage);
+				})
+			}
+
+			/*加载页面分页数据*/
+			function initContent(page) {
+				var dynastyId = $('#dynasty .btn-type.active').attr('id');
+				getCountPage(dynastyId)
+				JQajax('treasure/pagetreasure', {
+					'page': page,
+					'rows': perPage,
+					'dynasty': dynastyId
+				}, function(data) {
+					$('.good-list').html('')
+					$.each(data.rows, function(index, item) {
+						var liArr = [];
+						liArr.push("<div class='item col-lg-4 col-md-6 col-sm-12 col-xs-12' id='" + item.tId + "'>");
+						liArr.push("<div class='img-box'>");
+						liArr.push("<img src='" + item.tCoverUrl + "' class='img' />");
+						liArr.push("</div>");
+						liArr.push("<p class='text line-h'>");
+						liArr.push("<a href='javascript:void(0)'>" + item.tName + "</a>");
+						liArr.push("</p>");
+						liArr.push("</div>");
+						$('.good-list').append(liArr.join(''))
+					})
+					/*点击查看详情*/
+					$('.good-list .item').click(function() {
+						var itemId = $(this).attr('id');
+						localStorage.setItem('goodId',itemId);
+						window.location.href = 'collect_det.html'
+					})
+				})
+			}
+			
+		</script>
+
+	</body>
+
+</html>

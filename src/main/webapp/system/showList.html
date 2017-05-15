@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link href='../css/ui.jqgrid.css' rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/ace.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/select.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
+		<script type="text/javascript" src="../js/grid.locale-en.js"></script>
+		<script type="text/javascript" src="../js/select-ui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.jqGrid.min.js"></script>
+		<style type="text/css">
+			.formtitle {
+				margin-bottom: 0px;
+			}
+			
+			.uew-select {
+				display: inline-block;
+				margin-top: 10px;
+			}
+			
+			.uew-select .uew-select-value {
+				background: none;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 3px;
+			}
+			
+			.serlabel {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				float: left;
+			}
+			
+			.serTable label {
+				float: left;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.serTable td {
+				overflow: hidden;
+			}
+			
+			span {
+				display: inline-block;
+			}
+			
+			.grid-table {
+				width: 1000px;
+			}
+			
+			.grid-table td,
+			.grid-table .ui-jqgrid-sortable {
+				text-align: center !important;
+			}
+			
+			.edit,
+			.delete {
+				color: #0D95E7;
+				font-size: 14px;
+				display: inline-block;
+				margin: 0 5px;
+				cursor: pointer;
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(e) {
+				$(".select2").uedSelect({
+					width: 167
+				});
+			});
+		</script>
+
+		<script language="javascript">
+			$(function() {
+				//导航切换
+				$(".imglist li").click(function() {
+					$(".imglist li.selected").removeClass("selected")
+					$(this).addClass("selected");
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<div class="place">
+			<span>位置：</span>
+			<ul class="placeul">
+				<li>
+					<a href="#">藏品展示管理</a>
+				</li>
+				<li>
+					<a href="#">藏品列表</a>
+				</li>
+			</ul>
+		</div>
+		<div class="formtitle">
+			<span>查找藏品</span>
+		</div>
+		<table class="serTable">
+			<tbody>
+				<tr>
+					<td>
+						<label class="serlabel" style="width:50px;">朝代查询</label>
+					</td>
+					<td id="sel">
+						<select class="select2" onchange="changeDynasty()">
+							<option value="0">全部</option>
+						</select>
+					</td>
+
+					<td>
+						<label>藏品名称</label>
+					</td>
+					<td>
+						<input type="text" class="serput" name="" placeholder="输入关键字" />
+					</td>
+					<td>
+						<input class="btn1" type="button" id="yemina_chaxun" value="查询" />
+						<a href="addGoods.html" target="rightFrame">
+							<input class="btn1" id="yemina_xingzeng" type="button" value="新增" />
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="rightinfo">
+			<div class="grid-table">
+				<table id="grid-table"></table>
+				<div id="grid-pager"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				initDynasty()
+			})
+			//加载朝代
+			var dId = 0,dyList = [];
+
+			function initDynasty() {
+				JQajax('dynasty/getdynasties', {}, function(data) {
+					$('#dynasty').html('');
+					$.each(data, function(index, item) {
+						if(item.isdelete != 0) {
+							return false;
+						}
+						var bl = {
+							'dId':item.dId,
+							'dName':item.dName
+						}
+						dyList.push(bl);
+						$('.select2').append("<option value='" + item.dId + "'>" + item.dName + "</option>");
+					})
+					initTable(dId)
+				})
+			}
+
+			//选择朝代
+			function changeDynasty() {
+				dId = $('.select2 option:selected').val();
+				var pdata = {
+					'dynasty': dId
+				}
+				//$("#grid-table" ).clearGridData()
+				$("#grid-table").jqGrid('GridUnload')
+				initTable(dId);
+			}
+
+			function editTable(rowId) {
+				var model = $('#grid-table').jqGrid('getRowData', rowId);
+				localStorage.setItem('editGoodsId',model.tId);
+				window.location.href = 'editGoods.html'
+			}
+			
+			function getdname(fdId) {
+				var fName;
+				for(var i=0;i<dyList.length;i++) {
+					if(dyList[i].dId == fdId){
+						fName = dyList[i].dName
+					}
+				}
+				return fName
+			}
+
+			function deleteTable(rowId) {
+				var model = $('#grid-table').jqGrid('getRowData', rowId);
+				layer.confirm('确认删除此藏品？', {
+					btn: ['取消', '删除'] //按钮
+				}, function() {
+
+				}, function() {
+					JQajax('treasure/deletetreasure', {
+						'tId': model.tId
+					}, function(data) {
+						if(data == 1) {
+							msg('删除成功')
+						} else {
+							msg('删除失败')
+						}
+						$("#grid-table").jqGrid('GridUnload')
+				        initTable(dId);
+					})
+				});
+			}
+			//生成表格
+			function initTable(dId, searchKey) {
+				var path = apiUrl + 'treasure/pagetreasure';
+				var pdata = {
+					'dynasty': dId
+				}
+				if(searchKey) {
+					pdata.search = searchKey
+				}
+				var grid_selector = "#grid-table";
+				var pager_selector = "#grid-pager";
+				jQuery(grid_selector).jqGrid({
+					url: path,
+					mtype: "post",
+					postData: pdata,
+					datatype: "json",
+					height: 250,
+					search:false,
+					colNames: ['id', '藏品编号', '藏品名称', '朝代','样图地址','操作'],
+					colModel: [{
+						name: 'tId',
+						index: 'tId',
+						width: 75,
+						editable: true
+					}, {
+						name: 'tNumber',
+						index: 'tNumber',
+						width: 75,
+						editable: true
+					}, {
+						name: 'tName',
+						index: 'tName',
+						width: 75,
+						editable: true
+					}, {
+						name: 'tDynasty',
+						index: 'tDynasty',
+						width: 75,
+						editable: true,
+						formatter:function(value) {
+							return getdname(value);
+						}
+					}, {
+						name: 'tCoverUrl',
+						index: 'tCoverUrl',
+						width: 150,
+						editable: true
+					}, {
+						name: 'inte',
+						index: 'inte',
+						width: 100,
+						editable: true,
+						formatter: function(value, option, rows, state) {
+							return "<span class='edit' onclick='editTable(" + option.rowId + ")'>编辑</span><span class='delete' onclick='deleteTable(" + option.rowId + ")'>删除</span>"
+						},
+
+					}],
+					viewrecords: true,
+					rowNum: 5,
+					rowList: [10, 20, 30],
+					pager: pager_selector,
+					altRows: true,
+					loadComplete: function() {
+						var table = this;
+						setTimeout(function() {
+							updatePagerIcons(table);
+						}, 0);
+					},
+					autowidth: true
+				})
+				/*是否隐藏Id*/
+				jQuery("#grid-table").setGridParam().hideCol("tId").trigger("reloadGrid");
+
+				function updatePagerIcons(table) {
+					var replacement = {
+						'ui-icon-seek-first': 'icon-double-angle-left bigger-140',
+						'ui-icon-seek-prev': 'icon-angle-left bigger-140',
+						'ui-icon-seek-next': 'icon-angle-right bigger-140',
+						'ui-icon-seek-end': 'icon-double-angle-right bigger-140'
+					};
+					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function() {
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+						if($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
+					})
+				}
+
+			}
+
+			function delPostData() {
+				var postData = $('#grid-table').jqGrid("getGridParam", "postData");
+				if(!postData) {
+					return
+				}
+				$.each(postData, function(k, v) {
+					delete postData[k];
+				});
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>文博·九文轩</title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
+
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
+	</head>
+
+	<body>
+		<div class="top-bar">
+			<div class="top-img"></div>
+			<div class="top-menu container">
+				<div class="col-sm-6 text-left">
+					<span class="text text-welcome spacing">您好，欢迎来到中国文博·九文轩网！</span>
+
+					<a class="text" target="register.htm">登录</a>
+					<span class="line">|</span>
+					<a class="text" target="#">注册</a>
+				</div>
+				<div class="col-sm-6 text-right">
+					<a class="text spacing" target="#">网站首页</a>
+					<a class="text spacing" target="#">收藏本站</a>
+					<a class="text spacing" target="#">搜索</a>
+					<a class="text spacing" target="#">客服中心</a>
+					<a class="text spacing" target="#">个人中心</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="nav-box">
+			<div class="container text-center">
+				<a class="nav-menu" id="nav-1" target="index.htm"></a>
+				<a class="nav-menu active" id="nav-2" target="collect.htm"></a>
+				<a class="nav-menu" id="nav-3" target="expert.htm"></a>
+
+				<a class="logo" target="index.htm"></a>
+
+				<a class="nav-menu" id="nav-4" target="auction.htm"></a>
+				<a class="nav-menu" id="nav-5" target="news.htm"></a>
+				<a class="nav-menu" id="nav-6" target="about.htm"></a>
+			</div>
+		</div>
+
+		<section class="section-box type-box">
+			<div class="container">
+				<div class="titles"><span class="line"></span> 藏品详情 </div>
+
+				<div class="fr">
+					<a class="text" target="index.htm">九文轩</a>
+					<img class="arrow" src="images/arrow-little.png">
+					<a class="text" target="javascript:history.back();">九文轩藏品</a>
+					<!-- ？-->
+					<img class="arrow" src="images/arrow-little.png">
+					<a>藏品详情</a>
+				</div>
+			</div>
+		</section>
+
+		<!--宝贝详情-->
+		<section class="section-box show-item">
+			<div class="item">
+				<div class="show-detail-img">
+					<img src="" class="img">
+				</div>
+				<div class="show-detail-word">
+					<p id="show-name"></p>
+					<p id="show-idnum">藏品编码：</p>
+					<p id="show-dyn">朝代：</p>
+					<p class="jianjie jianjie1"></p>
+				</div>
+
+			</div>
+
+			<div class="containers pages clearfix">
+				<span class="prev">上一个藏品：</span>
+				<span class="next">下一个藏品：</span>
+			</div>
+
+		</section>
+
+		<section class="section-box footer">
+			<div class="container">
+
+				<div class="list">
+					<div class="item item1 col-sm-3">
+						<div class="info">
+							<p class="title">权威认证</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item2 col-sm-3">
+						<div class="info">
+							<p class="title">专业证书</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item3 col-sm-3">
+						<div class="info">
+							<p class="title">海量藏品</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item4 col-sm-3">
+						<div class="info">
+							<p class="title">客服中心</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="middle text-center">
+					<a class="text" target="#">关于我们</a>
+					<span class="line">|</span>
+					<a class="text" target="#">联系我们</a>
+					<span class="line">|</span>
+					<a class="text" target="#">导购演示</a>
+					<span class="line">|</span>
+					<a class="text" target="#">免费注册</a>
+					<span class="line">|</span>
+					<a class="text" target="#">广告服务</a>
+					<span class="line">|</span>
+					<a class="text" target="#">信息公告</a>
+					<span class="line">|</span>
+					<a class="text" target="#">常见问题</a>
+				</div>
+
+			</div>
+
+			<div class="bottom">
+				<p class="text">文博·九龙轩网 版权所有Copyright Reserved 2009-2018</p>
+				<p class="text">电信与信息服务经营许可证 沪ICP备14000001号未经授权禁止转载、摘编、复制或建立镜像，如有违反追究法律责任</p>
+			</div>
+
+		</section>
+
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type="text/javascript">
+			var goodId = localStorage.getItem('goodId');
+			$(function() {
+				getDetail(goodId)
+			});
+
+			function getDetail(tId) {
+				localStorage.setItem('goodId',tId);
+				JQajax('treasure/gettreasurebyid', {
+					'tId': tId
+				}, function(data) {
+					console.log(data)
+					/*gif图*/
+					$('.show-detail-img img').attr('src', data.treasure.t3dUrl);
+					/*藏品名*/
+					$('#show-name').text(data.treasure.tName);
+					/*藏品编号*/
+					$('#show-idnum').text('藏品编码:' + data.treasure.tNumber);
+					/*所属朝代*/
+					$('#show-dyn').text('朝代' + data.treasure.tDynasty);
+					/*藏品介绍*/
+					$('.jianjie').text(data.treasure.tDesc);
+					/*上一个下一个藏品*/
+					if(data.upTreasure) {
+						$('.prev').attr('onclick', 'getDetail(' + data.upTreasure.tId + ')');
+						$('.prev').html('上一个藏品:' + data.upTreasure.tName);
+					}else{
+						$('.prev').removeAttr('onclick');
+						$('.prev').html('');
+					}
+					if(data.downTreasure) {
+						$('.next').attr('onclick', 'getDetail(' + data.downTreasure.tId + ')');
+						$('.next').html('下一个藏品:' + data.downTreasure.tName);
+					}else{
+						$('.next').removeAttr('onclick');
+						$('.next').html('');
+					}
+				})
+			}
+		</script>
+
+	</body>
+
+</html>
