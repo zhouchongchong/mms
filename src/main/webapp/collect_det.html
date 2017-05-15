@@ -71,8 +71,7 @@
 		<section class="section-box show-item">
 			<div class="item">
 				<div class="show-detail-img" id="gif">
-				    <img src=""/>
-					<iframe src="http://114.215.84.169:10832" width="360"; height="418" frameborder="0" scrolling="no" style=" position:absolute; top:0; left:0;" ></iframe>
+					
 				</div>
 				<div class="show-detail-word">
 					<p id="show-name"></p>
@@ -152,10 +151,10 @@
 
 		<script type="text/javascript">
 			var goodId = localStorage.getItem('goodId');
-			$(function() {
+			window.onload = function(){
 				getDetail(goodId)
 				initDynasty();
-			});
+			};
 			
 			//加载朝代
 			var dyList = [];
@@ -193,8 +192,12 @@
 					console.log(data)
 					/*gif图*/
 					var iframe = document.createElement('iframe'); //动态创建框架
-					iframe.src=data.treasure.t3dUrl;            //框架中加载的页面
-					document.getElementById('gif').appendChild(iframe) 
+					iframe.src=data.treasure.t3dUrl;   
+					iframe.width = '360px';
+					iframe.height = '418px';//框架中加载的页面
+					setTimeout(function() {
+						document.getElementById('gif').appendChild(iframe) 
+					},500)
 					//$('.show-detail-img').append("<iframe src='"+data.treasure.t3dUrl+"' width='360'; height='418' frameborder='0' scrolling='no' style=' position:absolute; top:0; left:0;' ></iframe>");
 					/*藏品名*/
 					$('#show-name').text(data.treasure.tName);
