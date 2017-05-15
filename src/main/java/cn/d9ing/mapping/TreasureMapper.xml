@@ -55,9 +55,8 @@
   <!-- 上一个 -->
   <select id="getTreasureNumUp"  resultMap="ResultMapWithBLOBs">
   	select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+   	t_id,
+    t_name
     <![CDATA[
   	FROM tb_treasure 
   	WHERE t_dynasty = #{dynasty,jdbcType=INTEGER}
@@ -70,9 +69,8 @@
   <!-- 下一个 -->
   <select id="getTreasureNumDown"  resultMap="ResultMapWithBLOBs">
   select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+    t_id,
+    t_name
   <![CDATA[
   	
   	FROM tb_treasure 

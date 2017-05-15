@@ -139,17 +139,19 @@ public class TreasureController {
 	 * @since JDK 1.8  
 	 */
 	 @RequestMapping("/gettreasurebyid")
-	public String getTresureById(HttpServletRequest request, Long tId,Model model){
+	 @ResponseBody
+	public Map<String, Treasure> getTresureById(HttpServletRequest request, Long tId,Model model){
+		 Map<String, Treasure> treasures = new HashMap<>();
 		if (tId <= 0) {
 			return null;
 		}
 		Treasure treasure = treasureService.selectTresureById(tId);
-		model.addAttribute("treasure",treasure);
 		Treasure upTreasure = treasureService.getTreasureNumUp(tId, treasure.gettDynasty());
 		Treasure downTreasure = treasureService.getTreasureNumDown(tId, treasure.gettDynasty());
-		model.addAttribute("upTreasure",upTreasure);
-		model.addAttribute("downTreasure",downTreasure);
-		return "";
+		treasures.put("treasure", treasure);
+		treasures.put("upTreasure", upTreasure);
+		treasures.put("downTreasure", downTreasure);
+		return treasures;
 	}
 	 /**  
 	 * getBackTresureById:后台 藏品详情. <br/>    
