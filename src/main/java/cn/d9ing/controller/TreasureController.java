@@ -193,13 +193,13 @@ public class TreasureController {
 	 * @since JDK 1.8  
 	 */
 	 @RequestMapping("/getbacktreasurebyid")
-	public String getBackTresureById(HttpServletRequest request, Long tId,Model model){
+	 @ResponseBody
+	public Treasure getBackTresureById(HttpServletRequest request, Long tId,Model model){
 			if (tId <= 0) {
 				return null;
 			}
 			Treasure treasure = treasureService.selectTresureById(tId);
-			model.addAttribute("treasure",treasure);
-			return "";
+			return treasure;
 		}
 	
 	 
