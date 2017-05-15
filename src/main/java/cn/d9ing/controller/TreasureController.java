@@ -81,12 +81,42 @@ public class TreasureController {
 	 */
 	 @RequestMapping("/pagetreasure")
 	 @ResponseBody
-	public List<Treasure> getCurrtPageTreasure(HttpServletRequest request,Integer page,Integer rows,Integer dynasty){
+	public Map<String, Object> getCurrtPageTreasure(HttpServletRequest request,Integer page,Integer rows,Integer dynasty){
+		 Map<String, Object> resultMap = new HashMap<>();
+		 Integer records = 0;
+		 Integer totalpage = 0;
 		if (page <= 0 && rows <=0 ){
 			return null;
 		}
-		return treasureService.searchTreasurePage(page, rows, dynasty);
+		List<Treasure> treasures = treasureService.searchTreasurePage(page, rows, dynasty);
+		if(treasures!=null &&!treasures.isEmpty()){
+			 records = treasures.size();
+		}
+		Integer  totalnum =  treasureService.getPageNum(rows,dynasty);
+		if(totalnum%rows > 0){
+			totalpage = (totalnum/rows) + 1;
+		}else {
+			totalpage = totalnum/rows;
+		}
+		resultMap.put("page", page);
+		resultMap.put("records", totalnum);
+		resultMap.put("rows", treasures);
+		resultMap.put("total", totalpage);
+		return resultMap;
 	}
+	 /**  
+		 * getPage:分页总页数. <br/>    
+		 * @author zhouchong  
+		 * @param pageSize
+		 * @return  
+		 * @since JDK 1.8  
+		 */
+		 @RequestMapping("gettreasurepage") 
+		 @ResponseBody
+		public Integer getPage(Integer pageSize,Integer dynasty){
+			Integer  page =  treasureService.getPageNum(pageSize,dynasty);
+			return page;
+		}
 	/**  
 	 * updateTreasureById:根据ID修改treasure. <br/>    
 	 * @author zhouchong  
@@ -171,19 +201,7 @@ public class TreasureController {
 			model.addAttribute("treasure",treasure);
 			return "";
 		}
-	/**  
-	 * getPage:分页总页数. <br/>    
-	 * @author zhouchong  
-	 * @param pageSize
-	 * @return  
-	 * @since JDK 1.8  
-	 */
-	 @RequestMapping("gettreasurepage") 
-	 @ResponseBody
-	public Integer getPage(Integer pageSize,Integer dynasty){
-		Integer  page =  treasureService.getPageNum(pageSize,dynasty);
-		return page;
-	}
+	
 	 
 	/** 
 	* @Title: getNextTreasureNum 
