@@ -41,7 +41,7 @@
 		<div class="nav-box">
 			<div class="container text-center">
 				<a class="nav-menu" id="nav-1" target="index.htm"></a>
-				<a class="nav-menu active" id="nav-2" target="collect.htm"></a>
+				<a class="nav-menu active" id="nav-2" href="collect.html"></a>
 				<a class="nav-menu" id="nav-3" target="expert.htm"></a>
 
 				<a class="logo" target="index.htm"></a>
@@ -70,8 +70,9 @@
 		<!--宝贝详情-->
 		<section class="section-box show-item">
 			<div class="item">
-				<div class="show-detail-img">
-					<img src="" class="img">
+				<div class="show-detail-img" id="gif">
+				    <img src=""/>
+					<iframe src="http://114.215.84.169:10832" width="360"; height="418" frameborder="0" scrolling="no" style=" position:absolute; top:0; left:0;" ></iframe>
 				</div>
 				<div class="show-detail-word">
 					<p id="show-name"></p>
@@ -191,7 +192,10 @@
 				}, function(data) {
 					console.log(data)
 					/*gif图*/
-					$('.show-detail-img').load("http://114.215.84.169:10832/");
+					var iframe = document.createElement('iframe'); //动态创建框架
+					iframe.src=data.treasure.t3dUrl;            //框架中加载的页面
+					document.getElementById('gif').appendChild(iframe) 
+					//$('.show-detail-img').append("<iframe src='"+data.treasure.t3dUrl+"' width='360'; height='418' frameborder='0' scrolling='no' style=' position:absolute; top:0; left:0;' ></iframe>");
 					/*藏品名*/
 					$('#show-name').text(data.treasure.tName);
 					/*藏品编号*/
