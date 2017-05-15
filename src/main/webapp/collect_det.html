@@ -153,7 +153,36 @@
 			var goodId = localStorage.getItem('goodId');
 			$(function() {
 				getDetail(goodId)
+				initDynasty();
 			});
+			
+			//加载朝代
+			var dyList = [];
+
+			function initDynasty() {
+				JQajax('dynasty/getdynasties', {}, function(data) {
+					$.each(data, function(index, item) {
+						if(item.isdelete != 0) {
+							return false;
+						}
+						var bl = {
+							'dId':item.dId,
+							'dName':item.dName
+						}
+						dyList.push(bl);
+					})
+				})
+			}
+			
+			function getdname(fdId) {
+				var fName;
+				for(var i=0;i<dyList.length;i++) {
+					if(dyList[i].dId == fdId){
+						fName = dyList[i].dName
+					}
+				}
+				return fName
+			}
 
 			function getDetail(tId) {
 				localStorage.setItem('goodId',tId);
@@ -162,13 +191,13 @@
 				}, function(data) {
 					console.log(data)
 					/*gif图*/
-					$('.show-detail-img img').attr('src', data.treasure.t3dUrl);
+					$('.show-detail-img').load("http://114.215.84.169:10832/");
 					/*藏品名*/
 					$('#show-name').text(data.treasure.tName);
 					/*藏品编号*/
 					$('#show-idnum').text('藏品编码:' + data.treasure.tNumber);
 					/*所属朝代*/
-					$('#show-dyn').text('朝代' + data.treasure.tDynasty);
+					$('#show-dyn').text('朝代' + getdname(data.treasure.tDynasty));
 					/*藏品介绍*/
 					$('.jianjie').text(data.treasure.tDesc);
 					/*上一个下一个藏品*/
