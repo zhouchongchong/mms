@@ -27,5 +27,5 @@ public interface TreasureMapper {
     
     Treasure getTreasureNumDown(@Param(value = "tId")Long tId,@Param(value = "dynasty") Integer dynasty);
     
-    Integer getPageNum();
+    Integer getPageNum(@Param(value = "dynasty")Integer dynasty);
 }

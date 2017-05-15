@@ -59,9 +59,9 @@ public class TreasureServiceImpl implements ITreasureService{
 	}
 
 	@Override
-	public Integer getPageNum(Integer pageSize) {
+	public Integer getPageNum(Integer pageSize,Integer dynasty) {
 		  
-		Integer total  =  treasureDao.getPageNum();
+		Integer total  =  treasureDao.getPageNum(dynasty);
 		if(total%pageSize > 0){
 			return (total/pageSize) + 1;
 		}else {

@@ -69,5 +69,5 @@ public interface ITreasureService {
 	 * @return  
 	 * @since JDK 1.8  
 	 */
-	Integer getPageNum(Integer pageSize);
+	Integer getPageNum(Integer pageSize,Integer dynasty);
 }

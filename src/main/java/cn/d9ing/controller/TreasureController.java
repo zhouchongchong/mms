@@ -178,8 +178,8 @@ public class TreasureController {
 	 */
 	 @RequestMapping("gettreasurepage") 
 	 @ResponseBody
-	public Integer getPage(Integer pageSize){
-		Integer  page =  treasureService.getPageNum(pageSize);
+	public Integer getPage(Integer pageSize,Integer dynasty){
+		Integer  page =  treasureService.getPageNum(pageSize,dynasty);
 		return page;
 	}
 }
