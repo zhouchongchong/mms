@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link href='../css/ui.jqgrid.css' rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/ace.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/select.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
+		<script type="text/javascript" src="../js/grid.locale-en.js"></script>
+		<script type="text/javascript" src="../js/select-ui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.jqGrid.min.js"></script>
+		<style type="text/css">
+			.formtitle {
+				margin-bottom: 0px;
+			}
+			
+			.uew-select {
+				display: inline-block;
+				margin-top: 10px;
+			}
+			
+			.uew-select .uew-select-value {
+				background: none;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 3px;
+			}
+			
+			.serlabel {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				float: left;
+			}
+			
+			.serTable label {
+				float: left;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.serTable td {
+				overflow: hidden;
+			}
+			
+			span {
+				display: inline-block;
+			}
+			
+			.grid-table {
+				width: 1000px;
+			}
+			
+			.grid-table td,
+			.grid-table .ui-jqgrid-sortable {
+				text-align: center !important;
+			}
+			
+			.edit,
+			.delete {
+				color: #0D95E7;
+				font-size: 14px;
+				display: inline-block;
+				margin: 0 5px;
+				cursor: pointer;
+			}
+			
+			.btn1 {
+				text-align: center;
+				line-height: 23px;
+			}
+			
+			.btn2 {
+				text-align: center;
+				line-height: 23px;
+				border-radius: 3px;
+				color: #fff;
+				height: 23px;
+				width: 63px;
+				margin: 4px;
+				background: #999 !important;
+				cursor: pointer;
+			}
+			
+			.add-dy,
+			.edit-dy {
+				display: none;
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(e) {
+				$(".select2").uedSelect({
+					width: 167
+				});
+			});
+		</script>
+
+		<script language="javascript">
+			$(function() {
+				//导航切换
+				$(".imglist li").click(function() {
+					$(".imglist li.selected").removeClass("selected")
+					$(this).addClass("selected");
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<div class="place">
+			<span>位置：</span>
+			<ul class="placeul">
+				<li>
+					<a href="#">藏品展示管理</a>
+				</li>
+				<li>
+					<a href="#">朝代管理</a>
+				</li>
+			</ul>
+		</div>
+		<div class="formtitle">
+			<span>朝代</span>
+		</div>
+		<table class="serTable">
+			<tbody>
+				<tr>
+					<td>
+						<input class="btn1" id="yemina_xingzeng" type="button" value="新增" onclick="addDynasty()" />
+					</td>
+					<td>
+						<div class="add-dy">
+							<input type="text" id="add-dy" placeholder="请输入朝代名" />
+							<span class="btn1" onclick="confirmAdd()">确定添加</span>
+							<span class="btn2">取消添加</span>
+						</div>
+					</td>
+					<td>
+						<div class="edit-dy">
+							<input type="text" id="ed-dy" />
+							<span class="btn1" onclick="confirmEdit()">确定修改</span>
+							<span class="btn2">取消修改</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="rightinfo">
+			<div class="grid-table">
+				<table id="grid-table"></table>
+				<div id="grid-pager"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript">
+			var editId;
+			$(function() {
+				initTable()
+			})
+
+			function editTable(rowId) {
+				var model = $('#grid-table').jqGrid('getRowData', rowId);
+				editId = model.dId
+				$('.edit-dy').show(200);
+				$('#ed-dy').val(model.dName)
+			}
+
+			function confirmAdd() {
+				var name = $.trim($('#add-dy').val())
+				if(!name){
+					msgEr('请填写')
+					return
+				}
+				JQajax('dynasty/adddynasty', {
+					'dName': name
+				}, function(data) {
+					if(data == 1) {
+						msg('添加成功')
+						jQuery("#grid-table").jqGrid('setGridParam', {
+
+						}).trigger('reloadGrid');
+					} else {
+						msgEr('添加失败')
+					}
+				})
+				$('.add-dy .btn2').click();
+			}
+			
+			function confirmEdit() {
+				var name = $.trim($('#ed-dy').val())
+				if(!name){
+					msgEr('请填写修改名')
+					return
+				}
+				JQajax('dynasty/updatedynasty', {
+					'dName': name,
+					'dId':editId
+				}, function(data) {
+					if(data == 1) {
+						msg('修改成功')
+						jQuery("#grid-table").jqGrid('setGridParam', {
+
+						}).trigger('reloadGrid');
+					} else {
+						msgEr('修改失败')
+					}
+				})
+				$('.edit-dy .btn2').click();
+			}
+
+			$('.btn2').click(function() {
+				$(this).prev('input').val('');
+				$(this).closest('div').hide(200)
+			})
+
+			function addDynasty() {
+				$('.add-dy').show(200)
+			}
+
+			function deleteTable(rowId) {
+				var model = $('#grid-table').jqGrid('getRowData', rowId);
+				var la = layer.confirm('确认删除此藏品？', {
+					btn: ['取消', '删除'] //按钮
+				}, function() {
+					layer.close(la)
+				}, function() {
+					JQajax('dynasty/deletedynasty', {
+						'dId': model.dId
+					}, function(data) {
+						if(data == 1) {
+							msg('删除成功')
+						} else {
+							msgEr('删除失败')
+						}
+						$("#grid-table").jqGrid('GridUnload')
+						initTable();
+					})
+				});
+			}
+			//生成表格
+			function initTable() {
+				var path = apiUrl + 'dynasty/getdynasties';
+				var grid_selector = "#grid-table";
+				var pager_selector = "#grid-pager";
+				jQuery(grid_selector).jqGrid({
+					url: path,
+					mtype: "post",
+					datatype: "json",
+					height: 250,
+					search: false,
+					colNames: ['编号', '朝代名称', '操作'],
+					colModel: [{
+						name: 'dId',
+						index: 'dId',
+						width: 75,
+						editable: true
+					}, {
+						name: 'dName',
+						index: 'dName',
+						width: 75,
+						editable: true
+					}, {
+						name: 'inte',
+						index: 'inte',
+						width: 100,
+						editable: true,
+						formatter: function(value, option, rows, state) {
+							return "<span class='edit' onclick='editTable(" + option.rowId + ")'>编辑</span><span class='delete' onclick='deleteTable(" + option.rowId + ")'>删除</span>"
+						},
+
+					}],
+					viewrecords: true,
+					rowNum: 5,
+					rowList: [10, 20, 30],
+					pager: pager_selector,
+					altRows: true,
+					loadComplete: function() {
+						var table = this;
+						setTimeout(function() {
+							updatePagerIcons(table);
+						}, 0);
+					},
+					autowidth: true
+				})
+				/*是否隐藏Id*/
+				//jQuery("#grid-table").setGridParam().hideCol("tId").trigger("reloadGrid");
+
+				function updatePagerIcons(table) {
+					var replacement = {
+						'ui-icon-seek-first': 'icon-double-angle-left bigger-140',
+						'ui-icon-seek-prev': 'icon-angle-left bigger-140',
+						'ui-icon-seek-next': 'icon-angle-right bigger-140',
+						'ui-icon-seek-end': 'icon-double-angle-right bigger-140'
+					};
+					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function() {
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+						if($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
+					})
+				}
+
+			}
+		</script>
+	</body>
+
+</html>
