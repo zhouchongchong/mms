@@ -15,6 +15,19 @@
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
+		<style>
+			#gif{
+				position: relative;
+			}
+			#gif-href{
+				position:absolute;
+				width: 100%;
+				height:100%;
+				top: 0;
+				left: 0;
+				z-index: 100;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -71,7 +84,7 @@
 		<section class="section-box show-item">
 			<div class="item">
 				<div class="show-detail-img" id="gif">
-					
+					<div id="gif-href"></div>
 				</div>
 				<div class="show-detail-word">
 					<p id="show-name"></p>
@@ -182,7 +195,7 @@
 				}
 				return fName
 			}
-
+			
 			function getDetail(tId) {
 				localStorage.setItem('goodId',tId);
 				JQajax('treasure/gettreasurebyid', {
@@ -199,6 +212,9 @@
 					setTimeout(function() {
 						document.getElementById('gif').appendChild(iframe) 
 					},500)
+					$('#gif-href').click(function(){
+						window.location.href = data.treasure.t3dUrl;
+					})
 					//$('.show-detail-img').append("<iframe src='"+data.treasure.t3dUrl+"' width='360'; height='418' frameborder='0' scrolling='no' style=' position:absolute; top:0; left:0;' ></iframe>");
 					/*藏品名*/
 					$('#show-name').text(data.treasure.tName);

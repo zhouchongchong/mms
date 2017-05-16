@@ -201,10 +201,10 @@
 
 			function deleteTable(rowId) {
 				var model = $('#grid-table').jqGrid('getRowData', rowId);
-				layer.confirm('确认删除此藏品？', {
+				var la = layer.confirm('确认删除此藏品？', {
 					btn: ['取消', '删除'] //按钮
 				}, function() {
-
+                   layer.close(la)
 				}, function() {
 					JQajax('treasure/deletetreasure', {
 						'tId': model.tId
@@ -212,7 +212,7 @@
 						if(data == 1) {
 							msg('删除成功')
 						} else {
-							msg('删除失败')
+							msgEr('删除失败')
 						}
 						$("#grid-table").jqGrid('GridUnload')
 				        initTable(dId);
