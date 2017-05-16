@@ -2,6 +2,7 @@ package cn.d9ing.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -34,9 +35,24 @@ public class DynastyController {
 	 */
 	@RequestMapping(value ="/getdynasties")
 	@ResponseBody
-	public List<Dynasty> getDynastys(HttpServletRequest request, Model model,HttpServletResponse response){
-		List<Dynasty> dynasties = dynastyService.searchAllDynasty();
-		return  dynasties;
+	public List<Dynasty> getDynastys(HttpServletRequest request,Integer page,Integer rows){
+		 
+		return  dynastyService.searchAllDynasty();
+	}
+	/**  
+	 * getPageDynastys:后台分页. <br/>    
+	 * @author zhouchong  
+	 * @param request
+	 * @param page
+	 * @param rows
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	@RequestMapping(value ="/getpagedynasties")
+	@ResponseBody
+	public Map<String, Object> getPageDynastys(HttpServletRequest request,Integer page,Integer rows){
+		
+		return  dynastyService.searchPageAllDynasty(page,rows);
 	}
 	
 	/**  

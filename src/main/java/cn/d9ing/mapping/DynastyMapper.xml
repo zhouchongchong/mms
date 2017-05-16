@@ -23,6 +23,14 @@
   	from tb_dynasty
   	where isdelete = 0
   </select>
+  
+  <select id="getPageAliveDynasty" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from tb_dynasty
+  	where isdelete = 0
+  	LIMIT #{begain,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_dynasty
     where d_id = #{dId,jdbcType=INTEGER}

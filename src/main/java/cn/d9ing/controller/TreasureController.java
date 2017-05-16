@@ -88,6 +88,7 @@ public class TreasureController {
 		if (page <= 0 && rows <=0 ){
 			return null;
 		}
+		//获取藏品
 		List<Treasure> treasures = treasureService.searchTreasurePage(page, rows, dynasty);
 		if(treasures!=null &&!treasures.isEmpty()){
 			 records = treasures.size();
