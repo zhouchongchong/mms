@@ -20,6 +20,7 @@ package cn.d9ing.service;
  */
 
 import java.util.List;
+import java.util.Map;
 
 import cn.d9ing.domain.Dynasty;
 
@@ -31,7 +32,16 @@ public interface IDynastyService {
 	 * @return  list
 	 * @since JDK 1.8  
 	 */
-	public List<Dynasty> searchAllDynasty();
+	public Map<String, Object> searchPageAllDynasty(Integer page,Integer rows);
+	/**  
+	 * searchAllDynasty:(这里用一句话描述这个方法的作用). <br/>    
+	 * @author zhouchong  
+	 * @param page
+	 * @param rows
+	 * @return  
+	 * @since JDK 1.8  
+	 */
+	List<Dynasty> searchAllDynasty();
 	
 	/**  
 	 * insertDynasty:新增朝代. <br/>    
