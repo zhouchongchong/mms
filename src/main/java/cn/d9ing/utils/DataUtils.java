@@ -1444,7 +1444,30 @@ public class DataUtils {
         }
         return map;
     }
-
+    
+    
+    /** 
+    * @Title: listSwitch 
+    * @Description: TODO(这里用一句话描述这个方法的作用) 
+    * @param @param list
+    * @param @return    设定文件 
+    * @return List<Map>    返回类型 
+    * @throws 
+    */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static List<Map> listSwitch(List list){
+    	List<Map> temp =  new ArrayList<>();
+    	if (!list.isEmpty()){
+    		for (Object obj: list){
+    			if (obj instanceof Map) {
+    				Map<String, Object> map = mapSwitch((Map<String, Object>)obj);
+    				temp.add(map);
+    			}
+    		}
+    	}
+    	list.clear();
+    	return temp;
+    }
     /**
      * @param str    要处理的字符串
      * @param index  字符串的开始位置
