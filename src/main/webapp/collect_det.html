@@ -164,15 +164,38 @@
 		<script type="text/javascript" src="js/index.js"></script>
 
 		<script type="text/javascript">
-			var goodId = localStorage.getItem('goodId'),
-			    screenHeight = window.screen.height,
-			    screenWidth = window.screen.width;
-			var marTop = screenHeight*0.2/2,
-			    marLeft = screenWidth*0.7/2;
+			var goodId = localStorage.getItem('goodId');
 			window.onload = function(){
 				initDynasty();
 				getDetail(goodId)
 			};
+			
+			var winWidth = 0;
+			var winHeight = 0;
+			var marTop,marLeft;
+
+			function findDimensions() {
+				// 获取窗口宽度
+				if(window.innerWidth)
+					winWidth = window.innerWidth;
+				else if((document.body) && (document.body.clientWidth))
+					winWidth = document.body.clientWidth;
+				// 获取窗口高度
+				if(window.innerHeight)
+					winHeight = window.innerHeight;
+				else if((document.body) && (document.body.clientHeight))
+					winHeight = document.body.clientHeight;
+				// 通过深入Document内部对body进行检测，获取窗口大小
+				if(document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+
+				{
+					winHeight = document.documentElement.clientHeight;
+					winWidth = document.documentElement.clientWidth;
+				}
+				marTop = winHeight*0.2/2;
+				marLeft = winWidth*0.7/2;
+				// 结果输出至两个文本框
+			}
 			
 			//加载朝代
 			var dyList = [];
@@ -214,7 +237,7 @@
 				}, function(data) {
 					console.log(data)
 					/*gif图*/
-					$('#3dUrl,#bgUrl').remove();
+					$('#3dUrl').remove();
 					var iframe = document.createElement('iframe'); //动态创建框架
 					iframe.src=data.treasure.t3dUrl; 
 					iframe.id = '3dUrl';
@@ -223,21 +246,25 @@
 					setTimeout(function() {
 						document.getElementById('gif').appendChild(iframe) 
 					},500)
-					/*以下是大的iframe*/
-					$('#frame-container').css('height',screenHeight*0.7+'px')
-					$('#frame-container').css('width',screenWidth*0.7+'px')
-					$('#frame-container').css('top',marTop+'px')
-					$('#frame-container').css('margin-left',-marLeft+'px')
-					var bgiframe = document.createElement('iframe'); //动态创建框架
-					bgiframe.src=data.treasure.t3dUrl; 
-					bgiframe.id = 'bgUrl';
-					bgiframe.width = screenWidth*0.7+'px';
-					bgiframe.height = screenHeight*0.7+'px';//框架中加载的页面
-					setTimeout(function() {
-						document.getElementById('frame-container').appendChild(bgiframe) 
-					},500)
 					$('#gif-href').click(function(){
-						$('#frame-container').show(200)
+						$('#bgUrl').remove();
+						/*以下是大的iframe*/
+						findDimensions(); // 调用函数，获取数值
+						$('#frame-container').css('height',winHeight*0.7+'px')
+						$('#frame-container').css('width',winWidth*0.7+'px')
+						$('#frame-container').css('top',marTop+'px')
+						$('#frame-container').css('margin-left',-marLeft+'px')
+						var bgiframe = document.createElement('iframe'); //动态创建框架
+						bgiframe.src=data.treasure.t3dUrl; 
+						bgiframe.id = 'bgUrl';
+						bgiframe.width = winWidth*0.7+'px';
+						bgiframe.height = winHeight*0.7+'px';//框架中加载的页面
+						setTimeout(function() {
+							document.getElementById('frame-container').appendChild(bgiframe) 
+						},500)
+						setTimeout(function() {
+							$('#frame-container').show(200)
+						},500)
 					})
 					//$('.show-detail-img').append("<iframe src='"+data.treasure.t3dUrl+"' width='360'; height='418' frameborder='0' scrolling='no' style=' position:absolute; top:0; left:0;' ></iframe>");
 					/*藏品名*/
