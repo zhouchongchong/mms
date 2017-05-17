@@ -158,13 +158,17 @@
 			</div>
 
 		</section>
-        <div id="frame-container" style="position: fixed;z-index:1000;width: 1200px;top: 100px;left: 50%;margin-left: -600px;height: 790px;display: none;">
+        <div id="frame-container" style="position: fixed;z-index:1000;left: 50%;display: none;">
         	<span class="close" onclick="closeIframe()" style="z-index:1001;width:75px;height:75px;position: absolute;top: 5px;right: 5px;font-size: 30px;display: block;background-image: url(images/c.jpg);background-size: 100% 100%;"></span>
         </div>
 		<script type="text/javascript" src="js/index.js"></script>
 
 		<script type="text/javascript">
-			var goodId = localStorage.getItem('goodId');
+			var goodId = localStorage.getItem('goodId'),
+			    screenHeight = window.screen.height,
+			    screenWidth = window.screen.width;
+			var marTop = screenHeight*0.2/2,
+			    marLeft = screenWidth*0.7/2;
 			window.onload = function(){
 				initDynasty();
 				getDetail(goodId)
@@ -220,11 +224,15 @@
 						document.getElementById('gif').appendChild(iframe) 
 					},500)
 					/*以下是大的iframe*/
+					$('#frame-container').css('height',screenHeight*0.7+'px')
+					$('#frame-container').css('width',screenWidth*0.7+'px')
+					$('#frame-container').css('top',marTop+'px')
+					$('#frame-container').css('margin-left',-marLeft+'px')
 					var bgiframe = document.createElement('iframe'); //动态创建框架
 					bgiframe.src=data.treasure.t3dUrl; 
 					bgiframe.id = 'bgUrl';
-					bgiframe.width = '1200px';
-					bgiframe.height = '790px';//框架中加载的页面
+					bgiframe.width = screenWidth*0.7+'px';
+					bgiframe.height = screenHeight*0.7+'px';//框架中加载的页面
 					setTimeout(function() {
 						document.getElementById('frame-container').appendChild(bgiframe) 
 					},500)
