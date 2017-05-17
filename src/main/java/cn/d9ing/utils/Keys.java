@@ -52,6 +52,20 @@ public class Keys implements Serializable {
      * @Description: 系统日志仓库存储位置
      */
     public static String SYSTEM_LOG_REPOSITORY_PATH = "";
+    
+    /**  
+     * CODE_NORMAL:正常返回状态.  
+     * @since JDK 1.8  
+     */
+    public static String CODE_NORMAL = "200";
+    
+    /**  
+     * CODE_ERR:系统报错.  
+     * @since JDK 1.8  
+     */
+    public static String CODE_ERR = "500";
+    
+    public static String CODE_ ="";
 
     /**
      * @fieldName: SOURCE_PREFIX
