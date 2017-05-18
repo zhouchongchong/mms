@@ -1,5 +1,8 @@
 package cn.d9ing.service;
 
+import cn.d9ing.domain.User;
+import cn.d9ing.utils.JsonResult;
+
 /**
  * <p>Title: </p>
  * <p>Description: </p>
@@ -9,5 +12,12 @@ package cn.d9ing.service;
  */
 public interface IUserService {
 	
-
+	JsonResult<Object> insertUser(User user);
+	
+	
+	JsonResult<Object> validatepwd(User user);
+	
+	JsonResult<Object> existSameUser(User user);
+	
+	
 }

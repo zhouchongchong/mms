@@ -28,6 +28,20 @@
     from tb_user
     where u_id = #{uId,jdbcType=INTEGER}
   </select>
+  <!-- 验证登录 -->
+  <select id="getpwd" parameterType="java.lang.String" resultType="java.lang.String">
+  	select 
+  		u_password
+  	from tb_user
+  	where u_username = #{username,jdbcType=VARCHAR}
+  	and isdelete = 0
+  </select>
+  <select id="getSameName" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select 
+  		COUNT(*)
+  	from tb_user
+  	where u_username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_user
     where u_id = #{uId,jdbcType=INTEGER}
