@@ -8,7 +8,9 @@ public class User {
     private Integer uRule;
 
     private String uUsername;
-
+    
+    private String uSalt;
+    
     private String uPassword;
 
     private String uRealname;
@@ -142,4 +144,24 @@ public class User {
     public void setIsdelete(Integer isdelete) {
         this.isdelete = isdelete;
     }
+
+	/**  
+	 * uSalt.  
+	 *  
+	 * @return  the uSalt  
+	 * @since   JDK 1.8  
+	 */
+	public String getuSalt() {
+		return uSalt;
+	}
+
+	/**  
+	 * uSalt.  
+	 *  
+	 * @param   uSalt    the uSalt to set  
+	 * @since   JDK 1.8  
+	 */
+	public void setuSalt(String uSalt) {
+		this.uSalt = uSalt == null ? null : uSalt.trim();
+	}
 }
