@@ -31,23 +31,41 @@ public class UserServiceImpl implements IUserService {
 		boolean success = true;
 		String statusCode = Keys.CODE_NORMAL;
 		String data = "";
+		String message = "";
+		Integer resultNum = 0;
 		  
 		String password = user.getuPassword();
-		try {
-			Map<String, String> pwdMap = MD5Encoder.getEncryptedPwd(password);
-			user.setuSalt(pwdMap.keySet().iterator().next());
-			user.setuPassword(pwdMap.values().iterator().next());
-			user.setuRule(2);
-			user.setuCreatetime(DateUtils.sqlDate());
-			user.setIsdelete(0);
-			Integer result = userDao.insert(user);
-			data = result+"";
-		} catch (Exception e) {
-			 success = false;
-			 statusCode = Keys.CODE_ERR;
-			e.printStackTrace();  
-		} 
-		return new JsonResult<Object>(data, success, statusCode, "用户注册返回");
+		String userName =  user.getuUsername();
+		if(StringUtils.isNotBlank(userName)){
+			resultNum = userDao.getSameName(userName);
+			if (StringUtils.isNotBlank(resultNum)) {
+				if (resultNum >=1) {
+					message = "用户已存在";
+				}else{
+					success = true;
+					message = "用户名可用";
+					try {
+						Map<String, String> pwdMap = MD5Encoder.getEncryptedPwd(password);
+						user.setuSalt(pwdMap.keySet().iterator().next());
+						user.setuPassword(pwdMap.values().iterator().next());
+						user.setuRule(2);
+						user.setuCreatetime(DateUtils.sqlDate());
+						user.setIsdelete(0);
+						Integer result = userDao.insert(user);
+						data = result+"";
+						message ="用户注册成功";
+					} catch (Exception e) {
+						 success = false;
+						 statusCode = Keys.CODE_ERR;
+						e.printStackTrace();  
+					} 
+				}
+			}else{
+				message = "查询出错";
+			}
+		}
+		
+		return new JsonResult<Object>(data, success, statusCode, message);
 	}
 
 	@Override
