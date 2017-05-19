@@ -36,8 +36,11 @@ function errorTips(par, text) {
 	layer.tips(text, par, {
 		tipsMore: true
 	});
-}
+} 
 
 function msg(text){
 	layer.msg(text, {time: 2000, icon:6});
+}
+function msgEr(text){
+	layer.msg(text, {time: 2000, icon:5});
 }

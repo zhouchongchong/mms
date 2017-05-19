@@ -5,6 +5,7 @@
     <id column="u_id" jdbcType="INTEGER" property="uId" />
     <result column="u_rule" jdbcType="INTEGER" property="uRule" />
     <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+    <result column="u_salt" jdbcType="VARCHAR" property="uSalt" />
     <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
     <result column="u_realname" jdbcType="VARCHAR" property="uRealname" />
     <result column="u_pic" jdbcType="VARCHAR" property="uPic" />
@@ -18,7 +19,7 @@
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
   </resultMap>
   <sql id="Base_Column_List">
-    u_id, u_rule, u_username, u_password, u_realname, u_pic, u_phone, u_email, u_qq, 
+    u_id, u_rule, u_username, u_salt, u_password, u_realname, u_pic, u_phone, u_email, u_qq, 
     u_wecat, u_disc, u_createtime, u_uptime, isdelete
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -27,17 +28,31 @@
     from tb_user
     where u_id = #{uId,jdbcType=INTEGER}
   </select>
+  <!-- 验证登录 -->
+  <select id="getpwd" parameterType="java.lang.String" resultType="java.lang.String">
+  	select 
+  		u_password
+  	from tb_user
+  	where u_username = #{username,jdbcType=VARCHAR}
+  	and isdelete = 0
+  </select>
+  <select id="getSameName" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select 
+  		COUNT(*)
+  	from tb_user
+  	where u_username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_user
     where u_id = #{uId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.d9ing.domain.User">
-    insert into tb_user (u_id, u_rule, u_username, 
+    insert into tb_user (u_id, u_rule, u_username, u_salt, 
       u_password, u_realname, u_pic, 
       u_phone, u_email, u_qq, 
       u_wecat, u_disc, u_createtime, 
       u_uptime, isdelete)
-    values (#{uId,jdbcType=INTEGER}, #{uRule,jdbcType=INTEGER}, #{uUsername,jdbcType=VARCHAR}, 
+    values (#{uId,jdbcType=INTEGER}, #{uRule,jdbcType=INTEGER}, #{uUsername,jdbcType=VARCHAR},#{uSalt,jdbcType=VARCHAR}, 
       #{uPassword,jdbcType=VARCHAR}, #{uRealname,jdbcType=VARCHAR}, #{uPic,jdbcType=VARCHAR}, 
       #{uPhone,jdbcType=VARCHAR}, #{uEmail,jdbcType=VARCHAR}, #{uQq,jdbcType=VARCHAR}, 
       #{uWecat,jdbcType=VARCHAR}, #{uDisc,jdbcType=VARCHAR}, #{uCreatetime,jdbcType=TIMESTAMP}, 
@@ -54,6 +69,9 @@
       </if>
       <if test="uUsername != null">
         u_username,
+      </if>
+      <if test="uSalt != null">
+        u_salt,
       </if>
       <if test="uPassword != null">
         u_password,
@@ -99,6 +117,9 @@
       <if test="uUsername != null">
         #{uUsername,jdbcType=VARCHAR},
       </if>
+      <if test="uSalt != null">
+        #{uSalt,jdbcType=VARCHAR},
+      </if>
       <if test="uPassword != null">
         #{uPassword,jdbcType=VARCHAR},
       </if>
@@ -143,6 +164,9 @@
       <if test="uUsername != null">
         u_username = #{uUsername,jdbcType=VARCHAR},
       </if>
+      <if test="uSalt != null">
+        #{uSalt,jdbcType=VARCHAR},
+      </if>
       <if test="uPassword != null">
         u_password = #{uPassword,jdbcType=VARCHAR},
       </if>
@@ -183,6 +207,7 @@
     update tb_user
     set u_rule = #{uRule,jdbcType=INTEGER},
       u_username = #{uUsername,jdbcType=VARCHAR},
+      u_salt = #{uSalt,jdbcType=VARCHAR},
       u_password = #{uPassword,jdbcType=VARCHAR},
       u_realname = #{uRealname,jdbcType=VARCHAR},
       u_pic = #{uPic,jdbcType=VARCHAR},

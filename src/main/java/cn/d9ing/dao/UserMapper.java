@@ -1,5 +1,7 @@
 package cn.d9ing.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.d9ing.domain.User;
 
 public interface UserMapper {
@@ -14,4 +16,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    String getpwd(@Param(value = "username")String userName);
+    
+    Integer getSameName(@Param(value = "username")String userName);
 }
