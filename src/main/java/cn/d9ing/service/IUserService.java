@@ -19,5 +19,11 @@ public interface IUserService {
 	
 	JsonResult<Object> existSameUser(User user);
 	
+	JsonResult<Object> searchPageUser(Integer page,Integer rows);
+	
+	JsonResult<Object> searchUserById(Integer uId);
+	
+	JsonResult<Object> deleteUserById(Integer uId);
+	
 	
 }

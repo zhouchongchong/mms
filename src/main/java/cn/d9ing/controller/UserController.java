@@ -58,4 +58,50 @@ public class UserController {
 	public Object exitUser(HttpServletRequest request,User user){
 		return userService.existSameUser(user);
 	}
+	
+	/** 
+	* @Title: getUserPage 
+	* @Description: user分页
+	* @param @param request
+	* @param @param page
+	* @param @param rows
+	* @param @return    设定文件 
+	* @return Object    返回类型 
+	* @throws 
+	*/
+	@RequestMapping("userpage")
+	@ResponseBody
+	public Object getUserPage(HttpServletRequest request,Integer page,Integer rows){
+		return userService.searchPageUser(page, rows);
+	}
+	
+	/** 
+	* @Title: getUserById 
+	* @Description: 根据id获得用户详细信息
+	* @param @param request
+	* @param @param uId
+	* @param @return    设定文件 
+	* @return Object    返回类型 
+	* @throws 
+	*/
+	@RequestMapping("/userbyid")
+	@ResponseBody
+	public Object getUserById(HttpServletRequest request,Integer uId){
+		
+		return userService.searchUserById(uId);
+	}
+	/** 
+	* @Title: deleteUserById 
+	* @Description: TODO(这里用一句话描述这个方法的作用) 
+	* @param @param request
+	* @param @param uId
+	* @param @return    设定文件 
+	* @return Object    返回类型 
+	* @throws 
+	*/
+	@RequestMapping("/deleteuser")
+	@ResponseBody
+	public Object deleteUserById(HttpServletRequest request,Integer uId){
+		return userService.deleteUserById(uId);
+	}
 }

@@ -36,6 +36,15 @@
   	where u_username = #{username,jdbcType=VARCHAR}
   	and isdelete = 0
   </select>
+  <select id="searchPageUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT 
+		(SELECT COUNT(*) FROM tb_user WHERE isdelete =0) AS totalnum,
+		<include refid="Base_Column_List" />
+	FROM tb_user
+	WHERE isdelete = 0
+	AND u_rule = 2
+	LIMIT  #{begain,jdbcType=INTEGER},#{end,jdbcType=INTEGER};
+  </select>
   <select id="getSameName" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select 
   		COUNT(*)
@@ -155,6 +164,14 @@
       </if>
     </trim>
   </insert>
+  <!-- 拉黑 -->
+  <update id="deleteByPrimary" parameterType="java.lang.Integer">
+  update tb_user
+  <set>
+  isdelete = 0
+  </set>
+  where u_id = #{uId,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="cn.d9ing.domain.User">
     update tb_user
     <set>

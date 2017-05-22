@@ -6,6 +6,8 @@ public class User {
     private Integer uId;
 
     private Integer uRule;
+    
+    private Integer totalnum;
 
     private String uUsername;
     
@@ -163,5 +165,13 @@ public class User {
 	 */
 	public void setuSalt(String uSalt) {
 		this.uSalt = uSalt == null ? null : uSalt.trim();
+	}
+
+	public Integer getTotalnum() {
+		return totalnum;
+	}
+
+	public void setTotalnum(Integer totalnum) {
+		this.totalnum = totalnum;
 	}
 }
