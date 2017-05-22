@@ -87,9 +87,9 @@ public class UserServiceImpl implements IUserService {
 				if (StringUtils.isNotBlank(pwd)) {
 					success = MD5Encoder.validPassword(user.getuPassword(), pwd);
 					if (success) {
-						message = "口令正确";
+						message = "密码正确";
 					}else{
-						message = "口令错误";
+						message = "密码错误";
 					}
 				}else{
 					message = "查无此人";
