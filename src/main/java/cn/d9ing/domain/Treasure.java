@@ -9,13 +9,25 @@ public class Treasure {
 
     private String tNumber;
 
+    private String tRemark;
+
+    private String tKilneye;
+
     private Integer tDynasty;
 
     private String tCoverUrl;
-    
-    private String tRemark;
 
     private String t3dUrl;
+
+    private String t3dUrlReal;
+
+    private String tBottomUrl;
+
+    private String tBottomUrlReal;
+
+    private String tCertificateUrl;
+
+    private String tCertificateUrlReal;
 
     private Date tCreatetime;
 
@@ -49,6 +61,22 @@ public class Treasure {
         this.tNumber = tNumber == null ? null : tNumber.trim();
     }
 
+    public String gettRemark() {
+        return tRemark;
+    }
+
+    public void settRemark(String tRemark) {
+        this.tRemark = tRemark == null ? null : tRemark.trim();
+    }
+
+    public String gettKilneye() {
+        return tKilneye;
+    }
+
+    public void settKilneye(String tKilneye) {
+        this.tKilneye = tKilneye == null ? null : tKilneye.trim();
+    }
+
     public Integer gettDynasty() {
         return tDynasty;
     }
@@ -71,6 +99,46 @@ public class Treasure {
 
     public void setT3dUrl(String t3dUrl) {
         this.t3dUrl = t3dUrl == null ? null : t3dUrl.trim();
+    }
+
+    public String getT3dUrlReal() {
+        return t3dUrlReal;
+    }
+
+    public void setT3dUrlReal(String t3dUrlReal) {
+        this.t3dUrlReal = t3dUrlReal == null ? null : t3dUrlReal.trim();
+    }
+
+    public String gettBottomUrl() {
+        return tBottomUrl;
+    }
+
+    public void settBottomUrl(String tBottomUrl) {
+        this.tBottomUrl = tBottomUrl == null ? null : tBottomUrl.trim();
+    }
+
+    public String gettBottomUrlReal() {
+        return tBottomUrlReal;
+    }
+
+    public void settBottomUrlReal(String tBottomUrlReal) {
+        this.tBottomUrlReal = tBottomUrlReal == null ? null : tBottomUrlReal.trim();
+    }
+
+    public String gettCertificateUrl() {
+        return tCertificateUrl;
+    }
+
+    public void settCertificateUrl(String tCertificateUrl) {
+        this.tCertificateUrl = tCertificateUrl == null ? null : tCertificateUrl.trim();
+    }
+
+    public String gettCertificateUrlReal() {
+        return tCertificateUrlReal;
+    }
+
+    public void settCertificateUrlReal(String tCertificateUrlReal) {
+        this.tCertificateUrlReal = tCertificateUrlReal == null ? null : tCertificateUrlReal.trim();
     }
 
     public Date gettCreatetime() {
@@ -104,12 +172,4 @@ public class Treasure {
     public void settDesc(String tDesc) {
         this.tDesc = tDesc == null ? null : tDesc.trim();
     }
-
-	public String gettRemark() {
-		return tRemark;
-	}
-
-	public void settRemark(String tRemark) {
-		this.tRemark = tRemark == null ? null : tRemark.trim();;
-	}
 }
