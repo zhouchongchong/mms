@@ -15,6 +15,40 @@ import java.io.*;
  * @Description:
  */
 public class PictureUtils {
+	public static void main(String[] args) {
+		zipImageFileIO("C:\\Users\\zhouchong\\Downloads\\1.jpg", 0.2F, "01");
+	}
+	
+	public static String zipImageFileIO(String oldFile,float quality,String smallIcon){
+		if (oldFile == null) {
+            return null;
+        }
+        String newImage = null;
+        try {
+            /**对服务器上的临时文件进行处理 */
+            Image srcFile = ImageIO.read(new File(oldFile)); /** 宽,高设定 */
+            int height = srcFile.getHeight(null);
+            int width = srcFile.getWidth(null);
+            BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            tag.getGraphics().drawImage(srcFile, 0, 0, width, height, null);
+            String filePrex = oldFile.substring(0, oldFile.indexOf('.'));
+            /** 压缩后的文件名 */
+            newImage = filePrex + smallIcon    + oldFile.substring(filePrex.length());
+            /** 压缩之后临时存放位置 */
+            FileOutputStream out = new FileOutputStream(newImage);
+            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+            JPEGEncodeParam jep = JPEGCodec.getDefaultJPEGEncodeParam(tag);
+            /** 压缩质量 */
+            jep.setQuality(quality, true);
+            encoder.encode(tag, jep);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return newImage;
+	}
     /**
      * 直接指定压缩后的宽高：
      * (先保存原文件，再压缩、上传)
@@ -137,9 +171,5 @@ public class PictureUtils {
         deskImage.close();
     }
 
-    public static void main(String args[]) throws Exception {
-//        String x2 = PictureUtils.zipImageFile("F:\\word\\299062.jpg", 3840, 2160, 0.2f, "0.2");
-        PictureUtils.saveMinPhoto("F:\\word\\299062.jpg", "F:\\word\\2990621.jpg", 5000, 0.9d);
-//        System.out.println(x2);
-    }
+
 }

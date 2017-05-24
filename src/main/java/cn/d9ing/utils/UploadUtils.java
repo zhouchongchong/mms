@@ -76,6 +76,7 @@ public class UploadUtils {
 
 			File saveFile = new File(fileInfo[0]);
 			file.transferTo(saveFile);
+//			String smallPicture = PictureUtils.zipImageFileIO(fileInfo[0], 0.2F, "smallIcon");
 //			PictureUtils.zipImageFile(oldFile, width, height, quality, smallIcon)
 			String md5 = MD5Utils.getFileMD5String(saveFile);
 			fileBean.setMd5(md5);
