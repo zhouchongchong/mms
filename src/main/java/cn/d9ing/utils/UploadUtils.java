@@ -67,9 +67,9 @@ public class UploadUtils {
 			CommonsMultipartFile file, String path) {
 		FileBean fileBean = null;
 		try {
-			String originalFileName = file.getOriginalFilename();
-			fileBean = new FileBean();
-			String fileExt = FileUtils.getFileExtension(originalFileName);
+			String originalFileName = file.getOriginalFilename(); 						//文件名 eg: aa.jpeg
+			fileBean = new FileBean();													
+			String fileExt = FileUtils.getFileExtension(originalFileName);				//文件后缀名  eg:jpg
 			fileBean.setType(fileExt);
 			fileBean.setFileName(originalFileName);
 			String[] fileInfo = FileUtils.createFileOnServer(originalFileName,"");

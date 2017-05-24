@@ -44,6 +44,7 @@ public class TreasureController {
 		Map<String, String> pathMap = new HashMap<>();
 		FileBean picfile = UploadUtils.getInstance().upload(request, file, "");
 		pathMap.put("path", picfile.getRemoteUrl());
+		pathMap.put("realpath", picfile.getLocalUrl());
 		return pathMap;
 	}
 	
@@ -56,14 +57,14 @@ public class TreasureController {
 	 */
 	 @RequestMapping("/addtreasure")
 	 @ResponseBody
-	public Integer insertTreasure(@RequestParam CommonsMultipartFile file,HttpServletRequest request,Treasure treasure){
+	public Integer insertTreasure(HttpServletRequest request,Treasure treasure){
 		try {
 			Date date = DateUtils.sqlDate();
-			FileBean picfile = UploadUtils.getInstance().upload(request, file, "");
+//			FileBean picfile = UploadUtils.getInstance().upload(request, file, "");
 			treasure.settCreatetime(date);
 			treasure.settUptime(date);
 			treasure.setIsdelte(Keys.IS_NOT_DELETE);
-			treasure.settCoverUrl(picfile.getRemoteUrl());
+//			treasure.settCoverUrl(picfile.getRemoteUrl());
 			Integer result =  treasureService.insertTreasureSelective(treasure);
 			return result;
 		} catch (Exception e) {
