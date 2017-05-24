@@ -19,7 +19,7 @@ public class Treasure {
 
     private String t3dUrl;
 
-    private String t3dUrlReal;
+    private String tCoverUrlReal;
 
     private String tBottomUrl;
 
@@ -101,12 +101,12 @@ public class Treasure {
         this.t3dUrl = t3dUrl == null ? null : t3dUrl.trim();
     }
 
-    public String getT3dUrlReal() {
-        return t3dUrlReal;
+    public String getTCoverUrlReal() {
+        return tCoverUrlReal;
     }
 
-    public void setT3dUrlReal(String t3dUrlReal) {
-        this.t3dUrlReal = t3dUrlReal == null ? null : t3dUrlReal.trim();
+    public void setTCoverUrlReal(String tCoverUrlReal) {
+        this.tCoverUrlReal = tCoverUrlReal == null ? null : tCoverUrlReal.trim();
     }
 
     public String gettBottomUrl() {

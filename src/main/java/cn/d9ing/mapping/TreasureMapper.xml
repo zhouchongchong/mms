@@ -10,7 +10,7 @@
     <result column="t_dynasty" jdbcType="INTEGER" property="tDynasty" />
     <result column="t_cover_url" jdbcType="VARCHAR" property="tCoverUrl" />
     <result column="t_3D_url" jdbcType="VARCHAR" property="t3dUrl" />
-    <result column="t_3D_url_real" jdbcType="VARCHAR" property="t3dUrlReal" />
+    <result column="t_cover_url_real" jdbcType="VARCHAR" property="tCoverUrlReal" />
     <result column="t_bottom_url" jdbcType="VARCHAR" property="tBottomUrl" />
     <result column="t_bottom_url_real" jdbcType="VARCHAR" property="tBottomUrlReal" />
     <result column="t_certificate_url" jdbcType="VARCHAR" property="tCertificateUrl" />
@@ -23,7 +23,7 @@
     <result column="t_desc" jdbcType="LONGVARCHAR" property="tDesc" />
   </resultMap>
   <sql id="Base_Column_List">
-    t_id, t_name, t_number, t_remark, t_kilneye, t_dynasty, t_cover_url, t_3D_url, t_3D_url_real, 
+    t_id, t_name, t_number, t_remark, t_kilneye, t_dynasty, t_cover_url, t_3D_url, t_cover_url_real, 
     t_bottom_url, t_bottom_url_real, t_certificate_url, t_certificate_url_real, t_createtime, 
     t_uptime, isdelte
   </sql>
@@ -107,13 +107,13 @@
   <insert id="insert" parameterType="cn.d9ing.domain.Treasure">
     insert into tb_treasure (t_id, t_name, t_number, 
       t_remark, t_kilneye, t_dynasty, 
-      t_cover_url, t_3D_url, t_3D_url_real, 
+      t_cover_url, t_3D_url, t_cover_url_real, 
       t_bottom_url, t_bottom_url_real, t_certificate_url, 
       t_certificate_url_real, t_createtime, t_uptime, 
       isdelte, t_desc)
     values (#{tId,jdbcType=BIGINT}, #{tName,jdbcType=VARCHAR}, #{tNumber,jdbcType=VARCHAR}, 
       #{tRemark,jdbcType=VARCHAR}, #{tKilneye,jdbcType=VARCHAR}, #{tDynasty,jdbcType=INTEGER}, 
-      #{tCoverUrl,jdbcType=VARCHAR}, #{t3dUrl,jdbcType=VARCHAR}, #{t3dUrlReal,jdbcType=VARCHAR}, 
+      #{tCoverUrl,jdbcType=VARCHAR}, #{t3dUrl,jdbcType=VARCHAR}, #{tCoverUrlReal,jdbcType=VARCHAR}, 
       #{tBottomUrl,jdbcType=VARCHAR}, #{tBottomUrlReal,jdbcType=VARCHAR}, #{tCertificateUrl,jdbcType=VARCHAR}, 
       #{tCertificateUrlReal,jdbcType=VARCHAR}, #{tCreatetime,jdbcType=TIMESTAMP}, #{tUptime,jdbcType=TIMESTAMP}, 
       #{isdelte,jdbcType=INTEGER}, #{tDesc,jdbcType=LONGVARCHAR})
@@ -145,8 +145,8 @@
       <if test="t3dUrl != null">
         t_3D_url,
       </if>
-      <if test="t3dUrlReal != null">
-        t_3D_url_real,
+      <if test="tCoverUrlReal != null">
+        t_cover_url_real,
       </if>
       <if test="tBottomUrl != null">
         t_bottom_url,
@@ -198,8 +198,8 @@
       <if test="t3dUrl != null">
         #{t3dUrl,jdbcType=VARCHAR},
       </if>
-      <if test="t3dUrlReal != null">
-        #{t3dUrlReal,jdbcType=VARCHAR},
+      <if test="tCoverUrlReal != null">
+        #{tCoverUrlReal,jdbcType=VARCHAR},
       </if>
       <if test="tBottomUrl != null">
         #{tBottomUrl,jdbcType=VARCHAR},
@@ -251,8 +251,8 @@
       <if test="t3dUrl != null">
         t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
       </if>
-      <if test="t3dUrlReal != null">
-        t_3D_url_real = #{t3dUrlReal,jdbcType=VARCHAR},
+      <if test="tCoverUrlReal != null">
+        t_cover_url_real = #{tCoverUrlReal,jdbcType=VARCHAR},
       </if>
       <if test="tBottomUrl != null">
         t_bottom_url = #{tBottomUrl,jdbcType=VARCHAR},
@@ -291,7 +291,7 @@
       t_dynasty = #{tDynasty,jdbcType=INTEGER},
       t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
       t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
-      t_3D_url_real = #{t3dUrlReal,jdbcType=VARCHAR},
+      t_cover_url_real = #{tCoverUrlReal,jdbcType=VARCHAR},
       t_bottom_url = #{tBottomUrl,jdbcType=VARCHAR},
       t_bottom_url_real = #{tBottomUrlReal,jdbcType=VARCHAR},
       t_certificate_url = #{tCertificateUrl,jdbcType=VARCHAR},
@@ -311,7 +311,7 @@
       t_dynasty = #{tDynasty,jdbcType=INTEGER},
       t_cover_url = #{tCoverUrl,jdbcType=VARCHAR},
       t_3D_url = #{t3dUrl,jdbcType=VARCHAR},
-      t_3D_url_real = #{t3dUrlReal,jdbcType=VARCHAR},
+      t_cover_url_real = #{tCoverUrlReal,jdbcType=VARCHAR},
       t_bottom_url = #{tBottomUrl,jdbcType=VARCHAR},
       t_bottom_url_real = #{tBottomUrlReal,jdbcType=VARCHAR},
       t_certificate_url = #{tCertificateUrl,jdbcType=VARCHAR},
