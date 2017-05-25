@@ -116,7 +116,6 @@
 				$('#fengPic').click()
 			}
 			function selectedImg_under(index) {
-				alert
 				$('#underPic_'+index).click()
 			}
 			function selectedImg_indo() {
@@ -222,6 +221,7 @@
 			function submitGoods() {
 				var tname = $.trim($('#tName').val()),
 					tnumber = $.trim($('#tNumber').val()),
+					t3dUrl = $.trim($('#t3dUrl').val()),
 					tdynasty = $('.select2 option:selected').val(),
 					tCoverUrl = $('#img_feng').attr('src'),
 					tCoverUrlReal = $('#img_feng').attr('realpath'),
@@ -239,6 +239,7 @@
 				var form = new FormData();
 				form.append('tName', tname);
 				form.append('tNumber', tnumber);
+				form.append('t3dUrl', t3dUrl);
 				form.append('tDynasty', tdynasty);
 				form.append('tCoverUrl', tCoverUrl);
 				form.append('tCoverUrlReal', tCoverUrlReal);
