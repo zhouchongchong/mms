@@ -19,6 +19,11 @@
 				border: 1px solid #a7b5bc;
 				padding: 8px 5px;
 			}
+			
+			img {
+			    cursor: pointer;
+				margin-right: 20px;
+			}
 		</style>
 	</head>
 
@@ -56,17 +61,31 @@
 						</select>
 					</li>
 					<li>
+						<label>窑口</label>
+						<input name="tName" id="tKilneye" type="text" class="dfinput" placeholder="请输入窑口（选填）" />
+					</li>
+					<li>
 						<label>藏品URL</label>
 						<input name="" type="text" id="t3dUrl" class="dfinput" placeholder="如：114.215.84.169：10832" />
 					</li>
 					<li>
 						<label>藏品图例</label>
-						<input name="" id="file" accept="image/*" onchange="getImg()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
-						<img src="../images/add.png" id="img_sel" height="70px" onclick="selectedImg()" />
+						<input name="" id="fengPic" onchange="getImg_feng()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
+						<img src="../images/add.png" id="img_feng" height="70px" onclick="selectedImg_feng()" />
+					</li>
+					<li class="under">
+						<label>底部图片</label>
 					</li>
 					<li>
-						<label>藏品介绍</label>
-						<textarea class="textinput" id="tDesc" rows="" cols="" name=""></textarea>
+						<label>证书图片</label>
+						<span class="indoOut">
+						   <input name="" id="indoPic" onchange="getImg_indo()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
+						   <img src="../images/add.png" id="img_indo" height="70px" onclick="selectedImg_indo()" />
+						</span>
+					</li>
+					<li>
+						<label>藏品备注</label>
+						<input name="beizhu" id="tRemark" type="text" class="dfinput" placeholder="" />
 					</li>
 				</ul>
 				<p>
@@ -76,30 +95,93 @@
 		</div>
 		<script type="text/javascript">
 			var editId = localStorage.getItem('editGoodsId'),
-				ifChange = false;
+				ifChange = false,
+				indoIndex = 0;;
 			$('.imgtable tbody tr:odd').addClass('odd');
 			$(function() {
 				initDynasty()
 			})
 
-			function selectedImg() {
-				$('#file').click()
+			function selectedImg_feng() {
+				$('#fengPic').click()
 			}
 
-			function getImg() {
-				ifChange = true;
+			function selectedImg_under(index) {
+				$('#underPic_' + index).click()
+			}
+
+			function selectedImg_indo() {
+				$('#indoPic').click()
+			}
+
+			function getImg_feng() {
 				//检验是否为图像文件  
-				var file = document.getElementById("file").files[0];
+				var file = document.getElementById("fengPic").files[0];
 				if(!/image\/\w+/.test(file.type)) {
-					alert("请选择图片！");
+					msgEr("请选择图片！");
 					return false;
 				}
-				var reader = new FileReader();
-				//将文件以Data URL形式读入页面  
-				reader.readAsDataURL(file);
-				reader.onload = function(e) {
-					document.getElementById('img_sel').src = this.result
+				undateImg(file, 0);
+			}
+
+			function getImg_under(index) {
+				//检验是否为图像文件  
+				var file = document.getElementById("underPic_" + index).files[0];
+				if(!/image\/\w+/.test(file.type)) {
+					msgEr("请选择图片！");
+					return false;
 				}
+				undateImg(file, 1,index);
+			}
+
+			function getImg_indo() {
+				//检验是否为图像文件  
+				var file = document.getElementById("indoPic").files[0];
+				if(!/image\/\w+/.test(file.type)) {
+					msgEr("请选择图片！");
+					return false;
+				}
+				undateImg(file, 2);
+			}
+
+			function undateImg(file, type,index) {
+				var imgForm = new FormData();
+				imgForm.append('file', file);
+				layer.load()
+				$.ajax({
+					type: 'post',
+					url: apiUrl + "treasure/uptreasurpic",
+					data: imgForm,
+					async: true,
+					cache: false,
+					contentType: false,
+					processData: false,
+					dataType: 'json',
+					success: function(data) {
+						if(type == 0) {
+							$("#img_feng").attr('src', data.path);
+							$("#img_feng").attr('realpath', data.realpath);
+						}
+						if(type == 1) {
+							$(".img_under_" + index).attr('src', data.path);
+							$(".img_under_" + index).attr('realpath', data.realpath);
+							if(indoIndex < 3) {
+								++indoIndex;
+								var Arr = [];
+								Arr.push("<span>")
+								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
+								Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("</span>")
+								$('.under').append(Arr.join(""))
+							}
+						}
+						if(type == 2) {
+							$("#img_indo").attr('src', data.path);
+							$("#img_indo").attr('realpath', data.realpath);
+						}
+						layer.closeAll()
+					}
+				})
 			}
 
 			function initDynasty() {
@@ -118,87 +200,108 @@
 						$('#tNumber').val(data.tNumber);
 						$(".select2 option[value='" + data.tDynasty + "']").attr('selected', 'selected');
 						$('#t3dUrl').val(data.t3dUrl);
-						$('#img_sel').attr('src', data.tCoverUrl);
-						$('#tDesc').val(data.tDesc);
+						$('#tKilneye').val(data.tKilneye);
+						/*封面图*/
+						$('#img_feng').attr('src', data.tCoverUrl);
+						$("#img_feng").attr('realpath', data.tcoverUrlReal);
+						/*证书图片*/
+						$("#img_indo").attr('src', data.tCertificateUrl);
+						$("#img_indo").attr('realpath', data.tCertificateUrlReal);
+						$('#tRemark').val(data.tRemark);
+
+						/*底部图*/
+						var tBottomUrlReal = data.tBottomUrlReal.split("&");
+						var tBottomUrl = data.tBottomUrl.split("&");
+						$.each(tBottomUrl, function(i, item) {
+							var Arr = [];
+							Arr.push("<span>")
+							Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
+							Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+							Arr.push("</span>")
+							$('.under').append(Arr.join(""))
+							++indoIndex;
+						})
+						if(indoIndex < 4) {
+							var Arr = [];
+							Arr.push("<span>")
+							Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
+							Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+							Arr.push("</span>")
+							$('.under').append(Arr.join(""))
+						}
+
 					})
 				})
+			}
+
+			function getUnderPath() {
+				var pathArr = [],
+					realpathArr = [],
+					count = new Object();
+				$('.under span').each(function() {
+					var tarImg = $(this).find('img');
+					var path = tarImg.attr('src'),
+						realpath = tarImg.attr('realpath');
+					if(realpath) {
+						pathArr.push(path);
+						realpathArr.push(realpath);
+					}
+				})
+				count.path = pathArr.join("&");
+				count.realpath = realpathArr.join("&");
+				return count;
 			}
 
 			function submitGoods() {
 				var tname = $.trim($('#tName').val()),
 					tnumber = $.trim($('#tNumber').val()),
-					tdynasty = $('.select2 option:selected').val(),
 					t3dUrl = $.trim($('#t3dUrl').val()),
-					file = document.getElementById('file').files[0],
-					tfile = $('#file').val(),
-					tdesc = $.trim($('#tDesc').val());
-				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tdesc) {
-					alert('请填写完整')
+					tdynasty = $('.select2 option:selected').val(),
+					tCoverUrl = $('#img_feng').attr('src'),
+					tCoverUrlReal = $('#img_feng').attr('realpath'),
+					tCertificateUrl = $('#img_indo').attr('src'),
+					tCertificateUrlReal = $('#img_indo').attr('realpath'),
+					tKilneye = $.trim($("#tKilneye").val()),
+					count = getUnderPath();
+				tRemark = $.trim($('#tRemark').val());
+				var tBottomUrlReal = count.realpath;
+				var tBottomUrl = count.path;
+				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tBottomUrl) {
+					msgEr('请填写完整')
 					return
 				}
 				var form = new Object();
 				form.tId = editId;
 				form.tName = tname;
 				form.tNumber = tnumber;
-				form.tDynasty = tdynasty;
 				form.t3dUrl = t3dUrl;
-				form.file = tfile;
-				form.tDesc = tdesc;
-				if(!ifChange) {
-					$.ajax({
-						type: "post",
-						url: apiUrl + "treasure/updatetreasure",
-						data: form,
-						dataType: 'json',
-						async: true,
-						success: function(data) {
-							if(data == 1) {
-								msg('修改成功')
-								setTimeout(function() {
-									window.history.go(-1)
-								}, 2000)
-							} else {
-								msgEr('添加失败')
-							}
+				form.tDynasty = tdynasty;
+				form.tCoverUrl = tCoverUrl;
+				form.tCoverUrlReal = tCoverUrlReal;
+				form.tCertificateUrl = tCertificateUrl;
+				form.tCertificateUrlReal = tCertificateUrlReal;
+				form.tBottomUrl = tBottomUrl;
+				form.tBottomUrlReal = tBottomUrlReal;
+				form.tKilneye = tKilneye;
+				form.tRemark = tRemark;
+				$.ajax({
+					type: "post",
+					url: apiUrl + "treasure/updatetreasure",
+					data: form,
+					dataType: 'json',
+					async: true,
+					success: function(data) {
+						if(data == 1) {
+							msg('修改成功')
+							setTimeout(function() {
+								//window.history.go(-1)
+							}, 2000)
+						} else {
+							msgEr('修改失败')
 						}
-					});
-				} else {
-					var imgForm = new FormData();
-					imgForm.append('file', file);
-					$.ajax({
-						type: "post",
-						url: apiUrl + "treasure/uptreasurpic",
-						data: imgForm,
-						async: true,
-						cache: false,
-						contentType: false,
-						processData: false,
-						dataType: 'json',
-						success: function(data) {
-							delete form.file;
-							form.tCoverUrl = data.path;
-							$.ajax({
-								type: "post",
-								url: apiUrl + "treasure/updatetreasure",
-								data: form,
-								dataType: 'json',
-								async: true,
-								success: function(data) {
-									if(data == 1) {
-										msg('修改成功')
-										setTimeout(function() {
-											window.history.go(-1)
-										}, 2000)
-									} else {
-										msgEr('添加失败')
-									}
-								}
-							});
-						}
-					});
-				}
+					}
+				});
 			}
-			
 		</script>
 	</body>
 
