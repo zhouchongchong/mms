@@ -159,11 +159,13 @@
 					dataType: 'json',
 					success: function(data) {
 						if(type == 0) {
-							$("#img_feng").attr('src', data.path);
+							$("#img_feng").attr('src', swallImg(data.path));
+							$("#img_feng").attr('path', data.path);
 							$("#img_feng").attr('realpath', data.realpath);
 						}
 						if(type == 1) {
-							$(".img_under_" + index).attr('src', data.path);
+							$(".img_under_" + index).attr('src', swallImg(data.path));
+							$(".img_under_" + index).attr('path', data.path);
 							$(".img_under_" + index).attr('realpath', data.realpath);
 							if(indoIndex < 3) {
 								++indoIndex;
@@ -176,7 +178,8 @@
 							}
 						}
 						if(type == 2) {
-							$("#img_indo").attr('src', data.path);
+							$("#img_indo").attr('src', swallImg(data.path));
+							$("#img_indo").attr('path', data.path);
 							$("#img_indo").attr('realpath', data.realpath);
 						}
 						layer.closeAll()
@@ -202,11 +205,13 @@
 						$('#t3dUrl').val(data.t3dUrl);
 						$('#tKilneye').val(data.tKilneye);
 						/*封面图*/
-						$('#img_feng').attr('src', data.tCoverUrl);
+						$('#img_feng').attr('src', swallImg(data.tCoverUrl));
+						$('#img_feng').attr('path', data.tCoverUrl);
 						$("#img_feng").attr('realpath', data.tcoverUrlReal);
 						/*证书图片*/
 						if(data.tCertificateUrl){
-							$("#img_indo").attr('src', data.tCertificateUrl);
+							$("#img_indo").attr('src',swallImg(data.tCertificateUrl));
+							$("#img_indo").attr('path', data.tCertificateUrl);
 							$("#img_indo").attr('realpath', data.tCertificateUrlReal);
 						}
 						$('#tRemark').val(data.tRemark);
@@ -219,7 +224,7 @@
 								var Arr = [];
 								Arr.push("<span>")
 								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-								Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("<img src='" + swallImg(item) + "' path='"+item+"' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
 								Arr.push("</span>")
 								$('.under').append(Arr.join(""))
 								++indoIndex;
@@ -244,7 +249,7 @@
 					count = new Object();
 				$('.under span').each(function() {
 					var tarImg = $(this).find('img');
-					var path = tarImg.attr('src'),
+					var path = tarImg.attr('path'),
 						realpath = tarImg.attr('realpath');
 					if(realpath) {
 						pathArr.push(path);
@@ -261,9 +266,9 @@
 					tnumber = $.trim($('#tNumber').val()),
 					t3dUrl = $.trim($('#t3dUrl').val()),
 					tdynasty = $('.select2 option:selected').val(),
-					tCoverUrl = $('#img_feng').attr('src'),
+					tCoverUrl = $('#img_feng').attr('path'),
 					tCoverUrlReal = $('#img_feng').attr('realpath'),
-					tCertificateUrl = $('#img_indo').attr('src'),
+					tCertificateUrl = $('#img_indo').attr('path'),
 					tCertificateUrlReal = $('#img_indo').attr('realpath'),
 					tKilneye = $.trim($("#tKilneye").val()),
 					count = getUnderPath();

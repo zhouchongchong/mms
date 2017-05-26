@@ -165,11 +165,13 @@
 					dataType: 'json',
 					success: function(data) {
 						if(index == 0){
-							$("#img_feng").attr('src',data.path);
+							$("#img_feng").attr('src',swallImg(data.path));
+							$("#img_feng").attr('path',data.path);
 							$("#img_feng").attr('realpath',data.realpath);
 						}
 						if(index == 1){
-							$(".img_under_"+indoIndex).attr('src',data.path);
+							$(".img_under_"+indoIndex).attr('src',swallImg(data.path));
+							$(".img_under_"+indoIndex).attr('path',data.path);
 							$(".img_under_"+indoIndex).attr('realpath',data.realpath);
 							if(indoIndex < 3){
 								++indoIndex;
@@ -182,7 +184,8 @@
 							}
 						}
 						if(index == 2){
-							$("#img_indo").attr('src',data.path);
+							$("#img_indo").attr('src',swallImg(data.path));
+							$("#img_indo").attr('path',data.path);
 							$("#img_indo").attr('realpath',data.realpath);
 						}
 						layer.closeAll()
@@ -206,7 +209,7 @@
 				var pathArr = [],realpathArr = [],count = new Object();
 				$('.under span').each(function(){
 					var tarImg = $(this).find('img');
-					var path = tarImg.attr('src'),
+					var path = tarImg.attr('path'),
 					    realpath = tarImg.attr('realpath');
 					if(realpath){
 						pathArr.push(path);
@@ -223,9 +226,9 @@
 					tnumber = $.trim($('#tNumber').val()),
 					t3dUrl = $.trim($('#t3dUrl').val()),
 					tdynasty = $('.select2 option:selected').val(),
-					tCoverUrl = $('#img_feng').attr('src'),
+					tCoverUrl = $('#img_feng').attr('path'),
 					tCoverUrlReal = $('#img_feng').attr('realpath'),
-					tCertificateUrl = $('#img_indo').attr('src'),
+					tCertificateUrl = $('#img_indo').attr('path'),
 					tCertificateUrlReal = $('#img_indo').attr('realpath'),
 					tKilneye = $.trim($("#tKilneye").val()),
 					count = getUnderPath();
