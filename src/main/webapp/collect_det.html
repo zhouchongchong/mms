@@ -9,13 +9,35 @@
 
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/idangerous.swiper.css" />
 		<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
 
 		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
 		<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
 		<style>
+		   .show-detail-word{
+		        padding:0 !important;
+		   }
+		   div{
+		        position:static;
+		   }
+		   .swiper-container{
+		       width:360px;
+		   }
+		   .swiper-container,#indo img{
+		        border:5px solid #ffffff;
+		        border-radius:10px;
+		   }
+		   .swiper-container,.swiper-slide{
+		        height:300px !important;
+		   }
+		   .swiper-slide img {
+				width: 360px;
+				height: 300px !important;
+			}
 			#gif{
 				position: relative;
 			}
@@ -26,9 +48,6 @@
 				top: 0;
 				left: 0;
 				z-index: 100;
-			}
-			.show-detail-word img{
-				margin-right: 20px;
 			}
 			.close {
 				position: absolute;
@@ -49,11 +68,30 @@
 				background-color: rgba(255, 255, 255, .7);
 				display: none;
 				text-align: center;
+				z-index:1000;
 			}
 			
-			.img_content img {
-				margin: 0 auto;
-				display: inline-block;
+			.blank{
+				height: 0;
+				line-height: 0;
+				font-size: 0;
+				margin: 0;
+				padding: 0;
+				visibility: hidden;
+				clear: both;
+			}
+			#under,#indo{
+				width: 380px;
+				position:absolute;
+				top:0;
+				padding-bottom:10px;
+				border:2px dotted #000;
+			}
+			#under{
+			    left:0;
+			}
+			#indo{
+			    left:400px;
 			}
 		</style>
 	</head>
@@ -118,12 +156,21 @@
 					<p id="show-name"></p>
 					<p id="show-idnum">藏品编码：</p>
 					<p id="show-dyn">朝代：</p>
-					<p id="under">底部图片：
-						
-					</p>
-					<p id="indo">证书图片：
-						<img src="" height="100px" />
-					</p>
+				    <div id="pic" style="position: relative;width: 780px;left: 412px;height:350px;">
+						<div id="under" style="text-align:center;">
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+								</div>
+								<div class="pagination"></div>
+							</div>
+							<div style="margin-top:10px">底部图片</div>
+						</div>
+						<div id="indo" style="text-align:center;">
+							<img src="" width="360px;" height="300px;" />
+							<p>证书图片</p>
+						</div>
+						<div class="blank"></div>
+					</div>
 				</div>
 			</div>
 
@@ -207,7 +254,20 @@
 			window.onload = function(){
 				initDynasty();
 				getDetail(goodId)
+				
 			};
+			
+			function initSwiper(){
+				var mySwiper = new Swiper('.swiper-container', {
+					pagination: '.pagination',
+					grabCursor: true,
+					loop: true,
+					paginationClickable: true,
+					autoplayDisableOnInteraction: false,
+					autoplay: 4000,
+					autoHeight: true
+				})
+			}
 			
 			var winWidth = 0;
 			var winHeight = 0;
@@ -330,11 +390,24 @@
 					$('#show-dyn').text('朝代:' + getdname(data.treasure.tDynasty));
 					/* 底部图片 */
 					var tBottomUrl = data.treasure.tBottomUrl;
-					$.each(tBottomUrl.split("&"),function(index,item){
-						$('#under').append("<img src='"+item+"' alt='图片' height='100'/>")
-					})
-					/* 证书图片 */
-					$('#indo img').attr('src',data.treasure.tCertificateUrl);
+					if(!tBottomUrl && !data.treasure.tCertificateUrl){
+						$('.pic').hide();
+					}
+					if(tBottomUrl){
+						$.each(tBottomUrl.split("&"),function(index,item){
+							$('.swiper-wrapper').append("<div class='swiper-slide'><a href='#'><img src='"+item+"' class='banner' /></a></div>")
+						})
+						initSwiper()
+					}else{
+						$('#under').hide();
+						$('#indo').css('left','0px');
+					}
+					if(data.treasure.tCertificateUrl){
+						/* 证书图片 */
+						$('#indo img').attr('src',data.treasure.tCertificateUrl);
+					}else{
+						$('#indo').hide();
+					}
 					showImg()
 					/*上一个下一个藏品*/
 					if(data.upTreasure) {

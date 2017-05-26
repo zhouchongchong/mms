@@ -282,7 +282,7 @@
 				form.tDynasty = tdynasty;
 				form.tCoverUrl = tCoverUrl;
 				form.tCoverUrlReal = tCoverUrlReal;
-				if(tCertificateUrl){
+				if(tCertificateUrlReal){
 					form.tCertificateUrl = tCertificateUrl;
 					form.tCertificateUrlReal = tCertificateUrlReal;
 				}
@@ -306,7 +306,7 @@
 						if(data == 1) {
 							msg('修改成功')
 							setTimeout(function() {
-								window.history.go(-1)
+								//window.history.go(-1)
 							}, 2000)
 						} else {
 							msgEr('修改失败')
