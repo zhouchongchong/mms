@@ -1,6 +1,6 @@
 // JavaScript Document
-//var apiUrl="http://localhost:8080/mms/";
-var apiUrl = "http://47.94.16.235:8080/mms/"
+var apiUrl="http://localhost:8080/mms/";
+//var apiUrl = "http://47.94.16.235:8080/mms/"
 $(function() {
 	$('.tablelist tbody tr:odd').addClass('odd');
 	$(".tablelist li").click(function() {
@@ -43,4 +43,11 @@ function msg(text){
 }
 function msgEr(text){
 	layer.msg(text, {time: 2000, icon:5});
+}
+
+/*取压缩图*/
+function swallImg(target){
+	var oindex = target.lastIndexOf('.');
+	var newImg = target.substr(0,oindex) + 'small' + target.substr(oindex,target.length);
+	return newImg
 }

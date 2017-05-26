@@ -454,7 +454,7 @@
 					var tBottomUrl = data.treasure.tBottomUrl;
 					if(tBottomUrl){
 						$.each(tBottomUrl.split("&"),function(index,item){
-							$('.swiper-wrapper').append("<div class='swiper-slide'><a href='#'><img src='"+item+"' class='banner' /></a></div>")
+							$('.swiper-wrapper').append("<div class='swiper-slide'><a href='#'><img src='"+swallImg(item)+"' class='banner' /></a></div>")
 						})
 						initSwiper()
 					}else{
@@ -462,7 +462,7 @@
 					}
 					if(data.treasure.tCertificateUrl){
 						/* 证书图片 */
-						$('#indo img').attr('src',data.treasure.tCertificateUrl);
+						$('#indo img').attr('src',swallImg(data.treasure.tCertificateUrl));
 					}else{
 						$('#indo img').attr('src','images/none.jpg');
 					}
