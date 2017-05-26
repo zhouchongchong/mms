@@ -210,11 +210,11 @@
 							$("#img_indo").attr('realpath', data.tCertificateUrlReal);
 						}
 						$('#tRemark').val(data.tRemark);
-
+						var tBottomUrl = data.tBottomUrl;
 						if(tBottomUrl){
 							/*底部图*/
+							tBottomUrl = data.tBottomUrl.split("&");
 							var tBottomUrlReal = data.tBottomUrlReal.split("&");
-							var tBottomUrl = data.tBottomUrl.split("&");
 							$.each(tBottomUrl, function(i, item) {
 								var Arr = [];
 								Arr.push("<span>")
