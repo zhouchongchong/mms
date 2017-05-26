@@ -9,13 +9,13 @@
 
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
-		<link rel="stylesheet" href="css/idangerous.swiper.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
-
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css" type="text/css">
 		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
 		<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
 		<style>
 		   .show-detail-word{
@@ -23,6 +23,29 @@
 		   }
 		   div{
 		        position:static;
+		   }
+		   .change span{
+		        cursor:pointer;
+		   }
+		   #left{
+		        position:absolute;
+		        left:0;
+		        top:140px;
+		        display:block;
+		        color:#ffffff;
+		        font-size:40px;
+		        padding: 5px 10px;
+		        z-index:100;
+		   }
+		   #right{
+		        position:absolute;
+		        right:0;
+		        top:140px;
+		        display:block;
+		        color:#ffffff;
+		        font-size:40px;
+		        padding: 5px 10px;
+		        z-index:100;
 		   }
 		   .swiper-container{
 		       width:360px;
@@ -190,6 +213,10 @@
 								<div class="swiper-wrapper">
 								</div>
 								<div class="pagination"></div>
+								<div class="change">
+								    <span id="left" class="fa fa-angle-left"></span>
+								    <span id="right" class="fa fa-angle-right"></span>
+								</div>
 							</div>
 							<div style="margin-top:10px">底部图片</div>
 						</div>
@@ -293,7 +320,9 @@
 					paginationClickable: true,
 					autoplayDisableOnInteraction: false,
 					autoplay: 4000,
-					autoHeight: true
+					autoHeight: true,
+					prevButton: '#left',
+					nextButton: '#right'
 				})
 			}
 			
