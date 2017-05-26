@@ -302,6 +302,9 @@
 
 			/*加载页面分页数据*/
 			function initContent(page) {
+				if(total == 0){
+					return
+				}
 				var dynastyId = $('#dynasty .btn-type.active').attr('id');
 				JQajax('treasure/pagetreasure', {
 					'page': page,
