@@ -232,32 +232,36 @@
 					tRemark = $.trim($('#tRemark').val());
 				var tBottomUrlReal = count.realpath;
 				var tBottomUrl = count.path;
-				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tBottomUrl) {
+				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tCoverUrl) {
 					msgEr('请填写完整')
 					return
 				}
-				var form = new FormData();
-				form.append('tName', tname);
-				form.append('tNumber', tnumber);
-				form.append('t3dUrl', t3dUrl);
-				form.append('tDynasty', tdynasty);
-				form.append('tCoverUrl', tCoverUrl);
-				form.append('tCoverUrlReal', tCoverUrlReal);
-				form.append('tCertificateUrl', tCertificateUrl);
-				form.append('tCertificateUrlReal', tCertificateUrlReal);
-				form.append('tBottomUrl', tBottomUrl);
-				form.append('tBottomUrlReal', tBottomUrlReal);
-				form.append('tKilneye', tKilneye);
-				form.append('tRemark', tRemark);
+				var form = new Object();	
+				form.tName = tname;
+				form.tNumber = tnumber;
+				form.t3dUrl = t3dUrl;
+				form.tDynasty = tdynasty;
+				form.tCoverUrl = tCoverUrl;
+				form.tCoverUrlReal = tCoverUrlReal;
+				if(tCertificateUrl){
+					form.tCertificateUrl = tCertificateUrl;
+					form.tCertificateUrlReal = tCertificateUrlReal;
+				}
+				if(tBottomUrl){
+					form.tBottomUrl = tBottomUrl;
+					form.tBottomUrlReal = tBottomUrlReal;
+				}
+				if(tKilneye){
+					form.tKilneye = tKilneye;
+				}
+				if(tRemark){
+					form.tRemark = tRemark;
+				}
 				$.ajax({
 					type: "post",
 					url: apiUrl + "treasure/addtreasure",
 					data: form,
 					dataType: 'json',
-					async: true,
-					cache: false,
-					contentType: false,
-					processData: false,
 					success: function(data) {
                        if(data == 1){
                        	 msg('添加成功')

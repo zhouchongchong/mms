@@ -205,22 +205,26 @@
 						$('#img_feng').attr('src', data.tCoverUrl);
 						$("#img_feng").attr('realpath', data.tcoverUrlReal);
 						/*证书图片*/
-						$("#img_indo").attr('src', data.tCertificateUrl);
-						$("#img_indo").attr('realpath', data.tCertificateUrlReal);
+						if(data.tCertificateUrl){
+							$("#img_indo").attr('src', data.tCertificateUrl);
+							$("#img_indo").attr('realpath', data.tCertificateUrlReal);
+						}
 						$('#tRemark').val(data.tRemark);
 
-						/*底部图*/
-						var tBottomUrlReal = data.tBottomUrlReal.split("&");
-						var tBottomUrl = data.tBottomUrl.split("&");
-						$.each(tBottomUrl, function(i, item) {
-							var Arr = [];
-							Arr.push("<span>")
-							Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-							Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
-							Arr.push("</span>")
-							$('.under').append(Arr.join(""))
-							++indoIndex;
-						})
+						if(tBottomUrl){
+							/*底部图*/
+							var tBottomUrlReal = data.tBottomUrlReal.split("&");
+							var tBottomUrl = data.tBottomUrl.split("&");
+							$.each(tBottomUrl, function(i, item) {
+								var Arr = [];
+								Arr.push("<span>")
+								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
+								Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("</span>")
+								$('.under').append(Arr.join(""))
+								++indoIndex;
+							})
+						}
 						if(indoIndex < 4) {
 							var Arr = [];
 							Arr.push("<span>")
@@ -266,7 +270,7 @@
 				tRemark = $.trim($('#tRemark').val());
 				var tBottomUrlReal = count.realpath;
 				var tBottomUrl = count.path;
-				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tBottomUrl) {
+				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tCoverUrl) {
 					msgEr('请填写完整')
 					return
 				}
@@ -278,12 +282,20 @@
 				form.tDynasty = tdynasty;
 				form.tCoverUrl = tCoverUrl;
 				form.tCoverUrlReal = tCoverUrlReal;
-				form.tCertificateUrl = tCertificateUrl;
-				form.tCertificateUrlReal = tCertificateUrlReal;
-				form.tBottomUrl = tBottomUrl;
-				form.tBottomUrlReal = tBottomUrlReal;
-				form.tKilneye = tKilneye;
-				form.tRemark = tRemark;
+				if(tCertificateUrl){
+					form.tCertificateUrl = tCertificateUrl;
+					form.tCertificateUrlReal = tCertificateUrlReal;
+				}
+				if(tBottomUrl){
+					form.tBottomUrl = tBottomUrl;
+					form.tBottomUrlReal = tBottomUrlReal;
+				}
+				if(tKilneye){
+					form.tKilneye = tKilneye;
+				}
+				if(tRemark){
+					form.tRemark = tRemark;
+				}
 				$.ajax({
 					type: "post",
 					url: apiUrl + "treasure/updatetreasure",
@@ -294,7 +306,7 @@
 						if(data == 1) {
 							msg('修改成功')
 							setTimeout(function() {
-								//window.history.go(-1)
+								window.history.go(-1)
 							}, 2000)
 						} else {
 							msgEr('修改失败')
