@@ -71,7 +71,7 @@
 					<li>
 						<label>藏品图例</label>
 						<input name="" id="fengPic" onchange="getImg_feng()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
-						<img src="../images/add.png" id="img_feng" height="70px" onclick="selectedImg_feng()" />
+						<img src="../images/add.png" id="img_feng" height="140px" onclick="selectedImg_feng()" />
 					</li>
 					<li class="under">
 						<label>底部图片</label>
@@ -80,7 +80,7 @@
 						<label>证书图片</label>
 						<span class="indoOut">
 						   <input name="" id="indoPic" onchange="getImg_indo()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
-						   <img src="../images/add.png" id="img_indo" height="70px" onclick="selectedImg_indo()" />
+						   <img src="../images/add.png" id="img_indo" height="140px" onclick="selectedImg_indo()" />
 						</span>
 					</li>
 					<li>
@@ -170,7 +170,7 @@
 								var Arr = [];
 								Arr.push("<span>")
 								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-								Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
 								Arr.push("</span>")
 								$('.under').append(Arr.join(""))
 							}
@@ -219,7 +219,7 @@
 								var Arr = [];
 								Arr.push("<span>")
 								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-								Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
 								Arr.push("</span>")
 								$('.under').append(Arr.join(""))
 								++indoIndex;
@@ -229,7 +229,7 @@
 							var Arr = [];
 							Arr.push("<span>")
 							Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-							Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+							Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
 							Arr.push("</span>")
 							$('.under').append(Arr.join(""))
 						}
@@ -306,7 +306,7 @@
 						if(data == 1) {
 							msg('修改成功')
 							setTimeout(function() {
-								//window.history.go(-1)
+								window.history.go(-1)
 							}, 2000)
 						} else {
 							msgEr('修改失败')
