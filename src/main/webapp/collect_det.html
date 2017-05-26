@@ -179,10 +179,10 @@
 				<div class="show-detail-word">
 				   <div id="show-idnum">
 				       <span id="idm">藏品编码：</span>
-				       <span id="dyn">朝代：</span>
+				       <span id="beizhu">备注：</span>
 				   </div>
 				   <div id="show-dyn">
-				       <span id="beizhu">备注：</span>
+				       <span id="dyn">朝代：</span>
 				   </div>
 				   <div id="pic" style="position: relative;width: 780px;left: 412px;height:350px;">
 						<div id="under" style="text-align:center;">
@@ -373,6 +373,11 @@
 				return fName
 			}
 			
+			function getOther(tId){
+				localStorage.setItem('goodId',tId);
+				window.location.reload();
+			}
+			
 			function getDetail(tId) {
 				localStorage.setItem('goodId',tId);
 				JQajax('treasure/gettreasurebyid', {
@@ -418,23 +423,19 @@
 					$('#dyn').text('朝代:' + getdname(data.treasure.tDynasty));
 					/* 底部图片 */
 					var tBottomUrl = data.treasure.tBottomUrl;
-					if(!tBottomUrl && !data.treasure.tCertificateUrl){
-						$('.pic').hide();
-					}
 					if(tBottomUrl){
 						$.each(tBottomUrl.split("&"),function(index,item){
 							$('.swiper-wrapper').append("<div class='swiper-slide'><a href='#'><img src='"+item+"' class='banner' /></a></div>")
 						})
 						initSwiper()
 					}else{
-						$('#under').hide();
-						$('#indo').css('left','0px');
+						$('.swiper-wrapper').append("<div class='swiper-slide'><a href='#'><img src='images/none.jpg' class='banner' /></a></div>")
 					}
 					if(data.treasure.tCertificateUrl){
 						/* 证书图片 */
 						$('#indo img').attr('src',data.treasure.tCertificateUrl);
 					}else{
-						$('#indo').hide();
+						$('#indo img').attr('src','images/none.jpg');
 					}
 					if(data.tRemark){
 						$('#beizhu').text('备注: '+data.tRemark)
@@ -444,14 +445,14 @@
 					showImg()
 					/*上一个下一个藏品*/
 					if(data.upTreasure) {
-						$('.prev').attr('onclick', 'getDetail(' + data.upTreasure.tId + ')');
+						$('.prev').attr('onclick', 'getOther(' + data.upTreasure.tId + ')');
 						$('.prev').html('上一个藏品:' + data.upTreasure.tName);
 					}else{
 						$('.prev').removeAttr('onclick');
 						$('.prev').html('');
 					}
 					if(data.downTreasure) {
-						$('.next').attr('onclick', 'getDetail(' + data.downTreasure.tId + ')');
+						$('.next').attr('onclick', 'getOther(' + data.downTreasure.tId + ')');
 						$('.next').html('下一个藏品:' + data.downTreasure.tName);
 					}else{
 						$('.next').removeAttr('onclick');
