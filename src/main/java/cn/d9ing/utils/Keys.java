@@ -42,9 +42,27 @@ public class Keys implements Serializable {
      * @Description: 系统仓库存储位置
      */
     public static String SYSTEM_REPOSITORY_PATH = "";
+    /**  
+     * IS_NOT_DELETE:存在.  
+     * @since JDK 1.8  
+     */
     public static final Integer IS_NOT_DELETE = 0;
+    /**  
+     * IS_DELETE:删除.  
+     * @since JDK 1.8  
+     */
     public static final Integer IS_DELETE = 1;
     
+    /**  
+     * IS_SHOW:展示.  
+     * @since JDK 1.8  
+     */
+    public static final Integer IS_SHOW = 2;
+    
+    /**  
+     * lTHUMBNAIL:缩略图后缀.  
+     * @since JDK 1.8  
+     */
     public static final String lTHUMBNAIL = "small";
 
     /**

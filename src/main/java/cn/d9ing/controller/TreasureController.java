@@ -63,7 +63,6 @@ public class TreasureController {
 //			FileBean picfile = UploadUtils.getInstance().upload(request, file, "");
 			treasure.settCreatetime(date);
 			treasure.settUptime(date);
-			treasure.setIsdelte(Keys.IS_NOT_DELETE);
 //			treasure.settCoverUrl(picfile.getRemoteUrl());
 			Integer result =  treasureService.insertTreasureSelective(treasure);
 			return result;
