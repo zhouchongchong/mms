@@ -30,4 +30,6 @@ public interface TreasureMapper {
     Integer getPageNum(@Param(value = "dynasty")Integer dynasty);
     
     String getNextTreasureNum(@Param(value = "dynasty")Integer dynasty);
+    
+    List<Treasure> getIndexTreasure();
 }

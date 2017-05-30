@@ -19,6 +19,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import cn.d9ing.domain.Treasure;
 import cn.d9ing.service.ITreasureService;
 import cn.d9ing.utils.DateUtils;
+import cn.d9ing.utils.JsonResult;
 import cn.d9ing.utils.Keys;
 import cn.d9ing.utils.UploadUtils;
 import cn.d9ing.utils.beans.FileBean;
@@ -219,5 +220,12 @@ public class TreasureController {
 		String number = treasureService.getNextTreasureNum(dynasty);
 		map.put("treasurenum", number);
 		return map;
+	}
+	@RequestMapping("/indextreasure")
+	@ResponseBody
+	public Object getIndexTreasure(){
+		JsonResult<Object> obje = treasureService.getIndexTreasur();
+		return treasureService.getIndexTreasur();
+		
 	}
 }
