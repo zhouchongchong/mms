@@ -224,7 +224,6 @@ public class TreasureController {
 	@RequestMapping("/indextreasure")
 	@ResponseBody
 	public Object getIndexTreasure(){
-		JsonResult<Object> obje = treasureService.getIndexTreasur();
 		return treasureService.getIndexTreasur();
 		
 	}
