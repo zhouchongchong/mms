@@ -289,7 +289,7 @@
       </if>
     </set>
     where t_id = #{tId,jdbcType=BIGINT}
-	AND isdelte = 0			   
+	AND isdelte != 1			   
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.d9ing.domain.Treasure">
     update tb_treasure
