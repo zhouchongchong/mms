@@ -68,6 +68,13 @@
 						</select>
 					</li>
 					<li>
+						<label>首页展示</label>
+						<select class="select2" name="tDelete" id="tDelete">
+							<option value="0">否</option>
+							<option value="2">是</option>
+						</select>
+					</li>
+					<li>
 						<label>窑口</label>
 						<input name="tName" id="tKilneye" type="text" class="dfinput" placeholder="请输入窑口（选填）" />
 					</li>
@@ -200,7 +207,7 @@
 						if(item.isdelete != 0) {
 							return false;
 						}
-						$('.select2').append("<option value='" + item.dId + "'>" + item.dName + "</option>");
+						$('#tDynasty').append("<option value='" + item.dId + "'>" + item.dName + "</option>");
 					})
 				})
 			}
@@ -225,7 +232,8 @@
 				var tname = $.trim($('#tName').val()),
 					tnumber = $.trim($('#tNumber').val()),
 					t3dUrl = $.trim($('#t3dUrl').val()),
-					tdynasty = $('.select2 option:selected').val(),
+					tdynasty = $('#tDynasty option:selected').val(),
+					isdelte = $('#tDelete option:selected').val(),
 					tCoverUrl = $('#img_feng').attr('path'),
 					tCoverUrlReal = $('#img_feng').attr('realpath'),
 					tCertificateUrl = $('#img_indo').attr('path'),
@@ -244,6 +252,7 @@
 				form.tNumber = tnumber;
 				form.t3dUrl = t3dUrl;
 				form.tDynasty = tdynasty;
+				form.isdelte = isdelte;
 				form.tCoverUrl = tCoverUrl;
 				form.tCoverUrlReal = tCoverUrlReal;
 				if(tCertificateUrlReal){
@@ -260,6 +269,7 @@
 				if(tRemark){
 					form.tRemark = tRemark;
 				}
+				console.log(form)
 				$.ajax({
 					type: "post",
 					url: apiUrl + "treasure/addtreasure",
@@ -269,7 +279,7 @@
                        if(data == 1){
                        	 msg('添加成功')
                        	 setTimeout(function() {
-                       	 	window.history.go(-1)
+                       	 	//window.history.go(-1)
                        	 },2000)
                        }else{
                        	 msgEr('添加失败')
