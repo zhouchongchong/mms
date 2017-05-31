@@ -19,6 +19,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import cn.d9ing.domain.Treasure;
 import cn.d9ing.service.ITreasureService;
 import cn.d9ing.utils.DateUtils;
+import cn.d9ing.utils.JsonResult;
 import cn.d9ing.utils.Keys;
 import cn.d9ing.utils.UploadUtils;
 import cn.d9ing.utils.beans.FileBean;
@@ -63,7 +64,6 @@ public class TreasureController {
 //			FileBean picfile = UploadUtils.getInstance().upload(request, file, "");
 			treasure.settCreatetime(date);
 			treasure.settUptime(date);
-			treasure.setIsdelte(Keys.IS_NOT_DELETE);
 //			treasure.settCoverUrl(picfile.getRemoteUrl());
 			Integer result =  treasureService.insertTreasureSelective(treasure);
 			return result;
@@ -220,5 +220,12 @@ public class TreasureController {
 		String number = treasureService.getNextTreasureNum(dynasty);
 		map.put("treasurenum", number);
 		return map;
+	}
+	@RequestMapping("/indextreasure")
+	@ResponseBody
+	public Object getIndexTreasure(){
+		JsonResult<Object> obje = treasureService.getIndexTreasur();
+		return treasureService.getIndexTreasur();
+		
 	}
 }

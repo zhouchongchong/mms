@@ -38,6 +38,15 @@
     from tb_treasure
     where t_id = #{tId,jdbcType=BIGINT}
   </select>
+  <!-- 首页展示藏品 -->
+  <select id="getIndexTreasure" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_treasure
+    where isdelte = 2
+  </select>
 	  <!-- 分页页数 -->
   <select id="getPageNum" resultType="java.lang.Integer">
   select 
@@ -54,7 +63,7 @@
   	t_id,t_cover_url,t_name,t_number,t_dynasty 
   	FROM `tb_treasure` 
   	WHERE 1 = 1 
-  	AND isdelte = 0
+  	AND isdelte != 1
   	<if test="dynasty != 0">
        AND t_dynasty = #{dynasty,jdbcType=INTEGER}
     </if>

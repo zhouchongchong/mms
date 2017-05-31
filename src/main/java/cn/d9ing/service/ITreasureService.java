@@ -3,6 +3,7 @@ package cn.d9ing.service;
 import java.util.List;
 
 import cn.d9ing.domain.Treasure;
+import cn.d9ing.utils.JsonResult;
 
 public interface ITreasureService {
 	
@@ -72,4 +73,6 @@ public interface ITreasureService {
 	Integer getPageNum(Integer pageSize,Integer dynasty);
 	
 	String getNextTreasureNum(Integer dynasty);
+	
+	JsonResult<Object> getIndexTreasur();
 }

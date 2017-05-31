@@ -71,7 +71,7 @@
 					<li>
 						<label>藏品图例</label>
 						<input name="" id="fengPic" onchange="getImg_feng()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
-						<img src="../images/add.png" id="img_feng" height="70px" onclick="selectedImg_feng()" />
+						<img src="../images/add.png" id="img_feng" height="140px" onclick="selectedImg_feng()" />
 					</li>
 					<li class="under">
 						<label>底部图片</label>
@@ -80,7 +80,7 @@
 						<label>证书图片</label>
 						<span class="indoOut">
 						   <input name="" id="indoPic" onchange="getImg_indo()" type="file" style="width: 50px;height: 50px;" alt="缩略图" />
-						   <img src="../images/add.png" id="img_indo" height="70px" onclick="selectedImg_indo()" />
+						   <img src="../images/add.png" id="img_indo" height="140px" onclick="selectedImg_indo()" />
 						</span>
 					</li>
 					<li>
@@ -159,24 +159,27 @@
 					dataType: 'json',
 					success: function(data) {
 						if(type == 0) {
-							$("#img_feng").attr('src', data.path);
+							$("#img_feng").attr('src', swallImg(data.path));
+							$("#img_feng").attr('path', data.path);
 							$("#img_feng").attr('realpath', data.realpath);
 						}
 						if(type == 1) {
-							$(".img_under_" + index).attr('src', data.path);
+							$(".img_under_" + index).attr('src', swallImg(data.path));
+							$(".img_under_" + index).attr('path', data.path);
 							$(".img_under_" + index).attr('realpath', data.realpath);
 							if(indoIndex < 3) {
 								++indoIndex;
 								var Arr = [];
 								Arr.push("<span>")
 								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-								Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
 								Arr.push("</span>")
 								$('.under').append(Arr.join(""))
 							}
 						}
 						if(type == 2) {
-							$("#img_indo").attr('src', data.path);
+							$("#img_indo").attr('src', swallImg(data.path));
+							$("#img_indo").attr('path', data.path);
 							$("#img_indo").attr('realpath', data.realpath);
 						}
 						layer.closeAll()
@@ -202,30 +205,36 @@
 						$('#t3dUrl').val(data.t3dUrl);
 						$('#tKilneye').val(data.tKilneye);
 						/*封面图*/
-						$('#img_feng').attr('src', data.tCoverUrl);
+						$('#img_feng').attr('src', swallImg(data.tCoverUrl));
+						$('#img_feng').attr('path', data.tCoverUrl);
 						$("#img_feng").attr('realpath', data.tcoverUrlReal);
 						/*证书图片*/
-						$("#img_indo").attr('src', data.tCertificateUrl);
-						$("#img_indo").attr('realpath', data.tCertificateUrlReal);
+						if(data.tCertificateUrl){
+							$("#img_indo").attr('src',swallImg(data.tCertificateUrl));
+							$("#img_indo").attr('path', data.tCertificateUrl);
+							$("#img_indo").attr('realpath', data.tCertificateUrlReal);
+						}
 						$('#tRemark').val(data.tRemark);
-
-						/*底部图*/
-						var tBottomUrlReal = data.tBottomUrlReal.split("&");
-						var tBottomUrl = data.tBottomUrl.split("&");
-						$.each(tBottomUrl, function(i, item) {
-							var Arr = [];
-							Arr.push("<span>")
-							Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-							Arr.push("<img src='" + item + "' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
-							Arr.push("</span>")
-							$('.under').append(Arr.join(""))
-							++indoIndex;
-						})
+						var tBottomUrl = data.tBottomUrl;
+						if(tBottomUrl){
+							/*底部图*/
+							tBottomUrl = data.tBottomUrl.split("&");
+							var tBottomUrlReal = data.tBottomUrlReal.split("&");
+							$.each(tBottomUrl, function(i, item) {
+								var Arr = [];
+								Arr.push("<span>")
+								Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
+								Arr.push("<img src='" + swallImg(item) + "' path='"+item+"' realpath='" + tBottomUrlReal[i] + "' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
+								Arr.push("</span>")
+								$('.under').append(Arr.join(""))
+								++indoIndex;
+							})
+						}
 						if(indoIndex < 4) {
 							var Arr = [];
 							Arr.push("<span>")
 							Arr.push("<input name='' id='underPic_" + indoIndex + "' onchange='getImg_under(" + indoIndex + ")' type='file' style='width: 50px;height: 50px;' alt='缩略图' />")
-							Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='70px' onclick='selectedImg_under(" + indoIndex + ")' />")
+							Arr.push("<img src='../images/add.png' class='img_under_" + indoIndex + "' height='140px' onclick='selectedImg_under(" + indoIndex + ")' />")
 							Arr.push("</span>")
 							$('.under').append(Arr.join(""))
 						}
@@ -240,7 +249,7 @@
 					count = new Object();
 				$('.under span').each(function() {
 					var tarImg = $(this).find('img');
-					var path = tarImg.attr('src'),
+					var path = tarImg.attr('path'),
 						realpath = tarImg.attr('realpath');
 					if(realpath) {
 						pathArr.push(path);
@@ -257,16 +266,16 @@
 					tnumber = $.trim($('#tNumber').val()),
 					t3dUrl = $.trim($('#t3dUrl').val()),
 					tdynasty = $('.select2 option:selected').val(),
-					tCoverUrl = $('#img_feng').attr('src'),
+					tCoverUrl = $('#img_feng').attr('path'),
 					tCoverUrlReal = $('#img_feng').attr('realpath'),
-					tCertificateUrl = $('#img_indo').attr('src'),
+					tCertificateUrl = $('#img_indo').attr('path'),
 					tCertificateUrlReal = $('#img_indo').attr('realpath'),
 					tKilneye = $.trim($("#tKilneye").val()),
 					count = getUnderPath();
 				tRemark = $.trim($('#tRemark').val());
 				var tBottomUrlReal = count.realpath;
 				var tBottomUrl = count.path;
-				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tBottomUrl) {
+				if(!tname || !tnumber || !tdynasty || !t3dUrl || !tCoverUrlReal) {
 					msgEr('请填写完整')
 					return
 				}
@@ -278,12 +287,20 @@
 				form.tDynasty = tdynasty;
 				form.tCoverUrl = tCoverUrl;
 				form.tCoverUrlReal = tCoverUrlReal;
-				form.tCertificateUrl = tCertificateUrl;
-				form.tCertificateUrlReal = tCertificateUrlReal;
-				form.tBottomUrl = tBottomUrl;
-				form.tBottomUrlReal = tBottomUrlReal;
-				form.tKilneye = tKilneye;
-				form.tRemark = tRemark;
+				if(tCertificateUrlReal){
+					form.tCertificateUrl = tCertificateUrl;
+					form.tCertificateUrlReal = tCertificateUrlReal;
+				}
+				if(tBottomUrl){
+					form.tBottomUrl = tBottomUrl;
+					form.tBottomUrlReal = tBottomUrlReal;
+				}
+				if(tKilneye){
+					form.tKilneye = tKilneye;
+				}
+				if(tRemark){
+					form.tRemark = tRemark;
+				}
 				$.ajax({
 					type: "post",
 					url: apiUrl + "treasure/updatetreasure",
@@ -294,7 +311,7 @@
 						if(data == 1) {
 							msg('修改成功')
 							setTimeout(function() {
-								//window.history.go(-1)
+								window.history.go(-1)
 							}, 2000)
 						} else {
 							msgEr('修改失败')

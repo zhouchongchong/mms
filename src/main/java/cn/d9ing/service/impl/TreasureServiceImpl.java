@@ -1,13 +1,19 @@
 package cn.d9ing.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import cn.d9ing.dao.TreasureMapper;
 import cn.d9ing.domain.Treasure;
 import cn.d9ing.service.ITreasureService;
+import cn.d9ing.utils.JsonResult;
+import cn.d9ing.utils.Keys;
 import cn.d9ing.utils.StringUtils;
 
 /**
@@ -69,6 +75,29 @@ public class TreasureServiceImpl implements ITreasureService{
 	public String getNextTreasureNum(Integer dynasty) {
 		
 		return  treasureDao.getNextTreasureNum(dynasty);
+	}
+
+	@Override
+	public JsonResult<Object> getIndexTreasur() {
+		String message = "";
+		Map<String, List> data = new HashMap<>();
+		boolean success = true;
+		String statusCode = Keys.CODE_NORMAL;
+		try {
+			data.put("treasures", treasureDao.getIndexTreasure());
+			if(StringUtils.isNotBlank(data)&&(int)data.size() >= 1){
+				message = "获取成功";
+			}else{
+				message = "获取失败";
+			}
+		} catch (Exception e) {
+			success = false;
+			statusCode = Keys.CODE_ERR;
+			message = "系统报错";
+			e.printStackTrace();
+		}
+		System.out.println(data);
+		return new JsonResult<Object>(data, success, statusCode, message);  
 	}
 	
 }
