@@ -48,7 +48,7 @@
 		        z-index:100;
 		   }
 		   .swiper-container{
-		       width:360px;
+		       width:320px !important;
 		   }
 		   .swiper-container,#indo img{
 		        border:5px solid #ffffff;
@@ -58,7 +58,7 @@
 		        height:300px !important;
 		   }
 		   .swiper-slide img {
-				width: 360px;
+				width: 320px;
 				height: 300px !important;
 			}
 			#gif{
@@ -150,6 +150,22 @@
 			    float:right;
 			    text-align:right;
 			}
+			.prev{
+			    display:inline-block;
+			    padding-left:60px;
+			    height:25px;
+			    background: url(./images/icon_left.png) left no-repeat;
+			    background-size:50px 25px;
+			    line-height:26px;
+			}
+			.next{
+			    display:inline-block;
+			    padding-right:60px;
+			    height:25px;
+			    background: url(./images/icon_right.png) right no-repeat;
+			    background-size:50px 25px;
+			    line-height:26px;
+			}
 		</style>
 	</head>
 
@@ -219,7 +235,7 @@
 			</div>
             <div id="pic" style="position: relative;height:350px;top:370px;">
                 <div class="pic_item" id="ahead">
-                    <img src="" width="360px;" height="300px;" />
+                    <img src="" width="320px;" height="300px;" />
 					<div style="margin-top:10px">封面图片</div>
                 </div>
 				<div id="under" style="text-align:center;" class="pic_item">
@@ -235,11 +251,11 @@
 					<div style="margin-top:10px">底部图片</div>
 				</div>
 				<div id="indo" style="text-align:center;" class="pic_item">
-					<img src="" width="360px;" height="300px;" />
+					<img src="" width="320px;" height="300px;" />
 					<div style="margin-top:10px">证书图片</div>
 				</div>
 				<div class="blank"></div>
-				<div class="containers pages clearfix" style="margin-top:80px;">
+				<div class="containers pages clearfix" style="margin-top:50px;">
 					<span class="prev">上一个藏品：</span>
 					<span class="next">下一个藏品：</span>
 				</div>
@@ -488,14 +504,14 @@
 					/*上一个下一个藏品*/
 					if(data.upTreasure) {
 						$('.prev').attr('onclick', 'getOther(' + data.upTreasure.tId + ')');
-						$('.prev').html('上一个藏品:' + data.upTreasure.tName);
+						$('.prev').html(data.upTreasure.tName);
 					}else{
 						$('.prev').removeAttr('onclick');
 						$('.prev').html('');
 					}
 					if(data.downTreasure) {
 						$('.next').attr('onclick', 'getOther(' + data.downTreasure.tId + ')');
-						$('.next').html('下一个藏品:' + data.downTreasure.tName);
+						$('.next').html(data.downTreasure.tName);
 					}else{
 						$('.next').removeAttr('onclick');
 						$('.next').html('');
