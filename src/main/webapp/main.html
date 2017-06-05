@@ -1,13 +1,129 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>九文轩管理系统</title>
-</head>
-	<frameset rows="118,*" cols="*" frameborder="no" border="0" framespacing="0">
-	<frame src="top.html" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
-	<frame src="system/mainbody.html" name="mainBody" scrolling="Yes" noresize="noresize" id="mainBody" title="mainBody"></> </frameset>
-<noframes>
-<body></body>
-</noframes>
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>后台管理系统</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+
+		<div class="header">
+
+			<div class="dl-title">
+				文博-九文轩后台管理系统
+			</div>
+
+			<div class="dl-log">欢迎您，<span class="dl-log-user">root</span>
+				<a href="/chinapost/index.php?m=Public&a=logout" title="退出系统" class="dl-log-quit">[退出]</a>
+			</div>
+		</div>
+		<div class="content">
+			<div class="dl-main-nav">
+				<div class="dl-inform">
+					<div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div>
+				</div>
+				<ul id="J_Nav" class="nav-list ks-clear">
+					<li class="nav-item dl-selected">
+						<div class="nav-item-inner nav-home">藏品展示管理</div>
+					</li>
+					<li class="nav-item dl-selected">
+						<div class="nav-item-inner nav-order">用户管理</div>
+					</li>
+					<li class="nav-item dl-selected">
+						<div class="nav-item-inner nav-bool">拍卖管理</div>
+					</li>
+					<li class="nav-item dl-selected">
+						<div class="nav-item-inner nav-repeat">鉴定管理</div>
+					</li>
+					<li class="nav-item dl-selected">
+						<div class="nav-item-inner nav-news">奇闻异事管理</div>
+					</li>
+				</ul>
+			</div>
+			<ul id="J_NavContent" class="dl-tab-conten">
+
+			</ul>
+		</div>
+		<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="assets/js/bui-min.js"></script>
+		<script type="text/javascript" src="assets/js/common/main-min.js"></script>
+		<script type="text/javascript" src="assets/js/config-min.js"></script>
+		<script>
+			BUI.use('common/main', function() {
+				var config = [{
+					id: '1',
+					homePage: '2',
+					menu: [{
+						text: '藏品展示管理',
+						items: [{
+							id: '2',
+							text: '藏品管理',
+							href: 'system/showList.html'
+						}, {
+							id: '3',
+							text: '朝代管理',
+							href: 'system/dynasty.html'
+						}]
+					}]
+				}, {
+					id: '4',
+					homePage: '5',
+					menu: [{
+						text: '用户',
+						items: [{
+							id: '5',
+							text: '用户管理',
+							href: 'system/userList.html'
+						}]
+					}]
+				}, {
+					id: '6',
+					homePage: '7',
+					menu: [{
+						text: '拍卖管理',
+						items: [{
+							id: '7',
+							text: '拍卖',
+							href: 'system/none.html'
+						}]
+					}]
+				}, {
+					id: '8',
+					homePage: '9',
+					menu: [{
+						text: '鉴定管理',
+						items: [{
+							id: '9',
+							text: '鉴定',
+							href: 'system/none.html'
+						}]
+					}]
+				}, {
+					id: '10',
+					homePage: '11',
+					menu: [{
+						text: '奇闻异事管理',
+						items: [{
+							id: '11',
+							text: '奇闻异事',
+							href: 'system/none.html'
+						}]
+					}]
+				}];
+				new PageUtil.MainPage({
+					modulesConfig: config
+				});
+			});
+		</script>
+		<div style="text-align:center;">
+			<p>来源：
+				<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+			</p>
+		</div>
+	</body>
+
 </html>
