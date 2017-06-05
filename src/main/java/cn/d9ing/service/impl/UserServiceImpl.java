@@ -1,5 +1,6 @@
 package cn.d9ing.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -134,10 +135,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public JsonResult<Object> searchPageUser(Integer page, Integer rows) {
-		boolean success = true;
-		String statusCode = Keys.CODE_NORMAL;
-		String message = "";
+	public PageBean searchPageUser(Integer page, Integer rows) {
+	
 		PageBean pageBean = new PageBean();
 		Integer begain  =(page - 1) * rows;
 		Integer end =  page * rows;
@@ -154,14 +153,11 @@ public class UserServiceImpl implements IUserService {
 					pageBean.setTotal(totalnum/rows);
 				}
 			}
-			message = "用户分页返回";
 		} catch (Exception e) {
-			statusCode = Keys.CODE_ERR;
-			message = "系统报错";
 			e.printStackTrace();
 		}
 		
-		return new JsonResult<Object>(pageBean, success, statusCode, message);
+		return pageBean;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package cn.d9ing.service;
 
 import cn.d9ing.domain.User;
 import cn.d9ing.utils.JsonResult;
+import cn.d9ing.utils.beans.PageBean;
 
 /**
  * <p>Title: </p>
@@ -19,7 +20,7 @@ public interface IUserService {
 	
 	JsonResult<Object> existSameUser(User user);
 	
-	JsonResult<Object> searchPageUser(Integer page,Integer rows);
+	PageBean searchPageUser(Integer page,Integer rows);
 	
 	JsonResult<Object> searchUserById(Integer uId);
 	
