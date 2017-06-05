@@ -103,7 +103,7 @@
 				visibility: hidden;
 				clear: both;
 			}
-			#under,#indo{
+			#under,#indo,#ahead{
 				width: 380px;
 				position:absolute;
 				top:0;
@@ -111,14 +111,27 @@
 				border:2px dotted #000;
 				margin-top:80px;
 			}
-			#under{
+			#ahead{
 			    left:0;
+			    text-align:center;
+			}
+			#ahead img{
+			    border: 5px solid #ffffff;
+                border-radius: 10px;
+			}
+			#under{
+			    left:400px;
 			}
 			#indo{
-			    left:400px;
+			    left:800px;
+			}
+			#show-idnum span{
+			    padding-bottom:60px;
+			    display:block;
 			}
 			.show-item{
 			    padding-top:20px;
+			    padding-bottom: 380px;
 			}
 			#show-name{
 			    font-size:30px;
@@ -137,9 +150,6 @@
 			    float:right;
 			    text-align:right;
 			}
-			#show-idnum span{
-			    display:block;
-			}
 		</style>
 	</head>
 
@@ -155,7 +165,7 @@
 					<a class="text" target="login_index.html">注册</a>
 				</div>
 				<div class="col-sm-6 text-right">
-					<a class="text spacing" target="index.html">网站首页</a>
+					<a class="text spacing" href="index.html">网站首页</a>
 					<a class="text spacing" target="#">收藏本站</a>
 					<a class="text spacing" target="#">搜索</a>
 					<a class="text spacing" target="#">客服中心</a>
@@ -166,7 +176,7 @@
 
 		<div class="nav-box">
 			<div class="container text-center">
-				<a class="nav-menu" id="nav-1" target="index.html"></a>
+				<a class="nav-menu" id="nav-1" href="index.html"></a>
 				<a class="nav-menu active" id="nav-2" href="collect.html"></a>
 				<a class="nav-menu" id="nav-3" target="#"></a>
 
@@ -203,35 +213,36 @@
 				   <div id="show-idnum">
 				       <span id="idm">藏品编码：</span>
 				       <span id="beizhu">备注：</span>
-				   </div>
-				   <div id="show-dyn">
 				       <span id="dyn">朝代：</span>
 				   </div>
-				   <div id="pic" style="position: relative;width: 780px;left: 412px;height:350px;">
-						<div id="under" style="text-align:center;">
-							<div class="swiper-container">
-								<div class="swiper-wrapper">
-								</div>
-								<div class="pagination"></div>
-								<div class="change">
-								    <span id="left" class="fa fa-angle-left"></span>
-								    <span id="right" class="fa fa-angle-right"></span>
-								</div>
-							</div>
-							<div style="margin-top:10px">底部图片</div>
-						</div>
-						<div id="indo" style="text-align:center;">
-							<img src="" width="360px;" height="300px;" />
-							<p>证书图片</p>
-						</div>
-						<div class="blank"></div>
-					</div>
 				</div>
 			</div>
-
-			<div class="containers pages clearfix" style="margin-top:80px;">
-				<span class="prev">上一个藏品：</span>
-				<span class="next">下一个藏品：</span>
+            <div id="pic" style="position: relative;height:350px;top:370px;">
+                <div class="pic_item" id="ahead">
+                    <img src="" width="360px;" height="300px;" />
+					<div style="margin-top:10px">封面图片</div>
+                </div>
+				<div id="under" style="text-align:center;" class="pic_item">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+						</div>
+						<div class="pagination"></div>
+						<div class="change">
+						    <span id="left" class="fa fa-angle-left"></span>
+						    <span id="right" class="fa fa-angle-right"></span>
+						</div>
+					</div>
+					<div style="margin-top:10px">底部图片</div>
+				</div>
+				<div id="indo" style="text-align:center;" class="pic_item">
+					<img src="" width="360px;" height="300px;" />
+					<div style="margin-top:10px">证书图片</div>
+				</div>
+				<div class="blank"></div>
+				<div class="containers pages clearfix" style="margin-top:80px;">
+					<span class="prev">上一个藏品：</span>
+					<span class="next">下一个藏品：</span>
+				</div>
 			</div>
 
 		</section>
@@ -354,7 +365,7 @@
 			}
 			
 			function showImg(){
-				$('.show-detail-word img').click(function() {
+				$('#pic img').click(function() {
 					findDimensions()
 					var url = $(this).attr('src');
 					$('.img_content img').attr('src', url);
@@ -450,11 +461,13 @@
 					$('#idm').text('藏品编码:' + data.treasure.tNumber);
 					/*所属朝代*/
 					$('#dyn').text('朝代:' + getdname(data.treasure.tDynasty));
+					/* 封面图 */
+					$('#ahead img').attr('src',swallImg(data.treasure.tCoverUrl));
 					/* 底部图片 */
 					var tBottomUrl = data.treasure.tBottomUrl;
 					if(tBottomUrl){
 						$.each(tBottomUrl.split("&"),function(index,item){
-							$('.swiper-wrapper').append("<div class='swiper-slide'><a href='#'><img src='"+swallImg(item)+"' class='banner' /></a></div>")
+							$('.swiper-wrapper').append("<div class='swiper-slide'><a href='javascript:void(0)'><img src='"+swallImg(item)+"' class='banner' /></a></div>")
 						})
 						initSwiper()
 					}else{
