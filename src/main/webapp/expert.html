@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>文博·九文轩</title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/zoomify.min.css">
+		<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
+		<link rel="stylesheet" href="css/video-js.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="css/money.css" />
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="css/wrapper.css"/>
+
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.carouFredSel-6.0.4-packed.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery.unveilEffects.js"></script>
+		<script src="js/zoomify.min.js"></script>
+		<script type="text/javascript" src="js/video.js"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		
+
+	</head>
+
+	<body>
+
+		<div class="top-bar">
+			<div class="top-img"></div>
+
+			<div class="top-menu container">
+				<div class="col-sm-6 text-left">
+					<span class="text text-welcome spacing">您好，欢迎来到中国文博·九文轩网！</span>
+
+					<a class="text" href="register.htm">登录</a>
+					<span class="line">|</span>
+					<a class="text" href="register.htm">注册</a>
+				</div>
+
+				<div class="col-sm-6 text-right">
+					<a class="text spacing" href="index.html">网站首页</a>
+					<a class="text spacing" href="#">收藏本站</a>
+					<a class="text spacing" href="#">搜索</a>
+					<a class="text spacing" href="#">客服中心</a>
+					<a class="text spacing" href="#">个人中心</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="nav-box">
+			<div class="container text-center">
+				<a class="nav-menu" id="nav-1" href="index.html"></a>
+				<a class="nav-menu" id="nav-2" href="collect.html"></a>
+				<a class="nav-menu" id="nav-3" href="expert.html"></a>
+	
+				<a class="logo" href="index.html"></a>
+	
+				<a class="nav-menu" id="nav-4" href="auction.html"></a>
+				<a class="nav-menu" id="nav-5" href="news.html"></a>
+				<a class="nav-menu active" id="nav-6" href="about.html"></a>
+			</div>
+		</div>
+		
+		<!--banner-->
+		<section class="section-box banner-box">
+		<ul class="banner">
+            <li><a href="javascript:"><img src="images/banner3.jpg"></a></li>
+     	</ul>
+	  </section>
+	  
+		<section class="section-box video-box">
+			<video class="video-js vjs-default-skin" controls preload="none" data-setup="{}">
+				<source src="video/expert.mp4" type="video/mp4">
+			</video>
+			<div class="vedio-title">
+				相声表演艺术家杨议先生亲临文博鉴定现场
+			</div>
+			<!-- <embed class="video" src="video/expert.mp4" ></embed> -->
+			<!-- <img src="./images/banner3.jpg"> -->
+		</section>
+
+		<!-- 精品展示 -->
+		<section class="recommand-box">
+			<div class="container">
+				<!--轮播-->
+				<div id="wrapper">
+					<a id="prev" class="prev" href="#"></a>
+					<div id="carousel">
+						<ul>
+							<li><img src="images/recommand-1.jpg" alt="" /></li>
+							<li><img src="images/recommand-2.jpg" alt="" /></li>
+							<li><img src="images/recommand-3.jpg" alt="" /></li>
+							<li><img src="images/recommand-4.jpg" alt="" /></li>
+							<li><img src="images/recommand-5.jpg" alt="" /></li>
+							<li><img src="images/recommand-6.jpg" alt="" /></li>
+							<li><img src="images/recommand-7.jpg" alt="" /></li>
+							<li><img src="images/recommand-8.jpg" alt="" /></li>
+						</ul>
+					</div>
+					<a id="next" class="next" href="#"></a>
+				</div>
+
+			</div>
+
+			<img src="./images/recommand-left.png" class="back-img left"  style="z-index: -999;"/>
+			<img src="./images/recommand-right.png" class="back-img right"  style="z-index: -999" />
+		</section>
+
+		<!--左右侧列表-->
+
+		<section class="user-section-box">
+			<div class="content">
+				<!-- left menu -->
+				<div class="left-menu fl ">
+					<div class="title-bar"><span class="text">栏目导航</span></div>
+
+					<dl class="item-title">
+						<dt id="menu-jdyq" class="menu-nav active"><span class="line"></span>鉴定仪器</dt>
+						<dt id="menu-zjjd" class="menu-nav"><span class="line"></span>鉴定流程</dt>
+						<!-- <dt><span class="line"></span>个人中心</dt> -->
+						<dt id="menu-zjtd" class="menu-nav"><span class="line"></span>专家团队</dt>
+						<dt id="menu-zjzs" class="menu-nav"><span class="line"></span>专家证书</dt>
+						<dt id="menu-zxyy" class="menu-nav"><span class="line"></span>在线预约</dt>
+
+					</dl>
+
+				</div>
+
+				<!-- right menu -->
+				<div class="right-box fr col-lg-6 col-md-6 ">
+
+					<!--鉴定仪器-->
+					<div class="menu-container jdyq-list">
+
+						<div class="item col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/expert-item2.png" class="img">
+							</div>
+							<div class="img-box_right">
+								<a href="#">
+									<h5 class="title1">微痕鉴定</h5></a>
+
+								<!--连接到在线预约-->
+								<p class="zi">是指通过文物显微鉴定仪等仪器， 观察瓷器釉面的微观图像以此来鉴定文物的一种技术，其 以"古陶瓷微痕鉴定理论"为支撑，使用精锐的光学显微技 术、先进的光电转换技术、神奇的显微观察等多种高新技 术，来辨别古陶瓷真假。
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
+						<div class="item col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="img-box">
+								<img src="./images/expert-item3.png" class="img">
+							</div>
+							<div class="img-box_right">
+								<a href="#">
+									<h5 class="title1">荧光鉴定</h5></a>
+								<!--连接到在线预约-->
+								<p class="zi">荧光光谱分析是现代精密仪 器检测的一种，属于无损分析，通过测定古物中的成分 ，从而达到各种分析目的。荧光光谱分析可以对各材质 的绝大多数文物如金属、合金、陶瓷、玻璃、玉石珠宝 甚至书画、颜料、油画中的元素或微量元素含量做定性 识别和定量分析。因此，荧光光谱分析可用于文物材质 鉴定、真伪鉴定，文物断代鉴定，文物产地、材质来源 分析，以及文物的制作工艺分析
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
+					</div>
+
+					<!--专家鉴定-->
+					<div class="menu-container zjjd-list hide">
+						<div class="row">
+							<p>1、首先声明：文博·九文轩文物鉴定部分由北京文博科检中心 天津分站负责。文博科检中心是全国真正具备文物鉴定的机构 之一。自成立以来一直秉承“真实、客观、公正”的原则为藏友 鉴定；并注重传统人文情怀，积极投身文物鉴定事业。如果经 过我中心鉴定为珍品，符合上拍条件，可以为藏家介绍正规拍 卖公司或者提供其他销售渠道。
+							</p>
+							<p> 2、文博·九文轩拥有数量庞大的资深鉴定专家团队，凭借丰富 经验，协助各地藏家评估私人及家族珍藏文物，往往可发现非 比寻常的隐世珍宝。
+							</p>
+							<p>
+								3、费用：3000（含证书）
+							</p>
+
+							<p> 4、荧光检测范围及分类： 陶瓷紫砂：陶器、高古（老窑）、宋元明清、民国、紫砂器等； 金属器：青铜器、金银器、铜器、铜镜、佛造像、掐丝珐琅等
+							</p>
+							<p> 5、鉴定流程：<br /> 1）了解文博·九文轩文物鉴定服务流程和收费标准；
+								<br /> 2）藏友携带藏品来到文博·九文轩（选择荧光检测方法的需至少提前1天预约设备时间）；
+								<br /> 3）按照规定，在线支付（30%定金），鉴定前现场交纳其他费用；
+								<br /> 4）文博·九文轩根据您的藏品种类为您安排鉴定；
+								<br /> 5）实物鉴定当场给出鉴定结论，符合出具传统鉴定证书要求的，如有需要，另行交纳证书费用。
+								<br /> 7、尊敬的贵宾，文物鉴定首选文博·九文轩。
+							</p>
+							<p class="special">
+								大客户洽谈电话：马阔：132-9993-6530
+							</p>
+
+						</div>
+
+					</div>
+
+					<!--专家团队-->
+					<div class="menu-container zjtd-list hide">
+						<div class="item tuan tuan1">
+							<div class="img-box col-md-offset-3">
+								<img src="images/expert-1.jpg" class="img">
+							</div>
+							<div class="img-box_right">
+								<p class="text  ">叶文程</p>
+								<p class="jianjie">中文名：叶文程 <br> 职业：考古专家 <br> 履历：曾任厦门 大学人类学术系主任、厦门大学人类博物馆副馆长、 副教授，现兼任中国古陶瓷研究会会长及秘书长、 福建省考古博物馆学会副理事长等职。
+								</p>
+							</div>
+							<div class="clearfix"></div>
+							<p class="jianjie jianjie1">
+								个人简介：福建南安人，一九五六年毕业于厦门大学历 史系。长期从事中国古陶瓷和古外销陶瓷研究工作，叶 教授是厦大资深教授，在陶瓷鉴定和考古方面有很深的 造诣。叶教授品德高尚深受广大师生的赞赏。主要著作 有《中国古外销瓷研究论文集》、《福建陶瓷》（合著） 、《陶瓷之光》（合著）、《东方的青花瓷器》（合著） 及八十余篇论文（论文目录请见本网文字库个人文集中 的“叶文程文集”）。
+							</p>
+						</div>
+						<div class="xian"></div>
+						<div class="item tuan">
+							<div class="img-box col-md-offset-3">
+								<img src="images/expert-2.jpg" class="img">
+							</div>
+							<div class="img-box_right">
+								<p class="text  ">赵青云</p>
+								<p class="jianjie">中文名：赵青云<br> 职业：考古专家 <br> 履历：现任河南省文物考古研究所调研员、研究员。
+								</p>
+							</div>
+							<div class="clearfix"></div>
+							<p class="jianjie jianjie1">
+								个人简介：系河南省文物局专家组成员，河南省文物鉴定委员，中国钧瓷研究所高级顾问，中国古陶瓷学会副秘书长，河南省文物鉴赏家学会副会长等。1985年退居二线任调研员，从事陶瓷考古研究。1992年退休仍被原单位返聘至今。领队参加考古发掘，先后解决了中国钧瓷与汝瓷两大名窑窑口的历史悬案，对解决柴窑之谜也有所突破。主要著作有《河南陶瓷史》、《钧窑瓷的鉴定与鉴赏》、《钧窑》、《宋代汝窑》、等。
+							</p>
+						</div>
+						<div class="xian"></div>
+						<div class="item tuan">
+							<div class="img-box col-md-offset-3">
+								<img src="images/expert-3.jpg" class="img">
+							</div>
+							<div class="img-box_right">
+								<p class="text ">雷从云</p>
+								<p class="jianjie">中文名：雷从云 <br> 职业：考古专家 <br> 履历：中国国家博物馆，原中国文物交流中心主任，研究员。 代表作品 《中国宫展史》
+								</p>
+							</div>
+							<div class="clearfix"></div>
+							<p class="jianjie jianjie1">
+								个人简介：在文物考古界叱咤风云的雷从云，是地地道道的长寿老人。雷先生拥有国家博物馆研究员、国际收藏家、联合会副会长、鉴定评估委员会副主任等国际文物考古界的20多个 “头衔”。
+							</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+
+					<!--专家证书-->
+					<div class="menu-container zjzs-list hide zhengshu">
+
+						<div class="item  zhengshu1">
+							<div class="img-box1">
+
+								<img src="./images/expert-book5.png" class="img" alt="">
+
+							</div>
+
+							<p class="text1">（1）明宣德青花高足碗证书</p>
+						</div>
+						<div class="item zhengshu1">
+							<div class="img-box1 ">
+
+								<img src="./images/expert-book4.png" class="img" alt="">
+
+								<![endif]-->
+							</div>
+							<p class="text1">（2）清康熙款珐琅彩缠枝花卉碗证书</p>
+						</div>
+						<div class="item  zhengshu1">
+							<div class="img-box1">
+								
+									<img src="./images/expert-book4.png" class="img" alt="">
+							
+							</div>
+							<p class="text1">（3）清乾隆广彩开光人物故事纹将军罐证书</p>
+						</div>
+						<div class="clearfix"></div>
+						<!--<div class="item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div class="img-box ">
+								<img src="./images/expert-book5.png" class="img">
+							</div>
+							<p class="text">青花瓷紫砂粗陶茶叶罐</p>
+					</div>-->
+					</div>
+
+					<!--在线预约-->
+					<div class="menu-container zxyy-list hide clearfix">
+						<!--预约方式1-->
+						<div class="zxyy-list-box1 fl">
+
+							<div class="zxyy-t">仪器鉴定预约<span class="t-r">（费用¥400）</span></div>
+							
+							<!--<form action="" method="post" class="form-group">-->
+								<!--time-->
+								<div class="item col-md-offset-5 yuyue">
+								<label for="" class="labels">预约时间</label>
+								<div class="input-group date form_datetime col-md-5 " data-date=" ">
+									<input class="form-control " size="16" id="input_time" type="text" value="" readonly>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+								</div>
+								<div class="clearfix"></div>
+								<input class="hide" /> <span> </span> </br>
+							</div>
+				
+								<!--name-->
+								<div class="item col-md-offset-5 yuyue">
+									<label for="" class="labels ">预约姓名</label>
+									<div class="col-md-5 input-group">
+										<input type="text" class="form-control input-text " id="input_username">
+									</div>
+								</br>
+								</div>
+								<!--phonenumber-->
+							<div class="item col-md-offset-5 yuyue">
+								<label for="" class="labels">预约电话</label>
+								<div class="col-md-5 input-group">
+									<input type="text" class="input-text form-control " id="input_number">
+								</div>
+								</br>
+							</div>
+							
+							<!--确认支付-->
+							<div class=" jianding">
+								<div class="item col-md-offset-4">
+									<button  class="btn btn-default"  data-toggle="modal" data-target="#myModal">立即预约</button>
+								</div>
+							</div>
+							
+							<!-- 模态框（Modal） -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+												<h4 class="modal-title" id="myModalLabel">
+												选择支付方式
+											</h4>
+											</div>
+											<div class="modal-body">
+												<form>
+													<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios1" value="" checked onclick="changetype(0);"> 银行卡/信用卡支付
+													</div>
+													<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios2" value="" onclick="changetype(1);">支付宝
+													</div>
+													<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios2" value="" onclick="changetype(2);">微信支付
+													</div>
+													<input type="hidden" value="0" name="uptype" id="uptype">
+												</form>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											</button>
+												<button type="button" class="btn btn-primary">
+												下一步
+											</button>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									
+								</div><!-- /.modal -->
+							
+							
+							<!--</form>-->
+					</div>
+					
+					
+						<!--预约方式2-->
+						<div class="zxyy-list-box fl">
+
+							<div class="zxyy-t">专家鉴定预约<span class="t-r">（费用¥900）</span></div>
+							
+							<!--<form action="" method="post" class="form-group">-->
+								<!--time-->
+								<div class="item col-md-offset-5 yuyue">
+								<label for="" class="labels">预约时间</label>
+								<div class="input-group date form_datetime col-md-5 " data-date=" ">
+									<input class="form-control " size="16" id="input_time" type="text" value="" readonly>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+								</div>
+								<div class="clearfix"></div>
+								<input class="hide" /> <span> </span> </br>
+							</div>
+				
+								<!--name-->
+								<div class="item col-md-offset-5 yuyue">
+									<label for="" class="labels ">预约姓名</label>
+									<div class="col-md-5 input-group">
+										<input type="text" class="form-control input-text " id="input_username">
+									</div>
+								</br>
+								</div>
+								<!--phonenumber-->
+							<div class="item col-md-offset-5 yuyue">
+								<label for="" class="labels">预约电话</label>
+								<div class="col-md-5 input-group">
+									<input type="text" class="input-text form-control " id="input_number">
+								</div>
+								</br>
+							</div>
+							
+							<!--确认支付-->
+							<div class=" jianding">
+								<div class="item col-md-offset-4">
+									<button  class="btn btn-default" data-toggle="modal" data-target="#myModal">立即预约</button>
+								</div>
+							</div>
+							
+							<!-- 模态框（Modal） -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+												<h4 class="modal-title" id="myModalLabel">
+												选择支付方式
+											</h4>
+											</div>
+											<div class="modal-body">
+												<form>
+													<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios1" value="" checked onclick="changetype(0);"> 银行卡/信用卡支付
+													</div>
+													<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios2" value="" onclick="changetype(1);">支付宝
+													</div>
+													<div class="radio fukuan">
+														<input type="radio" name="optionsRadios" id="optionsRadios2" value="" onclick="changetype(2);">微信支付
+													</div>
+													<input type="hidden" value="0" name="uptype" id="uptype">
+												</form>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											</button>
+												<button type="button" class="btn btn-primary">
+												下一步
+											</button>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									
+								</div><!-- /.modal -->
+							
+							<!--</form>-->
+					</div>
+					</div><!--在线预约结束-->
+				</div><!--right menu结束-->
+				
+			</div>
+			
+			
+			
+		</section>
+
+		<script type="text/javascript">
+			
+			
+			$(function() {
+				$(".title1").click(function(){
+				//	alert(123);
+					var zxyy = $(this).parents("div.right-box").siblings("div.left-menu").find("dt#menu-zxyy");
+					var zxyyid = zxyy.attr("id");
+					var zxyyword = zxyyid.substr(5,zxyyid.length);
+					
+					$(".menu-nav").removeClass("active");
+					zxyy.addClass("active");
+					$(".menu-container").addClass("hide");
+					$("." + zxyyword + "-list").removeClass("hide");
+				});
+				 
+				$(".menu-nav").click(function() {
+					var id = $(this).attr("id");
+					var word = id.substr(5, id.length);
+
+					$(".menu-nav").removeClass("active");
+					$(this).addClass("active");
+
+					$(".menu-container").addClass("hide");
+					$("." + word + "-list").removeClass("hide");
+
+				});
+				
+			
+
+				$('.form_datetime').datetimepicker({
+					//language:  'fr',
+					weekStart: 1,
+					todayBtn: 1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+					showMeridian: 1,
+					language: 'zh-CN',
+					format: 'yyyy-mm-dd',
+				});
+
+			});
+			
+			
+			
+			
+		</script>
+
+		<section class="section-box footer">
+			<div class="container">
+
+				<div class="list">
+					<div class="item item1 col-sm-3">
+						<div class="info">
+							<p class="title">权威认证</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item2 col-sm-3">
+						<div class="info">
+							<p class="title">专业证书</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item3 col-sm-3">
+						<div class="info">
+							<p class="title">海量藏品</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+
+					<div class="item item4 col-sm-3">
+						<div class="info">
+							<p class="title">客服中心</p>
+							<p class="desc">品质保证 专家鉴定</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="middle text-center">
+					<a class="text" href="#">关于我们</a>
+					<span class="line">|</span>
+					<a class="text" href="#">联系我们</a>
+					<span class="line">|</span>
+					<a class="text" href="#">导购演示</a>
+					<span class="line">|</span>
+					<a class="text" href="#">免费注册</a>
+					<span class="line">|</span>
+					<a class="text" href="#">广告服务</a>
+					<span class="line">|</span>
+					<a class="text" href="#">信息公告</a>
+					<span class="line">|</span>
+					<a class="text" href="#">常见问题</a>
+				</div>
+
+			</div>
+
+			<div class="bottom">
+				<p class="text">文博·九龙轩网 版权所有Copyright Reserved 2009-2018</p>
+				<p class="text">电信与信息服务经营许可证 沪ICP备14000001号未经授权禁止转载、摘编、复制或建立镜像，如有违反追究法律责任</p>
+			</div>
+
+		</section>
+
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type="text/javascript">
+			$(function() {	
+			});
+			$('.img-box1 img').zoomify();
+		</script>
+		
+		<script type="text/javascript">
+		//选项卡选择
+		function changetype(t) {
+    $('#uptype').val(t);
+		}
+  	    </script>
+  	    <!--轮播-->
+  	    <script type="text/javascript">
+			$(function() {
+				$('#carousel ul').carouFredSel({
+					prev: '#prev',
+					next: '#next',
+					scroll: 800
+				});
+			});
+		</script>
+
+	</body>
+
+</html>
