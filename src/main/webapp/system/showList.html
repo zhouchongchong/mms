@@ -133,8 +133,8 @@
 					</td>
 					<td>
 						<input class="btn1" type="button" id="yemina_chaxun" value="查询" />
-						<a href="addGoods.html" target="rightFrame">
-							<input class="btn1" id="yemina_xingzeng" type="button" value="新增" />
+						<a href="javascript:void(0)" target="rightFrame">
+							<input class="btn1" id="yemina_xingzeng" type="button" value="新增" onclick="addList()"/>
 						</a>
 					</td>
 				</tr>
@@ -170,6 +170,10 @@
 					})
 					initTable(dId)
 				})
+			}
+			
+			function addList() {
+				window.location.href="addGoods.html"
 			}
 
 			//选择朝代
