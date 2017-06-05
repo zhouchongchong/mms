@@ -132,11 +132,16 @@
 			    padding-top:20px;
 			    padding-bottom: 380px;
 			}
-			#show-name{
-			    font-size:30px;
+			#show-top{
 			    padding-bottom:60px;
 			    text-align:center;
 			    color:#bc0016;
+			}
+			#show-top b{
+			    display:none;
+			}
+			#show-name{
+			    font-size:30px;
 			}
 			#show-idnum,#show-dyn{
 			    width:380px;
@@ -156,6 +161,10 @@
 			    background: url(./images/icon_left.png) left no-repeat;
 			    background-size:50px 25px;
 			    line-height:26px;
+			    float:left;
+			    cursor:pointer;
+			    width:300px;
+			    text-align:left;
 			}
 			.next{
 			    display:inline-block;
@@ -164,6 +173,10 @@
 			    background: url(./images/icon_right.png) right no-repeat;
 			    background-size:50px 25px;
 			    line-height:26px;
+			    float:right;
+			    cursor:pointer;
+			    width:300px;
+			    text-align:right;
 			}
 			.pic_item{
 			    background: url(./images/border.png) no-repeat;
@@ -224,7 +237,11 @@
 
 		<!--宝贝详情-->
 		<section class="section-box show-item">
-		    <div id="show-name"></div>
+		    <div id="show-top">
+	            <span class="prev"><b></b></span>
+	            <span id="show-name"></span>
+				<span class="next"><b></b></span>
+			</div>
 			<div class="item">
 				<div class="show-detail-img" id="gif">
 					<div id="gif-href"></div>
@@ -259,10 +276,6 @@
 					<div style="margin-top:10px">证书图片</div>
 				</div>
 				<div class="blank"></div>
-				<div class="containers pages clearfix" style="margin-top:50px;">
-					<span class="prev">上一个藏品：</span>
-					<span class="next">下一个藏品：</span>
-				</div>
 			</div>
 
 		</section>
@@ -508,20 +521,27 @@
 					/*上一个下一个藏品*/
 					if(data.upTreasure) {
 						$('.prev').attr('onclick', 'getOther(' + data.upTreasure.tId + ')');
-						$('.prev').html(data.upTreasure.tName);
+						$('.prev b').html(data.upTreasure.tName);
 					}else{
 						$('.prev').removeAttr('onclick');
-						$('.prev').html('');
+						$('.prev b').html('');
 					}
 					if(data.downTreasure) {
 						$('.next').attr('onclick', 'getOther(' + data.downTreasure.tId + ')');
-						$('.next').html(data.downTreasure.tName);
+						$('.next b').html(data.downTreasure.tName);
 					}else{
 						$('.next').removeAttr('onclick');
-						$('.next').html('');
+						$('.next b').html('');
 					}
 				})
 			}
+			
+			$('.prev,.next').on('mouseover',function(){
+		    	$(this).find('b').show();
+		    })
+		    $('.prev,.next').on('mouseout',function(){
+		    	$(this).find('b').hide();
+		    })
 		</script>
 
 	</body>
