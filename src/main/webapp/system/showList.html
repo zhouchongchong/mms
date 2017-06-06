@@ -132,7 +132,7 @@
 						<input type="text" class="serput" name="" placeholder="输入关键字" />
 					</td>
 					<td>
-						<input class="btn1" type="button" id="yemina_chaxun" value="查询" />
+						<input class="btn1" type="button" id="yemina_chaxun" value="查询" onclick="search()"/>
 						<a href="javascript:void(0)" target="rightFrame">
 							<input class="btn1" id="yemina_xingzeng" type="button" value="新增" onclick="addList()"/>
 						</a>
@@ -224,14 +224,19 @@
 				});
 			}
 			
+			/* 查询 */
+			function search() {
+			   $("#grid-table").jqGrid('GridUnload')
+			   initTable(dId)
+			}
+			
 			//生成表格
-			function initTable(dId, searchKey) {
+			function initTable(dId) {
+				var searchKey = $.trim($('.serput').val())+'';
 				var path = apiUrl + 'treasure/pagetreasure';
 				var pdata = {
-					'dynasty': dId
-				}
-				if(searchKey) {
-					pdata.search = searchKey
+					'tDynasty': dId,
+					'tName': searchKey
 				}
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
