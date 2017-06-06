@@ -67,7 +67,7 @@
   	<if test="tDynasty != 0">
        AND t_dynasty = #{tDynasty,jdbcType=INTEGER}
     </if>
-    <if test="tName != ''">
+    <if test="tName != null and tName != ''">
        AND t_name like "%"#{tName,jdbcType=VARCHAR}"%"
     </if>
   	LIMIT #{begain,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
