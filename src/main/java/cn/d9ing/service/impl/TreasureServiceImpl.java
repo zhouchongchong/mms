@@ -34,12 +34,12 @@ public class TreasureServiceImpl implements ITreasureService{
 		return treasureDao.insertSelective(treasure);
 	}
 
-	public List<Treasure> searchTreasurePage(Integer pageSize, Integer size,Integer dynasty) {
+	public List<Treasure> searchTreasurePage(Integer pageSize, Integer size,Treasure treasure) {
 		  
 		Integer begain  =(pageSize - 1) * size;
 		Integer end =  pageSize * size;
 		
-		return treasureDao.selectTreasurePage(begain, end, dynasty);
+		return treasureDao.selectTreasurePage(begain, end, treasure.gettDynasty(),treasure.gettName());
 	}
 
 	public Treasure selectTresureById(Long tId) {
@@ -65,9 +65,9 @@ public class TreasureServiceImpl implements ITreasureService{
 	}
 
 	@Override
-	public Integer getPageNum(Integer pageSize,Integer dynasty) {
+	public Integer getPageNum(Integer pageSize,Treasure treasure) {
 		  
-		Integer total  =  treasureDao.getPageNum(dynasty);
+		Integer total  =  treasureDao.getPageNum(treasure.gettDynasty());
 		return total;
 	}
 

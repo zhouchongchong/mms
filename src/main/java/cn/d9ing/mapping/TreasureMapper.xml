@@ -53,8 +53,8 @@
   count(*) AS pages 
   from tb_treasure 
   where 1 = 1
- <if test="dynasty != 0">
-       AND t_dynasty = #{dynasty,jdbcType=INTEGER}
+ <if test="tDynasty != 0">
+       AND t_dynasty = #{tDynasty,jdbcType=INTEGER}
   </if>
   AND isdelte = 0
   </select>
@@ -64,8 +64,11 @@
   	FROM `tb_treasure` 
   	WHERE 1 = 1 
   	AND isdelte != 1
-  	<if test="dynasty != 0">
-       AND t_dynasty = #{dynasty,jdbcType=INTEGER}
+  	<if test="tDynasty != 0">
+       AND t_dynasty = #{tDynasty,jdbcType=INTEGER}
+    </if>
+    <if test="tName != ''">
+       AND t_name like %#{tName,jdbcType=VARCHAR}%
     </if>
   	LIMIT #{begain,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
   </select>

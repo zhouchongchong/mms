@@ -21,13 +21,13 @@ public interface TreasureMapper {
 
     int updateByPrimaryKey(Treasure record);
     
-    List<Treasure> selectTreasurePage(@Param(value = "begain")Integer begain,@Param(value = "end")Integer end,@Param(value = "dynasty") Integer dynasty);
+    List<Treasure> selectTreasurePage(@Param(value = "begain")Integer begain,@Param(value = "end")Integer end,@Param(value = "tDynasty")Integer tDynasty,@Param(value = "tName")String tName);
     
     Treasure getTreasureNumUp(@Param(value = "tId")Long tId,@Param(value = "dynasty") Integer dynasty);
     
     Treasure getTreasureNumDown(@Param(value = "tId")Long tId,@Param(value = "dynasty") Integer dynasty);
     
-    Integer getPageNum(@Param(value = "dynasty")Integer dynasty);
+    Integer getPageNum(@Param(value = "tDynasty")Integer tDynasty);
     
     String getNextTreasureNum(@Param(value = "dynasty")Integer dynasty);
     

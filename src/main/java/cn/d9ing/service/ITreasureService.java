@@ -24,7 +24,7 @@ public interface ITreasureService {
 	 * @return  
 	 * @since JDK 1.8  
 	 */
-	List<Treasure> searchTreasurePage(Integer pageSize, Integer size,Integer dynasty);
+	List<Treasure> searchTreasurePage(Integer pageSize, Integer size,Treasure treasure);
 	
 	/**  
 	 * selectTresureById:根据ID查询. <br/>    
@@ -70,7 +70,7 @@ public interface ITreasureService {
 	 * @return  
 	 * @since JDK 1.8  
 	 */
-	Integer getPageNum(Integer pageSize,Integer dynasty);
+	Integer getPageNum(Integer pageSize,Treasure treasure);
 	
 	String getNextTreasureNum(Integer dynasty);
 	
