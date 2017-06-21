@@ -1,6 +1,6 @@
 const userName = localStorage.getItem('userName');
 if(!userName){
-	window.location.href = "../login.html"
+	parent.window.location.href= "http://localhost:8080/mms/login.html"
 }
 const validateLogin = function() {
 	$.ajax({
@@ -12,7 +12,7 @@ const validateLogin = function() {
 		dataType:'json',
 		success:function(data){
 			if(data == 0){
-				window.location.href = "../login.html"
+				parent.window.location.href= "http://localhost:8080/mms/login.html"
 			}
 		},
 		error:function(e){
