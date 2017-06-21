@@ -1,5 +1,7 @@
 package cn.d9ing.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import cn.d9ing.domain.User;
 import cn.d9ing.utils.JsonResult;
 import cn.d9ing.utils.beans.PageBean;
@@ -16,7 +18,7 @@ public interface IUserService {
 	JsonResult<Object> insertUser(User user);
 	
 	
-	JsonResult<Object> validatepwd(User user);
+	JsonResult<Object> validatepwd(HttpServletRequest request,User user);
 	
 	JsonResult<Object> existSameUser(User user);
 	

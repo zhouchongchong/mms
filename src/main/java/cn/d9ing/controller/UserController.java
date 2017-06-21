@@ -1,5 +1,8 @@
 package cn.d9ing.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,9 +45,20 @@ public class UserController {
 	@ResponseBody
 	public Object validateUser(HttpServletRequest request,User user){
 		
-		return userService.validatepwd(user);
+		return userService.validatepwd(request,user);
 	}
-	
+	@RequestMapping("/isin")
+	@ResponseBody
+	public Object isIn(HttpServletRequest request,String userName){
+		Map<String, Object> resultMap = new HashMap<>();
+		User user = (User)request.getSession().getAttribute("user");
+		Integer num = 0;
+		if(user.getuUsername().equals(userName)){
+			num = 1;
+		}
+		resultMap.put("result", num);
+		return resultMap;
+	}
 	/**  
 	 * exitUser:验证用户名是否重复. <br/>    
 	 * @author zhouchong  

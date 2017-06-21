@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +78,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public JsonResult<Object> validatepwd(User user) {
+	public JsonResult<Object> validatepwd(HttpServletRequest request,User user) {
 		boolean success = false;
 		String statusCode = Keys.CODE_NORMAL;
 		String data = "";
@@ -89,6 +91,7 @@ public class UserServiceImpl implements IUserService {
 					success = MD5Encoder.validPassword(user.getuPassword(), pwd);
 					if (success) {
 						message = "密码正确";
+						request.getSession().setAttribute("user", user);
 					}else{
 						message = "密码错误";
 					}
