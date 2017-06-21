@@ -33,7 +33,10 @@
   	select 
   		u_password
   	from tb_user
-  	where u_username = #{username,jdbcType=VARCHAR}
+  	where u_username = #{uUsername,jdbcType=VARCHAR}
+  	<if test="uRule != null">
+  	and u_rule = #{uRule,jdbcType=INTEGER}
+  	</if>
   	and isdelete = 0
   </select>
   <select id="searchPageUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">

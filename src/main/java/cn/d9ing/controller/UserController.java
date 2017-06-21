@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.d9ing.domain.User;
 import cn.d9ing.service.IUserService;
+import cn.d9ing.utils.DataUtils;
 
 @Controller
 @RequestMapping("user")
@@ -51,10 +52,12 @@ public class UserController {
 	@ResponseBody
 	public Object isIn(HttpServletRequest request,String userName){
 		Map<String, Object> resultMap = new HashMap<>();
-		User user = (User)request.getSession().getAttribute("user");
 		Integer num = 0;
-		if(user.getuUsername().equals(userName)){
-			num = 1;
+		User user = (User)request.getSession().getAttribute("user");
+		if(!DataUtils.isBlank(user)){
+			if(user.getuUsername().equals(userName)){
+				num = 1;
+			}
 		}
 		resultMap.put("result", num);
 		return resultMap;

@@ -21,7 +21,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
     
-    String getpwd(@Param(value = "username")String userName);
+    String getpwd(User user);
     
     Integer getSameName(@Param(value = "username")String userName);
     

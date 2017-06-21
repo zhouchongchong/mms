@@ -83,6 +83,7 @@
 				<label>密码：</label> <input type="password" placeholder="密码"
 					id="input_password" value="" name="uPassword" class="input" />
 			</div>
+			<input type='text' style='display: none;' value='1' name="uRule"/>
 			<div class="form-item">
 				<div class="submit" onclick="submit_login()">登录</div>
 			</div>
@@ -106,8 +107,9 @@
 				JQajax('user/validateuser', $('#login_form').serialize(), function(data) {
 	                if(data.statusCode == 200 && data.success){
 	                	setTimeout(function(){
-	                		if($.trim($('input_users') == 'admin'){
-	                			window.location.href="main.html"
+	                		if($.trim($('input_users') == 'admin')){
+	                			//window.location.href="main.html"
+	                			console.log(1)
 	                		}else{
 	                			alert('您不是管理员')
 	                		}

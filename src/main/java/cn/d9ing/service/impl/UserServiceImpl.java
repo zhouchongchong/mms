@@ -86,7 +86,7 @@ public class UserServiceImpl implements IUserService {
 		try {
 			String userName = user.getuUsername();
 			if (StringUtils.isNotBlank(userName)) {
-				String pwd = userDao.getpwd(userName);
+				String pwd = userDao.getpwd(user);
 				if (StringUtils.isNotBlank(pwd)) {
 					success = MD5Encoder.validPassword(user.getuPassword(), pwd);
 					if (success) {
