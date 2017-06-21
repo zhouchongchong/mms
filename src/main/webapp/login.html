@@ -108,8 +108,8 @@
 	                if(data.statusCode == 200 && data.success){
 	                	setTimeout(function(){
 	                		if($.trim($('input_users') == 'admin')){
-	                			//window.location.href="main.html"
-	                			console.log(1)
+	                			localStorage.setItem('userName',$.trim($('input_users')))
+	                			window.location.href="main.html"
 	                		}else{
 	                			alert('您不是管理员')
 	                		}
