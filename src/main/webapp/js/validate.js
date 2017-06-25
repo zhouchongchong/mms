@@ -18,5 +18,5 @@ const validateLogin = function() {
 		error:function(e){
 			
 		}
-	})
+	});
 }
