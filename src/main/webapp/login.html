@@ -111,7 +111,6 @@
 				}, function(data) {
 	                if(data.statusCode == 200 && data.success){
 	                	setTimeout(function(){
-	                		console.log(data)
                 			localStorage.setItem('userName',$.trim($('#input_users').val()))
                 			window.location.href="main.html"	                		
 	                	})
