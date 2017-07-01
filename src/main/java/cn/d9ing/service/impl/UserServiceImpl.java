@@ -92,7 +92,7 @@ public class UserServiceImpl implements IUserService {
 					if (success) {
 						message = "密码正确";
 						request.getSession().setAttribute("user", user);
-						request.getSession().setMaxInactiveInterval(60);
+						request.getSession().setMaxInactiveInterval(10800);
 					}else{
 						message = "密码错误";
 					}
