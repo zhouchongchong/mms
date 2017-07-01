@@ -54,6 +54,7 @@ public class UserController {
 		Map<String, Object> resultMap = new HashMap<>();
 		Integer num = 0;
 		User user = (User)request.getSession().getAttribute("user");
+		request.getSession().setMaxInactiveInterval(60);
 		if(!DataUtils.isBlank(user)){
 			if(user.getuUsername().equals(userName)){
 				num = 1;
