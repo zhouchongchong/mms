@@ -27,8 +27,7 @@
 			<div class="top-menu container">
 				<div class="col-sm-6 text-left">
 					<span class="text text-welcome spacing">您好，欢迎来到中国文博·九文轩网！</span>
-
-					<a class="text" href="login_index.htm">登录</a>
+					<a class="text" href="login_index.html">登录</a>
 					<span class="line">|</span>
 					<a class="text" href="javascript:void(0)">注册</a>
 					<!-- <a class="text text-vip" href="vip.htm">四禅八定<img class="arrow" src="images/arrow-little-bottom.png"></a> -->
@@ -181,7 +180,14 @@
 				}
 				return ifPass = true
 			})
-
+            document.onkeydown = function(e){
+			   if(!e){
+			    e = window.event;
+			   }
+			   if((e.keyCode || e.which) == 13){
+				   submit_login();
+			   }
+			}
 			function login_register() {
 				layer.closeAll()
 				$('input').blur();

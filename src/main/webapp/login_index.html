@@ -144,7 +144,14 @@
 				}
 				return ifpwd = true
 			})
-
+            document.onkeydown = function(e){
+			   if(!e){
+			    e = window.event;
+			   }
+			   if((e.keyCode || e.which) == 13){
+				   submit_login();
+			   }
+			}
 			function submit_login() {
 				layer.closeAll()
 				$('input').blur();
@@ -155,8 +162,9 @@
                     if(data.statusCode == 200 && data.success){
                     	msg(data.message)
                     	setTimeout(function(){
-                    		window.location.href="collect.html"
-                    	})
+                    		localStorage.setItem('customName',$.trim($('#input_users').val()))
+                    		window.location.href="index.html"
+                    	},1000)
                     }else{
                     	msgEr(data.message)
                     }

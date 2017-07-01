@@ -13,6 +13,8 @@ const validateLogin = function() {
 		success:function(data){
 			if(data == 0){
 				parent.window.location.href= "http://localhost:8080/mms/login.html"
+			}else{
+				$('.dl-log-user').text(userName)
 			}
 		},
 		error:function(e){
@@ -20,3 +22,4 @@ const validateLogin = function() {
 		}
 	});
 }
+validateLogin()

@@ -100,19 +100,20 @@
 			   }
 			}
 			function submit_login() {
-				if(!$.trim($('input_users')) || !$.trim($('#input_password'))){
+				if(!$.trim($('#input_users')) || !$.trim($('#input_password'))){
 					alert('请填写完整')
 					return 
 				}
-				JQajax('user/validateuser', $('#login_form').serialize(), function(data) {
+				JQajax('user/validateuser', {
+					'uUsername':$.trim($('#input_users').val()),
+					'uPassword':$.trim($('#input_password').val()),
+					//'uRule':0
+				}, function(data) {
 	                if(data.statusCode == 200 && data.success){
 	                	setTimeout(function(){
-	                		if($.trim($('input_users') == 'admin')){
-	                			localStorage.setItem('userName',$.trim($('input_users')))
-	                			window.location.href="main.html"
-	                		}else{
-	                			alert('您不是管理员')
-	                		}
+	                		console.log(data)
+                			localStorage.setItem('userName',$.trim($('#input_users').val()))
+                			window.location.href="main.html"	                		
 	                	})
 	                }else{
 	                	alert(data.message)
