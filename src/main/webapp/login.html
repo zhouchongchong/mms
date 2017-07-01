@@ -107,7 +107,7 @@
 				JQajax('user/validateuser', {
 					'uUsername':$.trim($('#input_users').val()),
 					'uPassword':$.trim($('#input_password').val()),
-					//'uRule':0
+					'uRule':1
 				}, function(data) {
 	                if(data.statusCode == 200 && data.success){
 	                	setTimeout(function(){

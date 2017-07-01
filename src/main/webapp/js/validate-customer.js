@@ -8,10 +8,8 @@ const validateLogin = function() {
 		},
 		dataType:'json',
 		success:function(data){
-			if(data.result == 0){
-				//window.location.href= "http://localhost:8080/mms/login_index.html"
-			}else{
-				$('.ifLogin').text('您好：'+customName);
+			if(data.result == 1){
+				$('#ifLogin').text('您好：'+customName);
 			}
 		},
 		error:function(e){

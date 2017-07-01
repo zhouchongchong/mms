@@ -11,7 +11,7 @@ const validateLogin = function() {
 		},
 		dataType:'json',
 		success:function(data){
-			if(data == 0){
+			if(data.result == 0){
 				parent.window.location.href= "http://localhost:8080/mms/login.html"
 			}else{
 				$('.dl-log-user').text(userName)
