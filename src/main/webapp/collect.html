@@ -362,7 +362,7 @@
 					$('.good-list .item').each(function(){
 					var imgHeight = $(this).find('img').height();
 					if(imgHeight < 370){
-						$($(this).find('img').css('top',(370-imgHeight)/2+'px')
+						$(this).find('img').css('top',(370-imgHeight)/2+'px')
 					}
 				})
 				}, 100)
