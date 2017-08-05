@@ -152,7 +152,7 @@
 					layer.close(la)
 				}, function() {
 					JQajax('user/deleteuser', {
-						'uId': model.dId
+						'uId': model.uId
 					}, function(data) {
 						if(data == 1) {
 							msg('删除成功')
