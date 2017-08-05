@@ -41,7 +41,7 @@
   </select>
   <select id="searchPageUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	SELECT 
-		(SELECT COUNT(*) FROM tb_user WHERE isdelete =0) AS totalnum,
+		(SELECT COUNT(*) FROM tb_user WHERE isdelete =0 AND u_rule = 2) AS totalnum,
 		<include refid="Base_Column_List" />
 	FROM tb_user
 	WHERE isdelete = 0
