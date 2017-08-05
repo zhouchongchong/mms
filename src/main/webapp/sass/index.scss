@@ -539,7 +539,6 @@ ul {
 		.item {
 			position: relative;
 			margin-top: 20px;
-			height: 300px;
 			color: $title-color;
 			overflow: hidden;
 
@@ -557,7 +556,6 @@ ul {
 
 			.img-box {
 				width: 100%;
-				height: 245px;
 				text-align: center;
 				overflow: hidden;
 
@@ -605,7 +603,6 @@ ul {
 	.good-list{
 		
 		.item {
-			height: 270px;
 			color: #fff;
 			
 			&:hover {
@@ -627,7 +624,6 @@ ul {
 			}
 
 			.img-box {
-				height: 210px;
 				background: rgba(51,51,51,0.6);
 
 				.img {
@@ -705,7 +701,6 @@ ul {
 			//background: #fff;
 
 			.img-box {
-				height: 236px;
 				//background: $red-color;
 			}
 
@@ -740,7 +735,6 @@ ul {
 	.good-list {
 
 		.item {
-			height: 250px;
 			text-align: center;
 
 			&:hover {
@@ -761,13 +755,8 @@ ul {
 				}
 			}
 
-			.img-box {
-				height: 250px;
-			}
-
 			.img {
 				width: 100%;
-				height: 100%;
 			}
 
 			.font-box {

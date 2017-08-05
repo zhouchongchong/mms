@@ -29,7 +29,5 @@
         $(".vip-box-top").fadeOut();
         $(".vip-box").fadeOut();
     });
-
-
         
 })(jQuery);
