@@ -31,7 +31,8 @@
 			}
 			.img-box img{
 			    width:100%;
-			    height:100% !important;
+			    height:auto !important;
+			    max-height:370px !important;
 			}
 		</style>
 
@@ -338,6 +339,7 @@
 						liArr.push("</p>");
 						liArr.push("</div>");
 						$('.good-list').append(liArr.join(''))
+						alignPic()
 					})
 					
 					/*点击查看详情*/
@@ -349,6 +351,17 @@
 				})
 			}
 			
+			/* 居中图片 */
+			function alignPic(){
+				setTimeout(function(){
+					$('.good-list .item').each(function(){
+					var imgHeight = $(this).find('img').height();
+					if(imgHeight < 370){
+						$($(this).find('img').css('top',(370-imgHeight)/2+'px')
+					}
+				})
+				}, 100)
+			}
 		</script>
 
 	</body>
