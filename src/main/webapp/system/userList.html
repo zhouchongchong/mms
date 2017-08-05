@@ -154,7 +154,7 @@
 					JQajax('user/deleteuser', {
 						'uId': model.uId
 					}, function(data) {
-						if(data == 1) {
+						if(data.data == 1) {
 							msg('删除成功')
 						} else {
 							msgEr('删除失败')
