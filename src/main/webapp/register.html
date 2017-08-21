@@ -196,7 +196,7 @@
 				}
 				JQajax('user/adduser', $('form').serialize(), function(data) {
                     if(data.statusCode == 200 && data.success) {
-						msg('注册成功,去登陆')
+						msg('注册成功,已发送激活链接到您的邮箱，请点击激活')
 						setTimeout(function(){
 							window.location.href = "login_index.html"
 						},1000)
