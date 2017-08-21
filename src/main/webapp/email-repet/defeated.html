@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>激活邮箱</title>
+<style>
+  .content{
+     text-align:center;
+     font-size:25px;
+     margin-top:100px;
+  }
+  img{
+     display:block;
+     margin:0 auto 50px auto;
+  }
+</style>
+</head>
+<body>
+<div class="content"><img src="../images/email/suc.jpg"/>激活失败，三秒后跳转。。。</div>
+<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+<script>
+   setTimeout(() =>{
+	   window.location.href="../login_index.html";
+   },3000)
+</script>   
+</body>
+</html>
