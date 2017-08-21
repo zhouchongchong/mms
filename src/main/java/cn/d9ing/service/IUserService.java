@@ -1,5 +1,7 @@
 package cn.d9ing.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import cn.d9ing.domain.User;
@@ -17,7 +19,7 @@ public interface IUserService {
 	
 	JsonResult<Object> insertUser(User user);
 	
-	public User searchUser(Integer uid);
+	public User searchUser(String email);
 	
 	JsonResult<Object> validatepwd(HttpServletRequest request,User user);
 	
@@ -30,6 +32,9 @@ public interface IUserService {
 	JsonResult<Object> deleteUserById(Integer uId);
 	
 	boolean updateUserSelective(User u);
+	
+	Integer selectByEMail(String email);
+	
 	
 	
 }

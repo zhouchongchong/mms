@@ -16,6 +16,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer uId);
+    
+    User selectByEmail(@Param(value = "uEmail")String uEmail);
 
     int updateByPrimaryKeySelective(User record);
     
@@ -26,6 +28,7 @@ public interface UserMapper {
     String getpwd(User user);
     
     Integer getSameName(@Param(value = "username")String userName);
+    Integer getSameEMail(@Param(value = "uEmail")String uEmail);
     
     List<User> searchPageUser(@Param(value = "begain")Integer begain,@Param(value = "end")Integer end);
 }

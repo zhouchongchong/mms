@@ -58,9 +58,9 @@ public class MailUtil {
         //过期时间
         u.setActivateTime(activateTime);
         //发送的邮箱内容
-        String content = "<p>您好 O(∩_∩)O~~<br><br>欢迎加入iClass!<br><br>帐户需要激活才能使用，赶紧激活成为iClass正式的一员吧:)<br><br>请在24小时内点击下面的链接立即激活帐户："
+        String content = "<p>您好 O(∩_∩)O~~<br><br>欢迎加入九文轩<br><br>帐户需要激活才能使用，赶紧激活成为九文轩的一员吧:)<br><br>请在24小时内点击下面的链接立即激活帐户："
         +"<br><a href='"+URL+"/activatemail/?token="+token+"&email="+to+"'>"
-        +URL+"/activatemail/?id="+u.getuId()+"&token="+token+"&email="+to+"</a></p>";
+        +URL+"/activatemail?token="+token+"&email="+to+"</a></p>";
         //调用发送邮箱服务
         MailUtil.sendMail(to, TITLE, content);
         return u;

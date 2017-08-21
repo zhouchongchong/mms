@@ -40,9 +40,8 @@ public class UserController {
 	@RequestMapping("/adduser")
 	@ResponseBody
 	public Object registerUser(HttpServletRequest request,User user) throws AddressException, NoSuchAlgorithmException, MessagingException{
-		User u = new User();
-		u = MailUtil.activateMail(user);
-		return userService.insertUser(u);
+		
+		return userService.insertUser(user);
 	}
 	
 	/**  
@@ -79,9 +78,9 @@ public class UserController {
 		//获取激活参数
         String email = request.getParameter("email");
         String token = request.getParameter("token");
-        Integer uId = Integer.parseInt(request.getParameter("id"));
+//        Integer uId = Integer.parseInt(request.getParameter("id"));
         Long time = System.currentTimeMillis();
-        User u = userService.searchUser(uId);
+        User u = userService.searchUser(email);
 //        UserDTO ud = new UserDTO();
 //        ud.setMail(email);
         if(u!=null) {
@@ -108,7 +107,7 @@ public class UserController {
                         //重新设置token防止被禁用的用户利用激活
                         u.setToken(token.replace("1", "c"));
                         User user = new User();
-                        user.setuId(uId);
+                        user.setuId(u.getuId());
                         user.setIsdelete(0);
                         user.setToken(token.replace("1", "c"));
                         u.setuCreatetime(new Date());

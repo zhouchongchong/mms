@@ -1,9 +1,12 @@
 package cn.d9ing.service.impl;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import cn.d9ing.utils.DateUtils;
 import cn.d9ing.utils.JsonResult;
 import cn.d9ing.utils.Keys;
 import cn.d9ing.utils.MD5Encoder;
+import cn.d9ing.utils.MailUtil;
 import cn.d9ing.utils.StringUtils;
 import cn.d9ing.utils.beans.PageBean;
 
@@ -34,6 +38,8 @@ public class UserServiceImpl implements IUserService {
 	Object data = null;
 	@Autowired
 	private UserMapper userDao;
+	
+	
 
 	@Override
 	public JsonResult<Object> insertUser(User user) {
@@ -42,38 +48,47 @@ public class UserServiceImpl implements IUserService {
 		String data = "";
 		String message = "";
 		Integer resultNum = 0;
-		  
+
 		String password = user.getuPassword();
-		String userName =  user.getuUsername();
-		if(StringUtils.isNotBlank(userName)){
+		String userName = user.getuUsername();
+		if (StringUtils.isNotBlank(userName)) {
 			resultNum = userDao.getSameName(userName);
 			if (StringUtils.isNotBlank(resultNum)) {
-				if (resultNum >=1) {
+				if (resultNum >= 1) {
 					message = "用户已存在";
-				}else{
+				} else {
+
 					success = true;
 					message = "用户名可用";
-					try {
-						Map<String, String> pwdMap = MD5Encoder.getEncryptedPwd(password);
-						user.setuSalt(pwdMap.keySet().iterator().next());
-						user.setuPassword(pwdMap.values().iterator().next());
-						user.setuRule(2);
-						user.setuCreatetime(DateUtils.sqlDate());
-						user.setIsdelete(1);
-						Integer result = userDao.insertSelective(user);
-						data = result+"";
-						message ="用户注册成功";
-					} catch (Exception e) {
-						 success = false;
-						 statusCode = Keys.CODE_ERR;
-						e.printStackTrace();  
-					} 
+					int count = userDao.getSameEMail(user.getuEmail());
+					if (count < 1) {
+						try {
+							user = MailUtil.activateMail(user);
+							Map<String, String> pwdMap = MD5Encoder.getEncryptedPwd(password);
+							user.setuSalt(pwdMap.keySet().iterator().next());
+							user.setuPassword(pwdMap.values().iterator().next());
+							user.setuRule(2);
+							user.setuCreatetime(DateUtils.sqlDate());
+							user.setIsdelete(1);
+							Integer result = userDao.insertSelective(user);
+							data = result + "";
+							
+							message = "用户注册成功";
+
+						} catch (Exception e1) {
+							success = false;
+							statusCode = Keys.CODE_ERR;
+							e1.printStackTrace();
+						}
+					} else {
+						message = "邮箱已存在";
+					}
 				}
-			}else{
+			} else {
 				message = "查询出错";
 			}
 		}
-		
+
 		return new JsonResult<Object>(data, success, statusCode, message);
 	}
 
@@ -183,10 +198,10 @@ public class UserServiceImpl implements IUserService {
 		return new JsonResult<Object>(data, success, statusCode, message);
 	}
 	
-	public User searchUser(Integer uid){
+	public User searchUser(String email){
 		User data = null;
 		try {
-			data = userDao.selectByPrimaryKey(uid);
+			data = userDao.selectByEmail(email);
 			message = "用户完整信息";
 		} catch (Exception e) {
 			success = false;
@@ -225,6 +240,13 @@ public class UserServiceImpl implements IUserService {
 		}
 		 
 		return result;
+	}
+
+	@Override
+	public Integer selectByEMail(String email) {
+		  
+
+		return userDao.getSameEMail(email);
 	}
 	
 	
