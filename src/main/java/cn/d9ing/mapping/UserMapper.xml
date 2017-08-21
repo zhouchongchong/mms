@@ -17,10 +17,12 @@
     <result column="u_createtime" jdbcType="TIMESTAMP" property="uCreatetime" />
     <result column="u_uptime" jdbcType="TIMESTAMP" property="uUptime" />
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="activateTime" jdbcType="BIGINT" property="activateTime" />
   </resultMap>
   <sql id="Base_Column_List">
     u_id, u_rule, u_username, u_salt, u_password, u_realname, u_pic, u_phone, u_email, u_qq, 
-    u_wecat, u_disc, u_createtime, u_uptime, isdelete
+    u_wecat, u_disc, u_createtime, u_uptime, isdelete,token,activateTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -58,7 +60,7 @@
     delete from tb_user
     where u_id = #{uId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.d9ing.domain.User">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="uId" parameterType="cn.d9ing.domain.User">
     insert into tb_user (u_id, u_rule, u_username, u_salt, 
       u_password, u_realname, u_pic, 
       u_phone, u_email, u_qq, 
@@ -118,6 +120,12 @@
       <if test="isdelete != null">
         isdelete,
       </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="activateTime != null">
+        activateTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uId != null">
@@ -164,6 +172,12 @@
       </if>
       <if test="isdelete != null">
         #{isdelete,jdbcType=INTEGER},
+      </if>
+       <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+       <if test="activateTime != null">
+        #{activateTime,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -220,8 +234,20 @@
       <if test="isdelete != null">
         isdelete = #{isdelete,jdbcType=INTEGER},
       </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+       <if test="activateTime != null">
+        #{activateTime,jdbcType=BIGINT},
+      </if>
     </set>
     where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateuser" parameterType="cn.d9ing.domain.User">
+  	UPDATE tb_user SET 
+  	isdelete =#{isdelete,jdbcType=INTEGER},
+  	token=#{token,jdbcType=VARCHAR} 
+  	WHERE u_id = #{uId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.d9ing.domain.User">
     update tb_user

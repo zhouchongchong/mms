@@ -1,18 +1,24 @@
 package cn.d9ing.controller;
 
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.d9ing.domain.User;
 import cn.d9ing.service.IUserService;
 import cn.d9ing.utils.DataUtils;
+import cn.d9ing.utils.MailUtil;
 
 @Controller
 @RequestMapping("user")
@@ -26,12 +32,17 @@ public class UserController {
 	 * @param request
 	 * @param user
 	 * @return  
+	 * @throws MessagingException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws AddressException 
 	 * @since JDK 1.8  
 	 */
 	@RequestMapping("/adduser")
 	@ResponseBody
-	public Object registerUser(HttpServletRequest request,User user){
-		return userService.insertUser(user);
+	public Object registerUser(HttpServletRequest request,User user) throws AddressException, NoSuchAlgorithmException, MessagingException{
+		User u = new User();
+		u = MailUtil.activateMail(user);
+		return userService.insertUser(u);
 	}
 	
 	/**  
@@ -62,6 +73,69 @@ public class UserController {
 		}
 		resultMap.put("result", num);
 		return resultMap;
+	}
+	@RequestMapping(value = "/activatemail")
+	public Object regedisUser(HttpServletRequest request,Model model) throws AddressException, NoSuchAlgorithmException, MessagingException{
+		//获取激活参数
+        String email = request.getParameter("email");
+        String token = request.getParameter("token");
+        Integer uId = Integer.parseInt(request.getParameter("id"));
+        Long time = System.currentTimeMillis();
+        User u = userService.searchUser(uId);
+//        UserDTO ud = new UserDTO();
+//        ud.setMail(email);
+        if(u!=null) {
+//            ud.setEmail(1);
+            if(u.getIsdelete()==1&&u.getActivateTime()!=1) {
+                if(u.getActivateTime()<time) {
+                    //过期--激活失败
+                    u.setActivateTime(Long.parseLong("-1"));
+                    //重新发送激活邮件
+                    u = MailUtil.activateMail(u);
+                    //重新设置了有效时间和token激活码
+                    userService.updateUserSelective(u);
+//                    ud.setTime(-1);
+//                    model.addAttribute("user", JsonUtil.toJson(u));
+                    //resp.getWriter().write(JsonUtil.toJson(u));
+                } else if (u.getActivateTime()>time){
+                    //在时间内
+                    u.setActivateTime(Long.parseLong("1"));
+//                    ud.setTime(1);
+                    if(u.getToken().equals(token)) {
+                        //在时间内且激活码通过，激活成功
+                        u.setIsdelete(0);
+                        u.setuCreatetime(new Date());;
+                        //重新设置token防止被禁用的用户利用激活
+                        u.setToken(token.replace("1", "c"));
+                        User user = new User();
+                        user.setuId(uId);
+                        user.setIsdelete(0);
+                        user.setToken(token.replace("1", "c"));
+                        u.setuCreatetime(new Date());
+                        userService.updateUserSelective(user);
+//                        ud.setToken(1);
+//                        ud.setStatus(1);
+//                        model.addAttribute("user", JsonUtil.toJson(ud));
+                        //resp.getWriter().write(JsonUtil.toJson(u));
+                    } else {
+                        //在时间内但是且激活码错误
+//                        ud.setToken(-1);
+//                        model.addAttribute("user", JsonUtil.toJson(ud));
+                    }
+                }
+                //u.getStatus()!=1判断结束
+            } else if(u.getIsdelete()==0) {
+                //已经被激活的重复点链接
+//                ud.setStatus(-1);
+//                model.addAttribute("user", JsonUtil.toJson(ud));
+            }
+        //u为空
+        } else if(u==null) {
+//            ud.setEmail(-1);
+//            model.addAttribute("user", JsonUtil.toJson(ud));
+        }
+        return "activatemail";
+		
 	}
 	/**  
 	 * exitUser:验证用户名是否重复. <br/>    

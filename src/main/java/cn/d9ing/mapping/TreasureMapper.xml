@@ -239,7 +239,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.d9ing.domain.Treasure">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.d9ing.domain.Treasure" >
     update tb_treasure
     <set>
       <if test="tName != null">

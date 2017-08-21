@@ -59,8 +59,8 @@ public class UserServiceImpl implements IUserService {
 						user.setuPassword(pwdMap.values().iterator().next());
 						user.setuRule(2);
 						user.setuCreatetime(DateUtils.sqlDate());
-						user.setIsdelete(0);
-						Integer result = userDao.insert(user);
+						user.setIsdelete(1);
+						Integer result = userDao.insertSelective(user);
 						data = result+"";
 						message ="用户注册成功";
 					} catch (Exception e) {
@@ -84,7 +84,7 @@ public class UserServiceImpl implements IUserService {
 		String data = "";
 		String message = "";
 		try {
-			String userName = user.getuUsername();
+  			String userName = user.getuUsername();
 			if (StringUtils.isNotBlank(userName)) {
 				String pwd = userDao.getpwd(user);
 				if (StringUtils.isNotBlank(pwd)) {
@@ -182,6 +182,21 @@ public class UserServiceImpl implements IUserService {
 		
 		return new JsonResult<Object>(data, success, statusCode, message);
 	}
+	
+	public User searchUser(Integer uid){
+		User data = null;
+		try {
+			data = userDao.selectByPrimaryKey(uid);
+			message = "用户完整信息";
+		} catch (Exception e) {
+			success = false;
+			statusCode = Keys.CODE_ERR;
+			message = "系统报错";
+			e.printStackTrace();
+		}
+		return data;
+		
+	}
 
 	@Override
 	public JsonResult<Object> deleteUserById(Integer uId) {
@@ -199,6 +214,17 @@ public class UserServiceImpl implements IUserService {
 			e.printStackTrace();
 		}
 		return new JsonResult<Object>(data, success, statusCode, message);
+	}
+
+	@Override
+	public boolean updateUserSelective(User u) {
+		boolean result = false;
+		int count = userDao.updateuser(u);
+		if (count==1){
+			result = true;
+		}
+		 
+		return result;
 	}
 	
 	

@@ -1,6 +1,6 @@
 // JavaScript Document
-var apiUrl="http://localhost:8080/mms/";
-//var apiUrl = "http://47.94.16.235:8080/mms/"
+//var apiUrl="http://localhost:8080/mms/";
+var apiUrl = "http://118.190.137.113:8080/mms/"
 $(function() {
 	$('.tablelist tbody tr:odd').addClass('odd');
 	$(".tablelist li").click(function() {

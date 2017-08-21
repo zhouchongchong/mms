@@ -2,7 +2,7 @@ const customName = localStorage.getItem('customName');
 const validateLogin = function() {
 	$.ajax({
 		type:'post',
-		url:'http://localhost:8080/mms/user/isin',
+		url:'http://118.190.137.113:8080/mms/user/isin',
 		data:{
 			'userName':customName
 		},

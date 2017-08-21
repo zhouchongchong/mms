@@ -16,7 +16,17 @@ import java.io.*;
  */
 public class PictureUtils {
 	public static void main(String[] args) {
-		zipImageFileIO("C:\\Users\\zhouchong\\Downloads\\1.jpg", 0.2F, "01");
+//		zipImageFileIO("C:\\Users\\zhouchong\\Downloads\\1.jpg", 0.2F, "01");
+//		zipImageFile("E:\\工作文档\\酒文轩\\正面照片\\047青花八仙过海.jpg", 180, 245,0.8f, "small");
+		try {
+			saveMinPhoto("E:\\工作文档\\酒文轩\\正面照片\\047青花八仙过海.jpg","F:\\bxguoha.jpg",180d,1d);
+			System.out.println("sss");
+		} catch (Exception e) {
+			  
+			// TODO Auto-generated catch block  
+			e.printStackTrace();  
+			
+		}
 	}
 	
 	public static String zipImageFileIO(String oldFile,float quality,String smallIcon){

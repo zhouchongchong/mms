@@ -34,8 +34,28 @@ public class User {
     private Date uUptime;
 
     private Integer isdelete;
+    
+    private String token;
+    
+    public Long getActivateTime() {
+		return activateTime;
+	}
 
-    public Integer getuId() {
+	public void setActivateTime(Long activateTime) {
+		this.activateTime = activateTime;
+	}
+
+	private Long activateTime;
+
+    public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Integer getuId() {
         return uId;
     }
 

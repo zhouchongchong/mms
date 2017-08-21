@@ -17,6 +17,7 @@ public interface IUserService {
 	
 	JsonResult<Object> insertUser(User user);
 	
+	public User searchUser(Integer uid);
 	
 	JsonResult<Object> validatepwd(HttpServletRequest request,User user);
 	
@@ -27,6 +28,8 @@ public interface IUserService {
 	JsonResult<Object> searchUserById(Integer uId);
 	
 	JsonResult<Object> deleteUserById(Integer uId);
+	
+	boolean updateUserSelective(User u);
 	
 	
 }
