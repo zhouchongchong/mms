@@ -17,12 +17,19 @@
 </style>
 </head>
 <body>
-<div class="content"><img src="../images/email/suc.jpg"/>已激活，三秒后跳转...</div>
+<div class="content"><img src="../images/email/suc.jpg"/>已激活，<font id="time">3</font>秒后跳转...</div>
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <script>
-   setTimeout(() =>{
+   var time = 3;
+   setInterval(() =>{
+	   if(time > 0){
+		   time--;
+		   console.log(time)
+		   $("#time").text(time)
+		   return
+	   }
 	   window.location.href="../login_index.html";
-   },3000)
+   },1000)
 </script>   
 </body>
 </html>
